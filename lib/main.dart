@@ -17,7 +17,6 @@ import 'package:hospital_app/pages/profile_page.dart';
 import 'package:hospital_app/pages/starred_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -37,8 +36,7 @@ class MyApp extends StatelessWidget {
         }
         // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return  MaterialApp(
-              debugShowCheckedModeBanner: false,
+          return MaterialApp(debugShowCheckedModeBanner: false,
               //  initialRoute: MyRoute.appHomeRoute,
               routes: {
                 "/": (context) => AppHomePage(),
@@ -51,16 +49,17 @@ class MyApp extends StatelessWidget {
                 MyRoute.profileRoute: (context) => ProfilePage(),
                 MyRoute.doctorLoginRoute: (context) => DoctorLoginPage(),
                 MyRoute.doctorHomeRoute: (context) => DoctorHomePage(),
-                MyRoute.doctorAppointmentDetailRoute: (context) => DoctorAppointmentDetailPage(),
-                MyRoute.doctorRequestDetailRoute: (context) => DoctorRequestDetailPage(),
-                MyRoute.doctorEditProfileRoute: (context) => DoctorEditProfilePage(),
+                MyRoute.doctorAppointmentDetailRoute: (context) =>
+                    DoctorAppointmentDetailPage(),
+                MyRoute.doctorRequestDetailRoute: (context) =>
+                    DoctorRequestDetailPage(),
+                MyRoute.doctorEditProfileRoute: (context) =>
+                    DoctorEditProfilePage(),
                 MyRoute.doctorProfileRoute: (context) => DoctorProfilePage()
               });
         }
         return CircularProgressIndicator();
       },
     );
-
-
   }
 }
