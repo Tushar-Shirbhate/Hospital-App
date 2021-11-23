@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/utils/routes.dart';
+import 'package:hospital_app/utils/screen_arguments_doctor_list.dart';
 import 'package:hospital_app/widgets/drawer.dart';
 //import 'package:tushar_h/pages/hospital_detail_page.dart';
 //import 'package:tushar_h/utils/routes.dart';
@@ -55,55 +56,59 @@ class _HomePageState extends State<HomePage> {
                 if (!snapshot.hasData) return CircularProgressIndicator();
                 return ListView.builder(
                     itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                    itemBuilder: (BuildContext context, int index)
-                {
+                    itemBuilder: (BuildContext context, int index) {
+                  List doctorList = (snapshot.data! as QuerySnapshot).docs[index]["doctorList"];
                   return SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                    child: Card(
-                        elevation: 5,
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            height: 100,
-                            width: double.infinity,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween,
-                                children: [
-                                  Column(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .start,
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .start,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(context, MyRoute.detailRoute,);
-                                          },
-                                          child: Text(
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(
+                          context,
+                          MyRoute.detailRoute,
+                          arguments: ScreenArgumentsDoctorList(doctorList)
+                        );
+                      },
+                      child: Card(
+                          elevation: 5,
+                          child: Container(
+                              padding: EdgeInsets.all(10),
+                              height: 100,
+                              width: double.infinity,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceBetween,
+                                  children: [
+                                    Column(
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
+                                        children: [
+                                          Text(
                                               "${(snapshot.data! as QuerySnapshot)
-                                                  .docs[index]['hospitalName']}",
+                                                  .docs[index].id}",
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold)),
-                                        ),
-                                        Text(
-                                            "${(snapshot.data! as QuerySnapshot)
-                                                .docs[index]['hospitalAddress']}",
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 18,
-                                                fontStyle: FontStyle.italic)),
-                                        Text(
-                                            "${(snapshot.data! as QuerySnapshot)
-                                                .docs[index]['hospitalRating']}",
-                                            style: TextStyle(
-                                              color: Colors.deepOrange,
-                                              fontSize: 16,
-                                            ))
-                                      ]),
-                                  Icon(CupertinoIcons.heart),
-                                ]))),
+                                          Text(
+                                              "${(snapshot.data! as QuerySnapshot)
+                                                  .docs[index]['hospitalAddress']}",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 18,
+                                                  fontStyle: FontStyle.italic)),
+                                          Text(
+                                              "${(snapshot.data! as QuerySnapshot)
+                                                  .docs[index]['hospitalRating']}",
+                                              style: TextStyle(
+                                                color: Colors.deepOrange,
+                                                fontSize: 16,
+                                              ))
+                                        ]),
+                                    Icon(CupertinoIcons.heart),
+                                  ]))),
+                    ),
                     //  );
                   );
                 });

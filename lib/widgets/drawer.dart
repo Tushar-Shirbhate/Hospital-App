@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/routes.dart';
-// import 'package:tushar_h/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -66,7 +65,12 @@ class MyDrawer extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                   )),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                 MyRoute.appointmentListRoute
+                );
+              },
             ),
             ListTile(
               leading: Icon(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hospital_app/pages/DoctorHomePage.dart';
 import 'package:hospital_app/pages/Setting_page.dart';
 import 'package:hospital_app/pages/app_home_page.dart';
+import 'package:hospital_app/pages/appointment_list.dart';
 import 'package:hospital_app/pages/doctor_appointment_detail_page.dart';
 import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
 import 'package:hospital_app/pages/doctor_login_page.dart';
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
                 MyRoute.doctorAppointmentDetailRoute: (context) => DoctorAppointmentDetailPage(),
                 MyRoute.doctorRequestDetailRoute: (context) => DoctorRequestDetailPage(),
                 MyRoute.doctorEditProfileRoute: (context) => DoctorEditProfilePage(),
-                MyRoute.doctorProfileRoute: (context) => DoctorProfilePage()
+                MyRoute.doctorProfileRoute: (context) => DoctorProfilePage(),
+                MyRoute.appointmentListRoute: (context) => AppointmentListPage()
               });
         }
         return CircularProgressIndicator();
