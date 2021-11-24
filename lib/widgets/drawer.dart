@@ -85,7 +85,7 @@ class MyDrawer extends StatelessWidget {
                 CupertinoIcons.bell,
                 color: Colors.white,
               ),
-              title: Text("Remainder",
+              title: Text("Reminder",
                   textScaleFactor: 1.2,
                   style: TextStyle(
                     color: Colors.white,
