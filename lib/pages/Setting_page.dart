@@ -14,155 +14,153 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isDarkModeEnabled = false;
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: null,
-                icon: Icon(CupertinoIcons.settings),
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: null,
+            icon: Icon(CupertinoIcons.settings),
+          ),
+          title: Text('Settings'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.lock),
+                  Text(
+                    'Change Password',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                ],
               ),
-              title: Text('Settings'),
-            ),
-            body: SingleChildScrollView(
-              child: Column(
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 16.0, horizontal: 32.0),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'New Password',
+                        hintText: 'Enter new password',
+                      ),
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Confirm Password',
+                        hintText: 'Enter new password again',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(
+                height: 15,
+                indent: 15,
+                endIndent: 15,
+                thickness: 2,
+                color: Colors.blue,
+              ),
+              Column(
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.lock),
+                      Icon(Icons.dark_mode),
                       Text(
-                        'Change Password',
+                        'Dark Theme',
                         style: TextStyle(
                           fontSize: 25,
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 32.0),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'New Password',
-                            hintText: 'Enter new password',
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Confirm Password',
-                            hintText: 'Enter new password again',
-                          ),
-                        ),
-                      ],
+                  ListTile(
+                    title: Text('ON/OFF'),
+                    trailing: LiteRollingSwitch(
+                      value: false,
+                      colorOn: Colors.blueAccent,
+                      colorOff: Colors.grey,
+                      iconOn: Icons.dark_mode,
+                      iconOff: Icons.wb_sunny,
+                      onChanged: (bool light) {
+                        // ignore: unused_label
+                      },
+                      // groupValue: 1,
+                      // onChanged: null,
+                      // activeColor: Colors.deepPurple,
+                      // toggleable: true,
                     ),
                   ),
-                  Divider(
-                    height: 15,
-                    indent: 15,
-                    endIndent: 15,
-                    thickness: 2,
-                    color: Colors.blue,
-                  ),
-                  Column(
+                ],
+              ),
+              Divider(
+                height: 15,
+                indent: 15,
+                endIndent: 15,
+                thickness: 2,
+                color: Colors.blue,
+              ),
+              Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.dark_mode),
-                          Text(
-                            'Dark Theme',
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTile(
-                        title: Text('ON/OFF'),
-                        trailing: LiteRollingSwitch(
-                          value: false,
-                          colorOn: Colors.blueAccent,
-                          colorOff: Colors.grey,
-                          iconOn: Icons.dark_mode,
-                          iconOff: Icons.wb_sunny,
-                          onChanged: (bool light) {
-                            // ignore: unused_label
-                          },
-                          // groupValue: 1,
-                          // onChanged: null,
-                          // activeColor: Colors.deepPurple,
-                          // toggleable: true,
+                      Icon(Icons.notifications),
+                      Text(
+                        'Notification',
+                        style: TextStyle(
+                          fontSize: 25,
                         ),
                       ),
                     ],
                   ),
-                  Divider(
-                    height: 15,
-                    indent: 15,
-                    endIndent: 15,
-                    thickness: 2,
-                    color: Colors.blue,
+                  ListTile(
+                    title: Text('ON/OFF'),
+                    trailing: LiteRollingSwitch(
+                      value: false,
+                      colorOn: Colors.blueAccent,
+                      colorOff: Colors.grey,
+                      iconOn: Icons.notifications_active,
+                      iconOff: Icons.notifications_off,
+                      onChanged: (bool position) {
+                        // ignore: unused_label
+                        themeMode:
+                        ThemeMode.dark;
+                      },
+                      // groupValue: 1,
+                      // onChanged: null,
+                      // activeColor: Colors.deepPurple,
+                      // toggleable: true,
+                    ),
                   ),
-                  Column(
+                ],
+              ),
+              Divider(
+                height: 15,
+                indent: 15,
+                endIndent: 15,
+                thickness: 2,
+                color: Colors.blue,
+              ),
+              Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.notifications),
-                          Text(
-                            'Notification',
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTile(
-                        title: Text('ON/OFF'),
-                        trailing: LiteRollingSwitch(
-                          value: false,
-                          colorOn: Colors.blueAccent,
-                          colorOff: Colors.grey,
-                          iconOn: Icons.notifications_active,
-                          iconOff: Icons.notifications_off,
-                          onChanged: (bool position) {
-                            // ignore: unused_label
-                            themeMode:
-                            ThemeMode.dark;
-                          },
-                          // groupValue: 1,
-                          // onChanged: null,
-                          // activeColor: Colors.deepPurple,
-                          // toggleable: true,
+                      Icon(Icons.contact_support),
+                      Text(
+                        'Contact Us',
+                        style: TextStyle(
+                          fontSize: 25,
                         ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    height: 15,
-                    indent: 15,
-                    endIndent: 15,
-                    thickness: 2,
-                    color: Colors.blue,
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.contact_support),
-                          Text(
-                            'Contact Us',
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
                 ],
               ),
-            )));
+            ],
+          ),
+        ));
   }
 }
