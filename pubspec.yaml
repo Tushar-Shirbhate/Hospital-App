@@ -41,6 +41,8 @@ dependencies:
   file_picker: ^4.2.4
   firebase_storage: ^10.1.0
   flutter_launcher_icons: ^0.9.2
+  lite_rolling_switch: ^0.1.1
+  day_night_switcher: ^0.2.0+1
 
 flutter_icons:
   image_path: "Assets/images/app_icon.png"
