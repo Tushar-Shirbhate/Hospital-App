@@ -13,13 +13,14 @@ import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/pages/doctor_request_detail_page.dart';
 import 'package:hospital_app/pages/home_page.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
-import 'package:hospital_app/pages/login_page.dart';
+import 'package:hospital_app/pages/login_screen.dart';
 import 'package:hospital_app/pages/profile_page.dart';
 import 'package:hospital_app/pages/starred_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
