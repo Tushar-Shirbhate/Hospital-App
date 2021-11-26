@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.connectionState == ConnectionState.done) {
           return ThemeProvider(
               //initTheme:
-              //  user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
+              //     user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
               child: Builder(
                   builder: (context) => MaterialApp(
                           debugShowCheckedModeBanner: false,
@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                             MyRoute.doctorEditProfileRoute: (context) =>
                                 DoctorEditProfilePage(),
                             MyRoute.doctorProfileRoute: (context) =>
-                                DoctorProfilePage(),
+                                DoctorProfilepage(),
                             MyRoute.appointmentListRoute: (context) =>
                                 AppointmentListPage()
                           })));

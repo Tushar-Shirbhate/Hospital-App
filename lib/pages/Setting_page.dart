@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:hospital_app/utils/themes.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:hospital_app/utils/themes.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
 class SettingPage extends StatefulWidget {
@@ -88,12 +87,12 @@ class _SettingPageState extends State<SettingPage> {
                       builder: (context) => IconButton(
                         icon: Icon(icon),
                         onPressed: () {
-                          // final theme = isDarkMode
-                          //   ? MyThemes.lightTheme
-                          // : MyThemes.darkTheme;
+                          final theme = isDarkMode
+                              ? MyThemes.lightTheme
+                              : MyThemes.darkTheme;
 
-                          //final switcher = ThemeSwitcher.of(context)!;
-                          //switcher.changeTheme(theme: theme);
+                          final switcher = ThemeSwitcher.of(context)!;
+                          switcher.changeTheme(theme: theme);
                         },
                         // groupValue: 1,
                         // onChanged: null,

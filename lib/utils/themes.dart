@@ -12,7 +12,7 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
+    scaffoldBackgroundColor: Colors.blue,
     primaryColorDark: primaryColor,
     colorScheme: ColorScheme.dark(primary: primary),
     dividerColor: Colors.black,
