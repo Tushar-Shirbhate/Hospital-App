@@ -6,7 +6,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:hospital_app/utils/themes.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:hospital_app/utils/themes.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
 class SettingPage extends StatefulWidget {
   @override
@@ -15,6 +18,8 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final icon = CupertinoIcons.moon_stars;
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -79,19 +84,22 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   ListTile(
                     title: Text('ON/OFF'),
-                    trailing: LiteRollingSwitch(
-                      value: false,
-                      colorOn: Colors.blueAccent,
-                      colorOff: Colors.grey,
-                      iconOn: Icons.dark_mode,
-                      iconOff: Icons.wb_sunny,
-                      onChanged: (bool light) {
-                        // ignore: unused_label
-                      },
-                      // groupValue: 1,
-                      // onChanged: null,
-                      // activeColor: Colors.deepPurple,
-                      // toggleable: true,
+                    trailing: ThemeSwitcher(
+                      builder: (context) => IconButton(
+                        icon: Icon(icon),
+                        onPressed: () {
+                          // final theme = isDarkMode
+                          //   ? MyThemes.lightTheme
+                          // : MyThemes.darkTheme;
+
+                          //final switcher = ThemeSwitcher.of(context)!;
+                          //switcher.changeTheme(theme: theme);
+                        },
+                        // groupValue: 1,
+                        // onChanged: null,
+                        // activeColor: Colors.deepPurple,
+                        // toggleable: true,
+                      ),
                     ),
                   ),
                 ],

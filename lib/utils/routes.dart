@@ -6,6 +6,7 @@ class MyRoute {
   static String starredRoute = "/StarredPge";
   static String detailRoute = "/detail";
   static String profileRoute = "/profile";
+  static String editprofileRoute = "/editprofile";
   static String doctorLoginRoute = "/doctorLogin";
   static String doctorHomeRoute = "/doctorHome";
   static String doctorAppointmentDetailRoute = "/doctorAppointmentDetail";

@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool obs_text=true;
+  bool obs_text = true;
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -93,20 +93,18 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         labelText: 'Enter your E-mail ID',
                       ),
-                      validator: (value)
-                          {
-                            if(value==null || value.isEmpty)
-                            {
-                              return "Please enter some text";
-                            }
-                            return null;
-                          },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter some text";
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     TextFormField(
-                      obscureText: obs_text?true:false,
+                      obscureText: obs_text ? true : false,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(
@@ -118,34 +116,31 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.lock,
                           color: Colors.black,
                         ),
-                        suffixIcon: IconButton(icon:Icon(Icons.remove_red_eye),onPressed: (){
-                          obs_text=false;
-                          setState(() {
-                            
-                          });
-                        },),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.remove_red_eye),
+                          onPressed: () {
+                            obs_text = false;
+                            setState(() {});
+                          },
+                        ),
                         labelText: 'Enter your Password',
                       ),
-                      validator: (value)
-                          {
-                            if(value==null || value.isEmpty)
-                            {
-                              return "Please enter some text";
-                            }
-                            else if(value.length<6)
-                            {
-                              return "Password must be of atleast 6 characters";
-                            }
-                            return null;
-                          },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter some text";
+                        } else if (value.length < 6) {
+                          return "Password must be of atleast 6 characters";
+                        }
+                        return null;
+                      },
                     ),
-                    ElevatedButton(onPressed: () {
-                      if(_formkey.currentState!.validate())
-                      {
-                        Navigator.pushNamed(context, MyRoute.homeRoute);
-
-                      }
-                    }, child: Text('Login')),
+                    ElevatedButton(
+                        onPressed: () {
+                          if (_formkey.currentState!.validate()) {
+                            Navigator.pushNamed(context, MyRoute.homeRoute);
+                          }
+                        },
+                        child: Text('Login')),
                     SizedBox(
                       height: 10,
                     ),

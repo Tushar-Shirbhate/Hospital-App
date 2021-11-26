@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors,
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +11,16 @@ import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
 import 'package:hospital_app/pages/doctor_login_page.dart';
 import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/pages/doctor_request_detail_page.dart';
+import 'package:hospital_app/pages/edit_profilePage.dart';
 import 'package:hospital_app/pages/home_page.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/pages/login_screen.dart';
 import 'package:hospital_app/pages/profile_page.dart';
 import 'package:hospital_app/pages/starred_page.dart';
 import 'package:hospital_app/utils/routes.dart';
+import 'package:hospital_app/utils/themes.dart';
+import 'package:hospital_app/widgets/user_preferences.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final user = UserPreferences.myUser;
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -43,29 +48,42 @@ class _MyAppState extends State<MyApp> {
         }
         // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(debugShowCheckedModeBanner: false,
+          return ThemeProvider(
+              //initTheme:
+              //  user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
+              child: Builder(
+                  builder: (context) => MaterialApp(
+                          debugShowCheckedModeBanner: false,
+                          theme: ThemeProvider.of(context),
 
-              //  initialRoute: MyRoute.appHomeRoute,
-              routes: {
-                "/": (context) => AppHomePage(),
-                MyRoute.loginRoute: (context) => LoginPage(),
-                MyRoute.homeRoute: (context) => HomePage(),
-                MyRoute.loginRoute: (context) => LoginPage(),
-                MyRoute.settingRoute: (context) => SettingPage(),
-                MyRoute.starredRoute: (context) => StarredPage(),
-                MyRoute.detailRoute: (context) => HospitalDetailPage(),
-                MyRoute.profileRoute: (context) => ProfilePage(),
-                MyRoute.doctorLoginRoute: (context) => DoctorLoginPage(),
-                MyRoute.doctorHomeRoute: (context) => DoctorHomePage(),
-                MyRoute.doctorAppointmentDetailRoute: (context) =>
-                    DoctorAppointmentDetailPage(),
-                MyRoute.doctorRequestDetailRoute: (context) =>
-                    DoctorRequestDetailPage(),
-                MyRoute.doctorEditProfileRoute: (context) =>
-                    DoctorEditProfilePage(),
-                MyRoute.doctorProfileRoute: (context) => DoctorProfilePage(),
-                MyRoute.appointmentListRoute: (context) => AppointmentListPage()
-              });
+                          //  initialRoute: MyRoute.appHomeRoute,
+                          routes: {
+                            "/": (context) => AppHomePage(),
+                            MyRoute.loginRoute: (context) => LoginPage(),
+                            MyRoute.homeRoute: (context) => HomePage(),
+                            MyRoute.loginRoute: (context) => LoginPage(),
+                            MyRoute.settingRoute: (context) => SettingPage(),
+                            MyRoute.starredRoute: (context) => StarredPage(),
+                            MyRoute.detailRoute: (context) =>
+                                HospitalDetailPage(),
+                            MyRoute.profileRoute: (context) => Profilepage(),
+                            MyRoute.editprofileRoute: (context) =>
+                                EditProfilePage(),
+                            MyRoute.doctorLoginRoute: (context) =>
+                                DoctorLoginPage(),
+                            MyRoute.doctorHomeRoute: (context) =>
+                                DoctorHomePage(),
+                            MyRoute.doctorAppointmentDetailRoute: (context) =>
+                                DoctorAppointmentDetailPage(),
+                            MyRoute.doctorRequestDetailRoute: (context) =>
+                                DoctorRequestDetailPage(),
+                            MyRoute.doctorEditProfileRoute: (context) =>
+                                DoctorEditProfilePage(),
+                            MyRoute.doctorProfileRoute: (context) =>
+                                DoctorProfilePage(),
+                            MyRoute.appointmentListRoute: (context) =>
+                                AppointmentListPage()
+                          })));
         }
         return CircularProgressIndicator();
       },
