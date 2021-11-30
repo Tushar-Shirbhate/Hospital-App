@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/screen_arguments.dart';
 
@@ -8,7 +9,8 @@ class  DoctorRequestDetailPage extends StatefulWidget{
 }
 
 class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
-  final CollectionReference firestoreDBPatientList = FirebaseFirestore.instance.collection('patientList');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final CollectionReference firestoreDBPatientList = FirebaseFirestore.instance.collection('users');
 
   late DateTime pickedDate;
   late TimeOfDay time1;
@@ -31,13 +33,13 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
 
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
 
-    String patientListId = args.patientListId;
+    String patientListId = args.patientRequestListId;
 
 
     return Scaffold(
         appBar: AppBar(
             title: Text(
-                "Request Detail"
+                "Requested Patient"
             )
         ),
         body: SingleChildScrollView(
@@ -48,15 +50,41 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     padding: EdgeInsets.fromLTRB(15,0,0,0),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                        args.patientName,
+                        "Name: ${args.patientName}",
                         style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic
                         )
                     ),
                   ),
                   SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15,0,0,0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                        "Email: ${args.patientEmail}",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic
+                        )
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15,0,0,0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                        "Doctor: ${args.doctorName}",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic
+                        )
+                    ),
+                  ),
+                  SizedBox(height: 30),
                   Container(
                       width: double.infinity,
                       padding: EdgeInsets.fromLTRB(25,0,15,0),
@@ -136,42 +164,136 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 60,),
+                  SizedBox(height: 40,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InkWell(
-                        onTap: () async {
-                          Map<String,dynamic> patientRequest = {"patientName":args.patientName,"date":date,"fromTime":fromTime,"toTime":toTime};
-                          FirebaseFirestore.instance.collection("patientRequestDetailList").add(patientRequest);
+                            InkWell(
+                            onTap: () async {
+                              firestoreDBPatientList.doc(_auth.currentUser!.uid)
+                                  .collection('patientAcceptedList')
+                                  .add({
+                                "patientName":args.patientName,
+                                "email": args.patientEmail,
+                                "phoneNo": args.patientPhoneNumber,
+                                "patientUid": args.patientUid,
+                                "doctorName": args.doctorName,
+                                "doctorPost": args.doctorPost,
+                                "doctorSpeciality": args.doctorSpeciality,
+                                "doctorEducation": args.doctorEducation,
+                                "date":date,
+                                "fromTime":fromTime,
+                                "toTime":toTime
+                              });
+                              firestoreDBPatientList.doc(args.patientUid)
+                                  .collection('appointmentAcceptedDoctorList')
+                                  .add({
+                                "patientUid": args.patientUid,
+                                "hospitalUid": _auth.currentUser!.uid,
+                                "doctorName": args.doctorName,
+                                "doctorPost": args.doctorPost,
+                                "doctorSpeciality": args.doctorSpeciality,
+                                "doctorEducation": args.doctorEducation,
+                                "date":date,
+                                "fromTime":fromTime,
+                                "toTime":toTime
+                              });
 
-                        //await firestoreDBPatientList.doc(patientListId).update({"patientName":"Patient 2"}).then((value) => print('updated'));
-                        await firestoreDBPatientList.doc(patientListId).delete().then((value) => print('deleted'));
+                              String id;
+                               FirebaseFirestore.instance.collection("users")
+                                  .doc(_auth.currentUser!.uid)
+                                  .collection("patientRequestList")
+                                   .where("email", isEqualTo: args.patientEmail)
+                                   .where("doctorName", isEqualTo: args.doctorName)
+                                   .where("patientName", isEqualTo: args.patientName)
+                                   .where("uid", isEqualTo: args.patientUid)
+                               .get()
+                               .then((snapshot) {
+                                   id = snapshot.docs[0].id;
+                                   FirebaseFirestore.instance.collection("users")
+                                       .doc(_auth.currentUser!.uid)
+                                       .collection("patientRequestList").doc(id).delete();
+                                   print(id);
+                               });
 
-                          Navigator.pop(context);
-                          },
-                        child: Container(
-                            width: 125,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: Colors.greenAccent,
+                               String id2;
+                               FirebaseFirestore.instance.collection("users")
+                                  .doc(args.patientUid)
+                                  .collection("appointmentRequestedDoctorList")
+                                   .where("doctorName", isEqualTo: args.doctorName)
+                                   .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+                               .get()
+                               .then((snapshot) {
+                                   id2 = snapshot.docs[0].id;
+                                   FirebaseFirestore.instance.collection("users")
+                                       .doc(args.patientUid)
+                                       .collection("appointmentRequestedDoctorList").doc(id2).delete();
+                                   print(id2);
+                               });
+
+
+                              //firestoreDBPatientList.doc(args.patientUid).collection('patientAcceptedList').add(patientRequest);
+                              
+                              //await firestoreDBPatientList.doc(patientListId).update({"patientName":"Patient 2"}).then((value) => print('updated'));
+                            //await firestoreDBPatientList.doc(patientListId).delete().then((value) => print('deleted'));
+
+                              Navigator.pop(context);
+                              },
+                            child: Container(
+                                width: 125,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: Colors.greenAccent,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                      "Accept",
+                                      style: TextStyle(
+                                          fontSize: 26,
+                                          color: Colors.white
+                                      )
+                                  ),
+                                )
                             ),
-                            child: Center(
-                              child: Text(
-                                  "Accept",
-                                  style: TextStyle(
-                                      fontSize: 26,
-                                      color: Colors.white
-                                  )
-                              ),
-                            )
-                        ),
-                      ),
+                     //     );
+                     //   }
+                    ),
                       InkWell(
                         onTap: () async{
-                          await firestoreDBPatientList.doc(patientListId).delete().then((value) => print('deleted'));
+                          String id;
+                          FirebaseFirestore.instance.collection("users")
+                              .doc(_auth.currentUser!.uid)
+                              .collection("patientRequestList")
+                              .where("email", isEqualTo: args.patientEmail)
+                              .where("doctorName", isEqualTo: args.doctorName)
+                              .where("patientName", isEqualTo: args.patientName)
+                              .where("uid", isEqualTo: args.patientUid)
+                              .get()
+                              .then((snapshot) {
+                            id = snapshot.docs[0].id;
+                            FirebaseFirestore.instance.collection("users")
+                                .doc(_auth.currentUser!.uid)
+                                .collection("patientRequestList").doc(id).delete();
+                            print(id);
+                          });
+
+                          String id2;
+                          FirebaseFirestore.instance.collection("users")
+                              .doc(args.patientUid)
+                              .collection("appointmentRequestedDoctorList")
+                              .where("doctorName", isEqualTo: args.doctorName)
+                              .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+                              .get()
+                              .then((snapshot) {
+                            id2 = snapshot.docs[0].id;
+                            FirebaseFirestore.instance.collection("users")
+                                .doc(args.patientUid)
+                                .collection("appointmentRequestedDoctorList").doc(id2).delete();
+                            print(id2);
+                          });
+
                           Navigator.pop(context);
                         },
                         child: Container(

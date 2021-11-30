@@ -1,5 +1,5 @@
 class ScreenArgumentsDoctorList{
-  late List doctorList;
+  late String id;
 
-  ScreenArgumentsDoctorList(this.doctorList);
+  ScreenArgumentsDoctorList(this.id);
 }

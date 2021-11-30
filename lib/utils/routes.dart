@@ -1,6 +1,7 @@
 class MyRoute {
   static String appHomeRoute = "/appHome";
   static String loginRoute = "/login";
+  static String hospitalLoginRoute = "/hospitalLogin";
   static String homeRoute = "/home";
   static String settingRoute = "/settings";
   static String starredRoute = "/StarredPge";
@@ -14,4 +15,6 @@ class MyRoute {
   static String doctorEditProfileRoute = "/doctorEditProfile";
   static String doctorProfileRoute = "/doctorProfile";
   static String appointmentListRoute = "/appointmentList";
+  static String addDoctorListRoute = "/addDoctorList";
+  static String appointmentRequestedRoute = "/appointmentRequested";
 }

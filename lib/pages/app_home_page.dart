@@ -64,7 +64,7 @@ class _AppHomePageState extends State<AppHomePage> {
                           // ),
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context, MyRoute.doctorLoginRoute);
+                              Navigator.pushNamed(context, MyRoute.hospitalLoginRoute);
                             },
                             child: Container(
                                 width: double.infinity,

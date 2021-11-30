@@ -22,21 +22,12 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
   bool isReport = false;
   late bool present;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   setState(() {
-  //     isReport = !isReport;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final argsAp = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsAppointment;
 
-     patientApListId = argsAp.patientRequestListId;
-     patientNameAp = argsAp.patientNameAp;
+     patientApListId = argsAp.patientAcceptListId;
+     patientNameAp = argsAp.patientName;
 
       return Scaffold(
         appBar: AppBar(
@@ -52,7 +43,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                       padding: EdgeInsets.fromLTRB(15,0,0,0),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                          argsAp.patientNameAp,
+                          argsAp.patientName,
                           style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -71,7 +62,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                           },
                               icon: Icon(Icons.date_range)),
                                Text(
-                                   argsAp.dateAp,
+                                   argsAp.date,
                                     style: TextStyle(
                                    fontSize: 24,
                                    fontWeight: FontWeight.bold,
@@ -91,7 +82,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                 icon: Icon(Icons.lock_clock)
                               ),
                               Text(
-                                argsAp.fromTimeAp,
+                                argsAp.fromTime,
                                 style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -111,7 +102,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                  icon: Icon(Icons.lock_clock)
                              ),
                                Text(
-                                argsAp.toTimeAp,
+                                argsAp.toTime,
                                 style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -266,7 +257,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
             Padding(
               padding: EdgeInsets.fromLTRB(60,0,0,30),
               child: FloatingActionButton(
-                child: Icon(Icons.video_call),
+                child: Icon(Icons.call),
                 onPressed: (){
 
                 },
