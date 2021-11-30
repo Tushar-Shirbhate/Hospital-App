@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/pages/report_view.dart';
@@ -14,20 +15,30 @@ class DoctorAppointmentDetailPage extends StatefulWidget{
 }
 
 class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPage> {
-  final CollectionReference firestoreDBPatientRequestList = FirebaseFirestore.instance.collection('patientRequestDetailList');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final CollectionReference _firestoreDBPatientRequestList = FirebaseFirestore.instance.collection("users");
   String reportUrl = "";
   int? number;
   late String patientApListId;
   late String patientNameAp;
   bool isReport = false;
   late bool present;
+  String date = "";
+  String patientName = "";
+  String doctorName = "";
+  String patientUid = "";
 
   @override
   Widget build(BuildContext context) {
     final argsAp = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsAppointment;
 
-     patientApListId = argsAp.patientAcceptListId;
-     patientNameAp = argsAp.patientName;
+     // patientApListId = argsAp.patientAcceptListId;
+     // patientNameAp = argsAp.patientName;
+    date = argsAp.date;
+    patientName = argsAp.patientName;
+    doctorName = argsAp.doctorName;
+    patientUid = argsAp.patientUid;
+
 
       return Scaffold(
         appBar: AppBar(
@@ -39,30 +50,55 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                 padding: EdgeInsets.all(15),
                  child: Column(
                   children: [
+                    SizedBox(height: 20,),
                     Container(
                       padding: EdgeInsets.fromLTRB(15,0,0,0),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                          argsAp.patientName,
+                          "Name: ${argsAp.patientName}",
                           style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic
                           )
                       ),
-              ),
-                     Container(
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(15,0,0,0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                          "Email: ${argsAp.email}",
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(15,0,0,0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                          "Doctor: ${argsAp.doctorName}",
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                        padding: EdgeInsets.fromLTRB(15,0,0,0),
                         child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                            IconButton(
-                              onPressed: (){
-
-                          },
-                              icon: Icon(Icons.date_range)),
+                          Icon(Icons.date_range),
                                Text(
-                                   argsAp.date,
+                                   " Date: ${argsAp.date}",
                                     style: TextStyle(
                                    fontSize: 24,
                                    fontWeight: FontWeight.bold,
@@ -72,17 +108,14 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                       ],
                      )
                     ),
+                    SizedBox(height: 20),
                     Container(
-                         child: Row(
+                        padding: EdgeInsets.fromLTRB(15,0,0,0),
+                        child: Row(
                            children: [
-                              IconButton(
-                               onPressed: (){
-
-                              },
-                                icon: Icon(Icons.lock_clock)
-                              ),
+                                Icon(Icons.lock_clock),
                               Text(
-                                argsAp.fromTime,
+                                  " Time: ${argsAp.fromTime} - ${argsAp.toTime}",
                                 style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
@@ -92,26 +125,6 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                            ],
                          )
                       ),
-                    Container(
-                         child: Row(
-                            children: [
-                              IconButton(
-                                 onPressed: (){
-
-                                },
-                                 icon: Icon(Icons.lock_clock)
-                             ),
-                               Text(
-                                argsAp.toTime,
-                                style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic
-                                )
-                               ),
-                            ],
-                         )
-                    ),
                     SizedBox(
                        height: 40
                     ),
@@ -123,12 +136,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             InkWell(
-                               // onTap: (){
                                  onTap: uploadReportToFirebase,
-                                //   setState(() {
-                                //   isReport = !isReport;
-                                // });
-                                // },
                                  child: Icon(
                                  Icons.upload_file,
                                  size: 50,
@@ -149,15 +157,11 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                     ),
                        SizedBox(height: 20,),
                        StreamBuilder(
-                          stream: FirebaseFirestore.instance.collection("reportFileList").doc("${patientNameAp}").snapshots(),
+                          stream: _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid).collection("reportFileList").doc("${date}${patientName}${doctorName}").snapshots(),
                            builder: (context, AsyncSnapshot snapshot) {
-                             //DocumentSnapshot x = snapshot.data!;
-                             //String id = snapshot.data!.doc("${patientNameAp}").id;
-                          //   if(isReport) {
-                               var x = snapshot.data;
-                               // if(id.isEmpty){
 
-                              // }
+                               var x = snapshot.data;
+
                                if (!snapshot.hasData) {
                                  return CircularProgressIndicator();
                                }
@@ -182,7 +186,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                        ),
                                        child: Center(
                                          child: Text(
-                                           x["num"],
+                                           "Report",
                                            style: TextStyle(
                                                color: Colors.white,
                                                fontSize: 26
@@ -204,7 +208,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                             children: [
                               InkWell(
                                  onTap: () async{
-                                  await firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
+                                 // await _firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
                                   Navigator.pop(context);
                                   },
                                   child: Container(
@@ -277,8 +281,6 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
   }
 
   uploadReportToFirebase() async{
-   //number = Random().nextInt(10);
-
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     File pick = File(result!.files.single.path.toString());
     var file = pick.readAsBytesSync();
@@ -289,13 +291,15 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
     TaskSnapshot snapshot = await task;
     reportUrl = await snapshot.ref.getDownloadURL();
 
-    await FirebaseFirestore.instance.collection("reportFileList").doc("${patientNameAp}").set({
+    await _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid).collection("reportFileList").doc("${date}${patientName}${doctorName}").set({
       "reportFileUrl": reportUrl,
-     // "num": "Report-"+number.toString()
-      "num": "Report-${patientNameAp}"
+      "num": "Report-${date}${patientName}${doctorName}"
+    });
+    await _firestoreDBPatientRequestList.doc(patientUid).collection("reportFileList").doc("${date}${patientName}${doctorName}").set({
+      "reportFileUrl": reportUrl,
+      "num": "Report-${date}${patientName}${doctorName}"
     });
 }
-
 }
 
 
