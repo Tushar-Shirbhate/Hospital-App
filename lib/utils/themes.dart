@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyThemes {
   static final primary = Colors.blue;
-  static final primaryColor = Colors.blue.shade300;
+  static final primaryColor = Colors.white;
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
@@ -12,7 +12,7 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.blue,
+    scaffoldBackgroundColor: Colors.black,
     primaryColorDark: primaryColor,
     colorScheme: ColorScheme.dark(primary: primary),
     dividerColor: Colors.black,

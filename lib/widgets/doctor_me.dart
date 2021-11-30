@@ -13,7 +13,6 @@ class _DoctorMeState extends State<DoctorMe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: Icon(CupertinoIcons.heart_solid),
           title: Text("Me"),
