@@ -1,9 +1,16 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital_app/utils/themes.dart';
+import 'package:hospital_app/utils/user.dart';
+import 'package:hospital_app/widgets/user_preferences.dart';
+//import 'package:theme_provider/theme_provider.dart';
 
 class StarredPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = UserPreferences.myUser;
+
     // TODO: implement build
     final List<String> hospitalName = <String>[
       'Hospital 1',
@@ -59,58 +66,63 @@ class StarredPage extends StatelessWidget {
       3.6,
       3.5
     ];
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('Starred'),
-      ),
-      body: ListView.builder(
-          itemCount: hospitalName.length,
-          itemBuilder: (BuildContext context, int index) {
-            return SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-              child: Card(
-                elevation: 5,
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  height: 100,
-                  width: double.infinity,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${hospitalName[index]}",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              Text("${hospitalAddress[index]}",
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 18,
-                                      fontStyle: FontStyle.italic)),
-                              Text("${hospitalRating[index]}",
-                                  style: TextStyle(
-                                    color: Colors.deepOrange,
-                                    fontSize: 16,
-                                  ))
-                            ]),
-                        // ElevatedButton(
-                        //   onPressed: () {},
-                        //   child:
-                           Icon(
-                            CupertinoIcons.heart_fill
-                          ),
-                        // )
-                      ]),
-                ),
+    return ThemeProvider(
+      initTheme: user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
+      child: Builder(builder: (context) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              appBar: AppBar(
+                //backgroundColor: Colors.blue,
+                title: Text('Favourite'),
               ),
-            );
-          }),
-    ));
+              body: ListView.builder(
+                  itemCount: hospitalName.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                      child: Card(
+                        elevation: 5,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          height: 100,
+                          width: double.infinity,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("${hospitalName[index]}",
+                                          style: TextStyle(
+                                              //color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                      Text("${hospitalAddress[index]}",
+                                          style: TextStyle(
+                                              //color: Colors.grey,
+                                              fontSize: 18,
+                                              fontStyle: FontStyle.italic)),
+                                      Text("${hospitalRating[index]}",
+                                          style: TextStyle(
+                                            color: Colors.deepOrange,
+                                            fontSize: 16,
+                                          ))
+                                    ]),
+                                // ElevatedButton(
+                                //   onPressed: () {},
+                                //   child:
+                                Icon(CupertinoIcons.heart),
+                                // )
+                              ]),
+                        ),
+                      ),
+                    );
+                  }),
+            ));
+      }),
+    );
   }
 }

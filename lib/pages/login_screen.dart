@@ -19,28 +19,24 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailcontroller = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
   // firebase
-  final _auth=FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
   // string for displaying the error Message
   String? errorMessage;
 
-
-
   @override
   Widget build(BuildContext context) {
-    
-
-    bool obs_text=true;
+    bool obs_text = true;
     final emailField = TextFormField(
       autofocus: false,
       keyboardType: TextInputType.emailAddress,
-      validator: (value){
-        if(value!.isEmpty)
-        {
-         return ('Please enter some text');
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ('Please enter some text');
         }
         // reg expression email for validation
-        if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
-        {
+        if (!RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value)) {
           return ('Please Enter a valid Email');
         }
         return null;
@@ -59,18 +55,14 @@ class _LoginPageState extends State<LoginPage> {
           )),
     );
     final passwordField = TextFormField(
-      obscureText: obs_text?true:false,
+      obscureText: obs_text ? true : false,
       autofocus: false,
-
-      validator: (value)
-      {
+      validator: (value) {
         RegExp regex = new RegExp(r'^.{6,}$');
-        if(value!.isEmpty)
-        {
+        if (value!.isEmpty) {
           return 'Please enter password';
         }
-        if(!regex.hasMatch(value))
-        {
+        if (!regex.hasMatch(value)) {
           return '(Min 6 characters are required)';
         }
       },
@@ -80,14 +72,14 @@ class _LoginPageState extends State<LoginPage> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-        
           prefixIcon: Icon(Icons.vpn_key),
-          suffixIcon: IconButton(icon:Icon(Icons.remove_red_eye),onPressed: (){
-                          obs_text=false;
-                          setState(() {
-                            
-                          });
-                        },),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.remove_red_eye),
+            onPressed: () {
+              obs_text = false;
+              setState(() {});
+            },
+          ),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: 'Password',
           border: OutlineInputBorder(
@@ -103,7 +95,6 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         onPressed: () {
           signIn(emailcontroller.text, passwordController.text);
-          
         },
         child: Text(
           'Login',
@@ -115,12 +106,12 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.only(left: 8, right: 8),
-            color: Colors.white,
+            // color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(36),
               child: Form(
@@ -181,14 +172,14 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-     void signIn(String email, String password) async {
+  void signIn(String email, String password) async {
     if (_formkey.currentState!.validate()) {
       try {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
                   Fluttertoast.showToast(msg: "Login Successful"),
-                   Navigator.pushNamed(context, MyRoute.homeRoute),
+                  Navigator.pushNamed(context, MyRoute.homeRoute),
                 });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
@@ -219,5 +210,4 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-
 }

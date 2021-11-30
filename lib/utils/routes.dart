@@ -3,7 +3,7 @@ class MyRoute {
   static String loginRoute = "/login";
   static String homeRoute = "/home";
   static String settingRoute = "/settings";
-  static String starredRoute = "/StarredPge";
+  static String starredRoute = "/StarredPage";
   static String detailRoute = "/detail";
   static String profileRoute = "/profile";
   static String editprofileRoute = "/editprofile";

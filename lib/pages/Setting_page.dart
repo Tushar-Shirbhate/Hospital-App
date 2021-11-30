@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:hospital_app/utils/themes.dart';
+import 'package:hospital_app/widgets/user_preferences.dart';
+//import 'package:hospital_app/widgets/change_theme_button_switch_widget.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
@@ -17,8 +19,10 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
+    bool _switchValue = false;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final icon = CupertinoIcons.moon_stars;
+    var user = UserPreferences.myUser;
+    //final icon = CupertinoIcons.moon_stars;
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -28,80 +32,83 @@ class _SettingPageState extends State<SettingPage> {
           title: Text('Settings'),
         ),
         body: SingleChildScrollView(
-          child: Column(
+            child: Column(children: [
+          Row(
+            children: [
+              Icon(Icons.lock),
+              Text(
+                'Change Password',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'New Password',
+                    hintText: 'Enter new password',
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    hintText: 'Enter new password again',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            height: 15,
+            indent: 15,
+            endIndent: 15,
+            thickness: 2,
+            color: Colors.blue,
+          ),
+          Column(
             children: [
               Row(
                 children: [
-                  Icon(Icons.lock),
+                  Icon(Icons.dark_mode),
                   Text(
-                    'Change Password',
+                    'Dark Theme',
                     style: TextStyle(
                       fontSize: 25,
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 32.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'New Password',
-                        hintText: 'Enter new password',
-                      ),
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                        hintText: 'Enter new password again',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 15,
-                indent: 15,
-                endIndent: 15,
-                thickness: 2,
-                color: Colors.blue,
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.dark_mode),
-                      Text(
-                        'Dark Theme',
-                        style: TextStyle(
-                          fontSize: 25,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ListTile(
-                    title: Text('ON/OFF'),
-                    trailing: ThemeSwitcher(
-                      builder: (context) => IconButton(
-                        icon: Icon(icon),
-                        onPressed: () {
-                          final theme = isDarkMode
-                              ? MyThemes.lightTheme
-                              : MyThemes.darkTheme;
+              ListTile(
+                title: Text('ON/OFF'),
+                trailing: ThemeSwitcher(
+                  builder: (context) => Switch(
+                    //icon: Icon(icon),
+                    value: _switchValue,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _switchValue = newValue;
+                      });
+                      var theme = user.isDarkmode
+                          ? MyThemes.lightTheme
+                          : MyThemes.darkTheme;
 
-                          final switcher = ThemeSwitcher.of(context)!;
-                          switcher.changeTheme(theme: theme);
-                        },
-                        // groupValue: 1,
-                        // onChanged: null,
-                        // activeColor: Colors.deepPurple,
-                        // toggleable: true,
-                      ),
-                    ),
+                      final switcher = ThemeSwitcher.of(context)!;
+                      switcher.changeTheme(theme: theme);
+                    },
+                    //     // groupValue: 1,
+                    //     // onChanged: null,
+                    //     // activeColor: Colors.deepPurple,
+                    //     // toggleable: true,
+                    //   ),
+                    // ),
                   ),
-                ],
+                ),
               ),
               Divider(
                 height: 15,
@@ -168,6 +175,6 @@ class _SettingPageState extends State<SettingPage> {
               ),
             ],
           ),
-        ));
+        ])));
   }
 }

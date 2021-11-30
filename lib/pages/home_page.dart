@@ -23,7 +23,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var firestoreDB = FirebaseFirestore.instance.collection("hospitalList").snapshots();
+  var firestoreDB =
+      FirebaseFirestore.instance.collection("hospitalList").snapshots();
 
   //late SearchBar searchBar;
 
@@ -45,28 +46,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-     appBar: AppBar(
-       title: Text("Hospital App")
-     ),
-   //  appBar: searchBar.build(context),
+      appBar: AppBar(title: Text("Hospital App")),
+      //  appBar: searchBar.build(context),
       body: StreamBuilder(
-              stream: firestoreDB,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return CircularProgressIndicator();
-                return ListView.builder(
-                    itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                  List doctorList = (snapshot.data! as QuerySnapshot).docs[index]["doctorList"];
+          stream: firestoreDB,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return CircularProgressIndicator();
+            return ListView.builder(
+                itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  List doctorList = (snapshot.data! as QuerySnapshot)
+                      .docs[index]["doctorList"];
                   return SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                     child: InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(
-                          context,
-                          MyRoute.detailRoute,
-                          arguments: ScreenArgumentsDoctorList(doctorList)
-                        );
+                      onTap: () {
+                        Navigator.pushNamed(context, MyRoute.detailRoute,
+                            arguments: ScreenArgumentsDoctorList(doctorList));
                       },
                       child: Card(
                           elevation: 5,
@@ -75,32 +71,29 @@ class _HomePageState extends State<HomePage> {
                               height: 100,
                               width: double.infinity,
                               child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                        mainAxisAlignment: MainAxisAlignment
-                                            .start,
-                                        crossAxisAlignment: CrossAxisAlignment
-                                            .start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                              "${(snapshot.data! as QuerySnapshot)
-                                                  .docs[index].id}",
+                                              "${(snapshot.data! as QuerySnapshot).docs[index].id}",
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  //color: Colors.black,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold)),
                                           Text(
-                                              "${(snapshot.data! as QuerySnapshot)
-                                                  .docs[index]['hospitalAddress']}",
+                                              "${(snapshot.data! as QuerySnapshot).docs[index]['hospitalAddress']}",
                                               style: TextStyle(
-                                                  color: Colors.grey,
+                                                  // color: Colors.grey,
                                                   fontSize: 18,
                                                   fontStyle: FontStyle.italic)),
                                           Text(
-                                              "${(snapshot.data! as QuerySnapshot)
-                                                  .docs[index]['hospitalRating']}",
+                                              "${(snapshot.data! as QuerySnapshot).docs[index]['hospitalRating']}",
                                               style: TextStyle(
                                                 color: Colors.deepOrange,
                                                 fontSize: 16,
@@ -112,8 +105,7 @@ class _HomePageState extends State<HomePage> {
                     //  );
                   );
                 });
-              }
-      ),
+          }),
       drawer: MyDrawer(),
     );
   }

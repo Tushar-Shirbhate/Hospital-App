@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.connectionState == ConnectionState.done) {
           return ThemeProvider(
               //initTheme:
-              //     user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
+              //  user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
               child: Builder(
                   builder: (context) => MaterialApp(
                           debugShowCheckedModeBanner: false,
