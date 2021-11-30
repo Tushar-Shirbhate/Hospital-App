@@ -353,7 +353,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _phoneNo = TextEditingController();
   final TextEditingController _address = TextEditingController();
-  final TextEditingController _profession = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
   bool isLoading = false;
   @override
@@ -470,21 +469,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // labelText: "Password"
                           )
                       ),
-                      SizedBox(
-                          height: 30
-                      ),TextField(
-                          autofocus: false,
-                          controller: _profession,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.school),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Hospital/User",
-                          )
-                      ),
+                      // SizedBox(
+                      //     height: 30
+                      // ),TextField(
+                      //     autofocus: false,
+                      //     controller: _profession,
+                      //     textInputAction: TextInputAction.next,
+                      //     decoration: InputDecoration(
+                      //       prefixIcon: Icon(Icons.school),
+                      //       border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10)
+                      //       ),
+                      //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                      //       hintText: "Hospital/User",
+                      //     )
+                      // ),
                       SizedBox(
                         height: 30,
                       ),
@@ -508,12 +507,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       GestureDetector(
                           onTap: (){
-                            if(_name.text.isNotEmpty && _phoneNo.text.isNotEmpty && _email.text.isNotEmpty && _password.text.isNotEmpty && _profession.text.isNotEmpty && _address.text.isNotEmpty){
+                            if(_name.text.isNotEmpty && _phoneNo.text.isNotEmpty && _email.text.isNotEmpty && _password.text.isNotEmpty && _address.text.isNotEmpty){
                               setState(() {
                                 isLoading = true;
                               });
 
-                              signUp(_name.text, _phoneNo.text, _email.text, _password.text, _profession.text, _address.text).then((user){
+                              signUp(_name.text, _phoneNo.text, _email.text, _password.text, _address.text).then((user){
                                 if(user != null){
                                   setState(() {
                                     isLoading = false;

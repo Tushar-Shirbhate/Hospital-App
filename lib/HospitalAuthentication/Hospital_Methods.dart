@@ -9,7 +9,6 @@ Future<User?> hospitalSignUp(
     String phoneNo,
     String email,
     String password,
-    String profession,
     String address
     ) async{
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -29,7 +28,7 @@ Future<User?> hospitalSignUp(
       "name": name,
       "phoneNo": phoneNo,
       "email":email,
-      "profession": profession,
+      "profession": "Hospital",
       "address": address,
       "status":"unavailable",
       "uid": _auth.currentUser!.uid

@@ -352,7 +352,7 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _phoneNo = TextEditingController();
   final TextEditingController _address = TextEditingController();
-  final TextEditingController _profession = TextEditingController();
+ // final TextEditingController _profession = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
   bool isLoading = false;
   @override
@@ -471,22 +471,23 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
                       ),
                       SizedBox(
                           height: 30
-                      ),TextField(
-                          autofocus: false,
-                          controller: _profession,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.school),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Hospital/User",
-                          )
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
+                          // TextField(
+                      //     autofocus: false,
+                      //     controller: _profession,
+                      //     textInputAction: TextInputAction.next,
+                      //     decoration: InputDecoration(
+                      //       prefixIcon: Icon(Icons.school),
+                      //       border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10)
+                      //       ),
+                      //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                      //       hintText: "Hospital/User",
+                      //     )
+                      // ),
+                      // SizedBox(
+                      //   height: 30,
+                      // ),
                       TextField(
                           controller:_address,
                           autofocus: false,
@@ -507,12 +508,12 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
                       ),
                       GestureDetector(
                           onTap: (){
-                            if(_name.text.isNotEmpty && _phoneNo.text.isNotEmpty && _email.text.isNotEmpty && _password.text.isNotEmpty && _profession.text.isNotEmpty && _address.text.isNotEmpty){
+                            if(_name.text.isNotEmpty && _phoneNo.text.isNotEmpty && _email.text.isNotEmpty && _password.text.isNotEmpty  && _address.text.isNotEmpty){
                               setState(() {
                                 isLoading = true;
                               });
 
-                              hospitalSignUp(_name.text, _phoneNo.text, _email.text, _password.text, _profession.text, _address.text).then((user){
+                              hospitalSignUp(_name.text, _phoneNo.text, _email.text, _password.text, _address.text).then((user){
                                 if(user != null){
                                   setState(() {
                                     isLoading = false;
