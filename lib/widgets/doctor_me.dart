@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital_app/HospitalAuthentication/Hospital_Methods.dart';
 import 'package:hospital_app/utils/routes.dart';
 //import 'package:tushar_h/utils/routes.dart';
 
@@ -22,7 +23,7 @@ class _DoctorMeState extends State<DoctorMe> {
               child: Align(
                   alignment: Alignment.center,
                   child: Column(children: [
-                    SizedBox(height: 150),
+                    SizedBox(height: 90),
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(
@@ -78,6 +79,32 @@ class _DoctorMeState extends State<DoctorMe> {
                     //         ),
                     //   ),
                     //),
+                 //   SizedBox(height: 10),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, MyRoute.addDoctorListRoute);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35.0),
+                          color: Colors.red,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.person_pin_circle_sharp),
+                            Text("Doctor List",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 30)),
+                            Icon(Icons.arrow_forward_ios),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
@@ -121,6 +148,29 @@ class _DoctorMeState extends State<DoctorMe> {
                           children: [
                             Icon(CupertinoIcons.settings_solid),
                             Text("Settings",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 30)),
+                            Icon(Icons.arrow_forward_ios),
+                          ],
+                        ),
+                      ),
+                    ),  SizedBox(height: 10),
+                    InkWell(
+                      onTap: () {
+                        hospitalLogOut(context);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(35.0),
+                            color: Colors.red),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.logout),
+                            Text("Log Out",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 30)),
                             Icon(Icons.arrow_forward_ios),

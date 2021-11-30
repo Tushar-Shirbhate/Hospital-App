@@ -23,31 +23,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var firestoreDB =
-      FirebaseFirestore.instance.collection("hospitalList").snapshots();
+  var firestoreDB = FirebaseFirestore.instance.collection("users").snapshots();
 
-  //late SearchBar searchBar;
-
-  // AppBar buildAppBar(BuildContext context) {
-  //   return AppBar(
-  //       backgroundColor: Colors.blue,
-  //       title: Text("Hospital App"));
-  //    //  actions: [searchBar.getSearchAction(context)]);
-  // }
-
-  // _HomePageState() {
-  //   searchBar = SearchBar(
-  //     inBar: false,
-  //     setState: setState,
-  //     onSubmitted: print,
-  //     buildDefaultAppBar: buildAppBar,
-  //   );
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Hospital App")),
-      //  appBar: searchBar.build(context),
       body: StreamBuilder(
           stream: firestoreDB,
           builder: (context, snapshot) {
@@ -55,55 +37,65 @@ class _HomePageState extends State<HomePage> {
             return ListView.builder(
                 itemCount: (snapshot.data! as QuerySnapshot).docs.length,
                 itemBuilder: (BuildContext context, int index) {
-                  List doctorList = (snapshot.data! as QuerySnapshot)
-                      .docs[index]["doctorList"];
-                  return SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, MyRoute.detailRoute,
-                            arguments: ScreenArgumentsDoctorList(doctorList));
-                      },
-                      child: Card(
-                          elevation: 5,
-                          child: Container(
-                              padding: EdgeInsets.all(10),
-                              height: 100,
-                              width: double.infinity,
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              "${(snapshot.data! as QuerySnapshot).docs[index].id}",
-                                              style: TextStyle(
-                                                  //color: Colors.black,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold)),
-                                          Text(
-                                              "${(snapshot.data! as QuerySnapshot).docs[index]['hospitalAddress']}",
-                                              style: TextStyle(
-                                                  // color: Colors.grey,
-                                                  fontSize: 18,
-                                                  fontStyle: FontStyle.italic)),
-                                          Text(
-                                              "${(snapshot.data! as QuerySnapshot).docs[index]['hospitalRating']}",
-                                              style: TextStyle(
-                                                color: Colors.deepOrange,
-                                                fontSize: 16,
-                                              ))
-                                        ]),
-                                    Icon(CupertinoIcons.heart),
-                                  ]))),
-                    ),
-                    //  );
-                  );
+                  // List doctorList = (snapshot.data! as QuerySnapshot).docs[index]["doctorList"];
+                  //Map<String, dynamic>  doctorList =
+                  if ((snapshot.data! as QuerySnapshot).docs[index]
+                          ['profession'] ==
+                      "Hospital") {
+                    String id =
+                        (snapshot.data! as QuerySnapshot).docs[index]['uid'];
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, MyRoute.detailRoute,
+                              arguments: ScreenArgumentsDoctorList(id));
+                        },
+                        child: Card(
+                            elevation: 5,
+                            child: Container(
+                                padding: EdgeInsets.all(10),
+                                height: 100,
+                                width: double.infinity,
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                "${(snapshot.data! as QuerySnapshot).docs[index]['name']}",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            Text(
+                                                "${(snapshot.data! as QuerySnapshot).docs[index]['address']}",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 18,
+                                                    fontStyle:
+                                                        FontStyle.italic)),
+                                            // Text(
+                                            //     "${(snapshot.data! as QuerySnapshot)
+                                            //         .docs[index]['hospitalRating']}",
+                                            //     style: TextStyle(
+                                            //       color: Colors.deepOrange,
+                                            //       fontSize: 16,
+                                            //     ))
+                                          ]),
+                                      Icon(CupertinoIcons.heart),
+                                    ]))),
+                      ),
+                      //  );
+                    );
+                  }
+                  return Container();
                 });
           }),
       drawer: MyDrawer(),

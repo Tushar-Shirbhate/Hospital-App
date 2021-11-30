@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -104,6 +105,20 @@ class MyDrawer extends StatelessWidget {
               )),
           onTap: () {
             Navigator.pushNamed(context, MyRoute.settingRoute);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+          title: Text("Log Out",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.white,
+              )),
+          onTap: () {
+            logOut(context);
           },
         ),
       ]),

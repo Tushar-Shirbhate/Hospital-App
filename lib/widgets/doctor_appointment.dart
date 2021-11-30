@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/routes.dart';
@@ -10,7 +11,8 @@ class DoctorAppointment extends StatefulWidget{
 }
 
 class _DoctorAppointmentState extends State<DoctorAppointment> {
-  var firestoreDBPatientAppointment = FirebaseFirestore.instance.collection("patientRequestDetailList").snapshots();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final CollectionReference _firestoreDBPatientAppointment = FirebaseFirestore.instance.collection("users");
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,15 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
           "Appointment"
         )
       ),
-        body: StreamBuilder(
-          stream: firestoreDBPatientAppointment,
-          builder: (context, snapshot){
+        body: StreamBuilder<QuerySnapshot>(
+          stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientAcceptedList').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
             if(!snapshot.hasData) return CircularProgressIndicator();
             return ListView.builder(
-                itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                itemCount: snapshot.data!.docs.length,
                 itemBuilder: (BuildContext context, int index) {
+                  Map<String, dynamic> _map = snapshot.data!.docs[index]
+                  .data() as Map<String, dynamic>;
                   return SingleChildScrollView(
                       padding: EdgeInsets.fromLTRB(15,15,15,0.2),
                       child: InkWell(
@@ -36,11 +40,20 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                             context,
                             MyRoute.doctorAppointmentDetailRoute,
                             arguments: ScreenArgumentsAppointment(
-                              '${(snapshot.data! as QuerySnapshot).docs[index]['patientName']}',
-                              '${(snapshot.data! as QuerySnapshot).docs[index]['date']}',
-                              '${(snapshot.data! as QuerySnapshot).docs[index]['fromTime']}',
-                              '${(snapshot.data! as QuerySnapshot).docs[index]['toTime']}',
-                              '${(snapshot.data! as QuerySnapshot).docs[index].id}'
+                              _map["patientName"],
+                                _map["email"],
+                                _map["phoneNo"],
+                                _map["patientUid"],
+                                _map["hospitalUid"],
+                                _map["doctorName"],
+                                _map["doctorPost"],
+                                _map["doctorSpeciality"],
+                                _map["doctorEducation"],
+                                _map["date"],
+                                _map["fromTime"],
+                                _map["toTime"],
+                              _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientAcceptedList').doc().id,
+                              snapshot.data!.docs[index].id,
                             )
                           );
                         },
@@ -54,24 +67,20 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          (snapshot.data! as QuerySnapshot)
-                                              .docs[index]['patientName'],
+                                         _map['patientName'],
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)
                                       ),
                                       Text(
-                                          (snapshot.data! as QuerySnapshot)
-                                              .docs[index]['date'],
+                                          "Date: ${_map['date']}",
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontSize: 18,
                                               fontStyle: FontStyle.italic)
                                       ),Text(
-                                          "${(snapshot.data! as QuerySnapshot)
-                                              .docs[index]['fromTime']} - ${(snapshot.data! as QuerySnapshot)
-                                              .docs[index]['toTime']}",
+                                          "Time: ${_map['fromTime']} - ${_map['toTime']}",
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontSize: 18,

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/routes.dart';
@@ -10,7 +11,8 @@ class DoctorRequest extends StatefulWidget{
 }
 
 class _DoctorRequestState extends State<DoctorRequest> {
-  var firestoreDBPatientList = FirebaseFirestore.instance.collection("patientList").snapshots();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final CollectionReference _firestoreDBPatientList = FirebaseFirestore.instance.collection("users");
   
   @override
   Widget build(BuildContext context) {
@@ -21,23 +23,33 @@ class _DoctorRequestState extends State<DoctorRequest> {
                 "Request"
             )
         ),
-        body: StreamBuilder(
-          stream: firestoreDBPatientList,
-          builder: (context, snapshot){
+        body: StreamBuilder<QuerySnapshot>(
+          stream: _firestoreDBPatientList.doc(_auth.currentUser!.uid).collection('patientRequestList').snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
             if(!snapshot.hasData) return CircularProgressIndicator();
             return  ListView.builder(
-                itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                itemCount: snapshot.data!.docs.length,
                 itemBuilder: (BuildContext context, int index) {
+                  Map<String, dynamic> _map = snapshot.data!.docs[index]
+                  .data() as Map<String, dynamic>;
                   return SingleChildScrollView(
                     padding: EdgeInsets.fromLTRB(15,15,15,0.2),
                     child: InkWell(
-                        onTap: () {
+                        onTap: () async{
                           Navigator.pushNamed(
                             context,
                             MyRoute.doctorRequestDetailRoute,
                             arguments: ScreenArguments(
-                                (snapshot.data! as QuerySnapshot).docs[index]['patientName'],
-                                (snapshot.data! as QuerySnapshot).docs[index].id
+                                _map['patientName'],
+                                _map['email'],
+                                _map['phoneNo'],
+                                _map['uid'],
+                                _map['doctorName'],
+                                _map['doctorPost'],
+                                _map['doctorSpeciality'],
+                                _map['doctorEducation'],
+                              _firestoreDBPatientList.doc(_auth.currentUser!.uid).collection('patientRequestList').doc().id,
+                                snapshot.data!.docs[index].id,
                             ),
                           );
                         },
@@ -51,20 +63,21 @@ class _DoctorRequestState extends State<DoctorRequest> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                     Text(
-                                        (snapshot.data! as QuerySnapshot).docs[index]['patientName'],
+                                        _map['patientName'],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)
                                 ),
+
                                 Text(
-                                    "--",
+                                    "Date: --",
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontSize: 18,
                                         fontStyle: FontStyle.italic)
                                 ),Text(
-                                "--",
+                                "Time: --",
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontSize: 18,
