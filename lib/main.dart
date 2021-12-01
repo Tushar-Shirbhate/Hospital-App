@@ -65,7 +65,8 @@ class _MyAppState extends State<MyApp> {
                             "/": (context) => Authenticate(),
                             MyRoute.appHomeRoute: (context) => AppHomePage(),
                             MyRoute.loginRoute: (context) => LoginScreen(),
-                            MyRoute.hospitalLoginRoute: (context) => HospitalLoginScreen(),
+                            MyRoute.hospitalLoginRoute: (context) =>
+                                HospitalLoginScreen(),
                             MyRoute.homeRoute: (context) => HomePage(),
                             MyRoute.settingRoute: (context) => SettingPage(),
                             MyRoute.starredRoute: (context) => StarredPage(),
@@ -89,9 +90,9 @@ class _MyAppState extends State<MyApp> {
                             MyRoute.appointmentListRoute: (context) =>
                                 AppointmentListPage(),
                             MyRoute.addDoctorListRoute: (context) =>
-                            AddDoctorListPage(),
+                                AddDoctorListPage(),
                             MyRoute.appointmentRequestedRoute: (context) =>
-                            AppointmentRequested()
+                                AppointmentRequested()
                           })));
         }
         return CircularProgressIndicator();

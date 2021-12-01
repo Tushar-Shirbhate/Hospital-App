@@ -26,7 +26,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
     String id = argsDL.id;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Hospital App")),
       body: StreamBuilder(
           stream: _firestoreDBDoctorList

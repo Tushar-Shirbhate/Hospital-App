@@ -73,7 +73,7 @@ class StarredPage extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: Scaffold(
               appBar: AppBar(
-                //backgroundColor: Colors.blue,
+                backgroundColor: Colors.blue,
                 title: Text('Favourite'),
               ),
               body: ListView.builder(

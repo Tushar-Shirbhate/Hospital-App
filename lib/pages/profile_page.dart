@@ -1,15 +1,15 @@
 // // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-//
+
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:hospital_app/pages/edit_profilePage.dart';
 // import 'package:hospital_app/utils/user.dart';
 // import 'package:hospital_app/widgets/profile_widget.dart';
 // import 'package:hospital_app/widgets/user_preferences.dart';
-//
+
 // class Profilepage extends StatelessWidget {
 //   const Profilepage({Key? key}) : super(key: key);
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     final user = UserPreferences.myUser;
@@ -38,7 +38,7 @@
 //       ),
 //     );
 //   }
-//
+
 //   buildName(User user) => Column(
 //         children: [
 //           Text(
@@ -55,7 +55,7 @@
 //           )
 //         ],
 //       );
-//
+
 //   buildAddress(User user) => Container(
 //         padding: EdgeInsets.symmetric(horizontal: 48),
 //         child: Column(
@@ -73,7 +73,6 @@
 //         ),
 //       );
 // }
-
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -97,97 +96,64 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text(
-                "Profile"
-            )
-        ),
+        appBar: AppBar(title: Text("Profile")),
         body: StreamBuilder<DocumentSnapshot>(
-            stream: _firestoreDBUserProf.collection("users").doc(_auth.currentUser!.uid).snapshots(),
-            builder: (BuildContext context, snapshot){
-              if(!snapshot.hasData) return CircularProgressIndicator();
-              return  SingleChildScrollView(
+            stream: _firestoreDBUserProf
+                .collection("users")
+                .doc(_auth.currentUser!.uid)
+                .snapshots(),
+            builder: (BuildContext context, snapshot) {
+              if (!snapshot.hasData) return CircularProgressIndicator();
+              return SingleChildScrollView(
                   padding: EdgeInsets.all(15),
-                  child: Column(
+                  child: Column(children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(snapshot.data!['name'],
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic)),
+                    ),
+                    Container(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(15,0,0,0),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                              snapshot.data!['name'],
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.italic
-                              )
-                          ),
-                        ),
-                        Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                    onPressed: (){
-
-                                    },
-                                    icon: Icon(Icons.call)),
-                                Text(
-                                    snapshot.data!['phoneNo'],
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.italic
-                                    )
-                                ),
-                              ],
-                            )
-                        ),
-                        Container(
-                            child: Row(
-                              children: [
-                                IconButton(
-                                    onPressed: (){
-
-                                    },
-                                    icon: Icon(Icons.email)
-                                ),
-                                Text(
-                                    snapshot.data!['email'],
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.italic
-                                    )
-                                ),
-                              ],
-                            )
-                        ),
-                        Container(
-                            child: Row(
-                              children: [
-                                IconButton(
-                                    onPressed: (){
-
-                                    },
-                                    icon: Icon(CupertinoIcons.building_2_fill)
-                                ),
-                                Text(
-                                    snapshot.data!['address'],
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.italic
-                                    )
-                                ),
-                              ],
-                            )
-                        ),
-                      ]
-                  )
-              );
-            }
-        )
-    );
+                        IconButton(onPressed: () {}, icon: Icon(Icons.call)),
+                        Text(snapshot.data!['phoneNo'],
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic)),
+                      ],
+                    )),
+                    Container(
+                        child: Row(
+                      children: [
+                        IconButton(onPressed: () {}, icon: Icon(Icons.email)),
+                        Text(snapshot.data!['email'],
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic)),
+                      ],
+                    )),
+                    Container(
+                        child: Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(CupertinoIcons.building_2_fill)),
+                        Text(snapshot.data!['address'],
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic)),
+                      ],
+                    )),
+                  ]));
+            }));
   }
 }
