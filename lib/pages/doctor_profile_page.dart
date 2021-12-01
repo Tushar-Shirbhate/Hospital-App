@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
-import 'package:hospital_app/pages/edit_profilePage.dart';
+//import 'package:hospital_app/pages/edit_profilePage.dart';
 import 'package:hospital_app/utils/doctor.dart';
 import 'package:hospital_app/utils/user.dart';
 import 'package:hospital_app/widgets/profile_widget.dart';
