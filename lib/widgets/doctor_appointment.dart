@@ -26,7 +26,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientAcceptedList').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-            if(!snapshot.hasData) return CircularProgressIndicator();
+            if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
             return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (BuildContext context, int index) {

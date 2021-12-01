@@ -109,7 +109,7 @@ class _DoctorMeState extends State<DoctorMe> {
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(
-                            context, MyRoute.doctorEditProfileRoute);
+                            context, MyRoute.doctorHistoryRoute);
                       },
                       child: Container(
                         width: double.infinity,

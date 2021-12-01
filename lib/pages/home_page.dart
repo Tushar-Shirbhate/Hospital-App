@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       body: StreamBuilder(
           stream: firestoreDB,
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return CircularProgressIndicator();
+            if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
             return ListView.builder(
                 itemCount: (snapshot.data! as QuerySnapshot).docs.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -42,6 +42,8 @@ class _HomePageState extends State<HomePage> {
                   if ((snapshot.data! as QuerySnapshot).docs[index]
                           ['profession'] ==
                       "Hospital") {
+                    String hospitalEmail = (snapshot.data! as QuerySnapshot).docs[index]['email'];
+                    String hospitalPhoneNo = (snapshot.data! as QuerySnapshot).docs[index]['phoneNo'];
                     String id =
                         (snapshot.data! as QuerySnapshot).docs[index]['uid'];
                     return SingleChildScrollView(
@@ -49,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                       child: InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, MyRoute.detailRoute,
-                              arguments: ScreenArgumentsDoctorList(id));
+                              arguments: ScreenArgumentsDoctorList(id, hospitalEmail, hospitalPhoneNo));
                         },
                         child: Card(
                             elevation: 5,
@@ -62,8 +64,8 @@ class _HomePageState extends State<HomePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          // mainAxisAlignment:
+                                          //     MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [

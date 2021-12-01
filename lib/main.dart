@@ -11,6 +11,7 @@ import 'package:hospital_app/pages/app_home_page.dart';
 import 'package:hospital_app/pages/appointment_list.dart';
 import 'package:hospital_app/pages/doctor_appointment_detail_page.dart';
 import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
+import 'package:hospital_app/pages/doctor_history_page.dart';
 import 'package:hospital_app/pages/doctor_login_page.dart';
 import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/pages/doctor_request_detail_page.dart';
@@ -91,10 +92,12 @@ class _MyAppState extends State<MyApp> {
                             MyRoute.addDoctorListRoute: (context) =>
                             AddDoctorListPage(),
                             MyRoute.appointmentRequestedRoute: (context) =>
-                            AppointmentRequested()
+                            AppointmentRequested(),
+                            MyRoute.doctorHistoryRoute: (context) =>
+                                DoctorHistoryPage()
                           })));
         }
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

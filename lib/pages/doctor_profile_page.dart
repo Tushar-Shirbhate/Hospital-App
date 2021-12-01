@@ -145,7 +145,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
       body: StreamBuilder<DocumentSnapshot>(
         stream: _firestoreDBHosProf.collection("users").doc(_auth.currentUser!.uid).snapshots(),
           builder: (BuildContext context, snapshot){
-          if(!snapshot.hasData) return CircularProgressIndicator();
+          if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
           return  SingleChildScrollView(
               padding: EdgeInsets.all(15),
               child: Column(

@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:hospital_app/pages/chat_room.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_argument_appointment_list.dart';
 import 'package:hospital_app/utils/screen_arguments_doctor_list.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HospitalDetailPage extends StatefulWidget {
   late final String name;
@@ -18,12 +21,51 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
       FirebaseFirestore.instance.collection("users");
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool getAppointment = false;
+  String hospitalEmail = "";
+  String hospitalPhoneNo = "";
+  Map<String, dynamic>? userMap;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  bool isLoading = false;
+
+  void onClick () async{
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await _firestore
+        .collection("users")
+        .where("email", isEqualTo: hospitalEmail)
+        .get()
+        .then((value){
+      setState(() {
+        userMap = value.docs[0].data();
+        isLoading =false;
+      });
+      print(userMap);
+      print(hospitalEmail);
+    });
+  }
+
+  String chatRoomId(String user1, String user2){
+    if(user1[0].toLowerCase().codeUnits[0] >
+        user2.toLowerCase().codeUnits[0]){
+      return "$user1$user2";
+    }
+    else{
+      return "$user2$user1";
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final argsDL =
         ModalRoute.of(context)!.settings.arguments as ScreenArgumentsDoctorList;
     String id = argsDL.id;
+     hospitalEmail = argsDL.hospitalEmail;
+    hospitalPhoneNo = argsDL.hospitalPhoneNo;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -119,7 +161,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                                                         map['doctorSpeciality'],
                                                     "doctorEducation":
                                                         map['doctorEducation'],
-                                                    "hospitalUid": id
+                                                    "hospitalUid": id,
                                                   };
                                                   _firestoreDBDoctorList
                                                       .doc(_auth
@@ -203,7 +245,13 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               child: Icon(Icons.call),
-              onPressed: () {},
+              onPressed: () async{
+                //Indirect Phone call
+              //  launch('tel://$number');
+                //Indirect Phone call
+                await FlutterPhoneDirectCaller.callNumber(hospitalPhoneNo);
+
+              },
             ),
           ),
         ),
@@ -211,7 +259,23 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
           alignment: Alignment.bottomLeft,
           child: FloatingActionButton(
             child: Icon(Icons.messenger_rounded),
-            onPressed: () {},
+            onPressed: () {
+              onClick();
+              if(userMap != null){
+                String roomId = chatRoomId(
+                    _auth.currentUser!.displayName!,
+                    userMap!['name']
+                );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => ChatRoom(
+                            chatRoomId: roomId,
+                            userMap: userMap!)
+                    )
+                );
+              }
+            },
           ),
         ),
       ]),

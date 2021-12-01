@@ -90,7 +90,7 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                                       height: 10
                                                   ),
                                                   Text(
-                                                      "Do you want to Cancel appointment from ${map['doctorName']}?",
+                                                      "Do you want to Cancel Request appointment to ${map['doctorName']}?",
                                                       style: TextStyle(
                                                         fontSize: 16,
                                                       )),
@@ -100,9 +100,36 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                             actions: <Widget>[
                                               FlatButton(
                                                 onPressed: () async {
-                                                  String id = snapshots.data!.docs[index].id;
-                                                  _firestoreDBApDoctorList.doc(_auth.currentUser!.uid).collection('appointmentDoctorList').doc(id).delete();
+                                                  String id ;
+                                                  FirebaseFirestore.instance.collection("users")
+                                                      .doc(map['hospitalUid'])
+                                                      .collection("patientRequestList")
+                                                      .where("email", isEqualTo: map['email'])
+                                                      .where("doctorName", isEqualTo: map['doctorName'])
+                                                      .where("patientName", isEqualTo: map['patientName'])
+                                                      .get()
+                                                      .then((snapshot) {
+                                                    id = snapshot.docs[0].id;
+                                                    FirebaseFirestore.instance.collection("users")
+                                                        .doc(map['hospitalUid'])
+                                                        .collection("patientRequestList").doc(id).delete();
+                                                    print(id);
+                                                  });
 
+                                                  String id2;
+                                                  FirebaseFirestore.instance.collection("users")
+                                                      .doc(_auth.currentUser!.uid)
+                                                      .collection("appointmentRequestedDoctorList")
+                                                      .where("doctorName", isEqualTo:   map['doctorName'])
+                                                      .where("hospitalUid", isEqualTo:   map['hospitalUid'],)
+                                                      .get()
+                                                      .then((snapshot) {
+                                                    id2 = snapshot.docs[0].id;
+                                                    FirebaseFirestore.instance.collection("users")
+                                                        .doc(_auth.currentUser!.uid)
+                                                        .collection("appointmentRequestedDoctorList").doc(id2).delete();
+                                                    print(id2);
+                                                  });
                                                   Navigator.of(ctx).pop();
                                                 },
                                                 child: Text("Done"),

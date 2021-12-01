@@ -5,7 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:hospital_app/pages/chat_room.dart';
 import 'package:hospital_app/pages/report_view.dart';
 import 'package:hospital_app/utils/screen_arguments_appointment.dart';
 
@@ -27,17 +30,53 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
   String patientName = "";
   String doctorName = "";
   String patientUid = "";
+  String patientEmail = "";
+  String patientPhoneNo = "";
+  Map<String, dynamic>? userMap;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  bool isLoading = false;
+
+  void onClick () async{
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await _firestore
+        .collection("users")
+        .where("email", isEqualTo: patientEmail)
+        .get()
+        .then((value){
+      setState(() {
+        userMap = value.docs[0].data();
+        isLoading =false;
+      });
+      print(userMap);
+      print(patientEmail);
+    });
+  }
+
+  String chatRoomId(String user1, String user2){
+    if(user1[0].toLowerCase().codeUnits[0] >
+        user2.toLowerCase().codeUnits[0]){
+      return "$user1$user2";
+    }
+    else{
+      return "$user2$user1";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final argsAp = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsAppointment;
 
-     // patientApListId = argsAp.patientAcceptListId;
-     // patientNameAp = argsAp.patientName;
     date = argsAp.date;
     patientName = argsAp.patientName;
     doctorName = argsAp.doctorName;
     patientUid = argsAp.patientUid;
+    patientEmail = argsAp.email;
+    patientPhoneNo = argsAp.phoneNo;
 
 
       return Scaffold(
@@ -50,7 +89,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                 padding: EdgeInsets.all(15),
                  child: Column(
                   children: [
-                    SizedBox(height: 20,),
+                    SizedBox(height: 5,),
                     Container(
                       padding: EdgeInsets.fromLTRB(15,0,0,0),
                       alignment: Alignment.centerLeft,
@@ -126,11 +165,11 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                          )
                       ),
                     SizedBox(
-                       height: 40
+                       height: 25
                     ),
                     Container(
                       width: double.infinity,
-                      height: 105,
+                      height: 90,
                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,7 +202,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                var x = snapshot.data;
 
                                if (!snapshot.hasData) {
-                                 return CircularProgressIndicator();
+                                 return Center(child: CircularProgressIndicator());
                                }
                                if (snapshot.hasData) {
                                  return InkWell(
@@ -173,26 +212,20 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                          context) =>
                                          ReportView(x['reportFileUrl'])));
                                    },
-                                   child: Container(
-                                       width: double.infinity,
-                                       height: 40,
-                                       // padding: EdgeInsets.fromLTRB(135,0,135,0),
-                                       margin: EdgeInsets.fromLTRB(
-                                           80, 0, 80, 0),
+                                   child:Container(
+                                       width: 150,
+                                       height: 37,
                                        decoration: BoxDecoration(
-                                         borderRadius: BorderRadius.circular(
-                                             15),
-                                         color: Colors.blue,
+                                           color: Colors.blueAccent,
+                                           borderRadius: BorderRadius.circular(20.0)
                                        ),
                                        child: Center(
-                                         child: Text(
-                                           "Report",
-                                           style: TextStyle(
-                                               color: Colors.white,
-                                               fontSize: 26
-                                           ),),
-                                       )
-                                   ),
+                                           child: Text(
+                                               "Report",
+                                               style: TextStyle(
+                                                   fontSize: 20,
+                                                   color: CupertinoColors.black
+                                               ))))
                                  );
                                }
                            //  }
@@ -201,7 +234,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                );
                            }
                        ),
-                    SizedBox(height: 40,),
+                    SizedBox(height: 30,),
                     Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,7 +242,63 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                               InkWell(
                                  onTap: () async{
                                  // await _firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
-                                  Navigator.pop(context);
+                                   _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid)
+                                       .collection('patientHistoryList')
+                                       .add({
+                                     "patientName": patientName,
+                                     "email": patientEmail,
+                                     "patientUid": patientUid,
+                                     "doctorName": doctorName,
+                                     "date": date,
+                                     "fromTime": argsAp.fromTime,
+                                     "toTime": argsAp.toTime
+                                   });
+                                   _firestoreDBPatientRequestList.doc(patientUid)
+                                       .collection('appointmentHistoryDoctorList')
+                                       .add({
+                                     "patientUid": patientUid,
+                                     "hospitalUid": _auth.currentUser!.uid,
+                                     "doctorName": doctorName,
+                                     "date": date,
+                                     "fromTime": argsAp.fromTime,
+                                     "toTime": argsAp.toTime
+                                   });
+
+
+                                   String id;
+                                   FirebaseFirestore.instance.collection("users")
+                                       .doc(_auth.currentUser!.uid)
+                                       .collection("patientAcceptedList")
+                                       .where("email", isEqualTo: patientEmail)
+                                       .where("doctorName", isEqualTo: argsAp.doctorName)
+                                       .where("patientName", isEqualTo: argsAp.patientName)
+                                       .where("patientUid", isEqualTo: argsAp.patientUid)
+                                       .get()
+                                       .then((snapshot) {
+                                     id = snapshot.docs[0].id;
+                                     FirebaseFirestore.instance.collection("users")
+                                         .doc(_auth.currentUser!.uid)
+                                         .collection("patientAcceptedList").doc(id).delete();
+                                     print(id);
+                                   });
+
+                                   String id2;
+                                   FirebaseFirestore.instance.collection("users")
+                                       .doc(argsAp.patientUid)
+                                       .collection("appointmentAcceptedDoctorList")
+                                       .where("doctorName", isEqualTo: argsAp.doctorName)
+                                       .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+                                       .get()
+                                       .then((snapshot) {
+                                     id2 = snapshot.docs[0].id;
+                                     FirebaseFirestore.instance.collection("users")
+                                         .doc(argsAp.patientUid)
+                                         .collection("appointmentAcceptedDoctorList").doc(id2).delete();
+                                     print(id2);
+                                   });
+
+
+                                   Navigator.pop(context);
                                   },
                                   child: Container(
                                     width: 125,
@@ -262,8 +351,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
               padding: EdgeInsets.fromLTRB(60,0,0,30),
               child: FloatingActionButton(
                 child: Icon(Icons.call),
-                onPressed: (){
-
+                onPressed: () async{
+                  await FlutterPhoneDirectCaller.callNumber(patientPhoneNo);
                 },
               ),
             ), Padding(
@@ -271,6 +360,21 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
               child: FloatingActionButton(
                 child: Icon(Icons.messenger_rounded),
                 onPressed: (){
+                  onClick();
+                  if(userMap != null){
+                    String roomId = chatRoomId(
+                        _auth.currentUser!.displayName!,
+                        userMap!['name']
+                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => ChatRoom(
+                                chatRoomId: roomId,
+                                userMap: userMap!)
+                        )
+                    );
+                  }
 
                 },
               ),
