@@ -14,18 +14,17 @@ class _AuthenticateState extends State<Authenticate> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    if(_auth.currentUser != null) {
+    if (_auth.currentUser != null) {
       //profession == Hospital or user
-     // if(){
+      // if(){
 
-        return DoctorHomePage();
+      return AppHomePage();
 
-     // }
-     // if(){
+      // }
+      // if(){
       return HomePage();
-     // }
-    }
-    else{
+      // }
+    } else {
       return AppHomePage();
     }
   }
