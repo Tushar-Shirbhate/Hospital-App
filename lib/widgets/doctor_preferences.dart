@@ -4,7 +4,7 @@ import 'package:hospital_app/utils/doctor.dart';
 class DoctorPreferences {
   static const myDoctor = Doctor(
     imagepath:
-        'https://cdn.dnaindia.com/sites/default/files/styles/full/public/2021/01/16/950373-randeep-guleria.jpg',
+        'https://avocure-uploads.s3.amazonaws.com/uploads/clinic/cover_pic_url/300/AIIMS_central_lawn.jpg',
     name: ' Dr Randeep Guleria ',
     email: 'user@gmail.com',
     speciality: 'Pulmonologist',
