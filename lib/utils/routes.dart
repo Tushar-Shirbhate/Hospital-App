@@ -18,4 +18,5 @@ class MyRoute {
   static String addDoctorListRoute = "/addDoctorList";
   static String appointmentRequestedRoute = "/appointmentRequested";
   static String doctorHistoryRoute = "/doctorHistory";
+  static String reportRoute = "/report";
 }

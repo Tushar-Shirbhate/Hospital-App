@@ -79,7 +79,12 @@ class MyDrawer extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
               )),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(
+                context,
+                MyRoute.reportRoute
+            );
+          },
         ),
         ListTile(
           leading: Icon(
