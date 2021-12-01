@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,8 +18,8 @@ class MyDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
-              accountName: Text("Username"),
-              accountEmail: Text("username@gmail.com"),
+              accountName: Text("${_auth.currentUser!.displayName}"),
+              accountEmail: Text("${_auth.currentUser!.email}"),
               currentAccountPicture: CircleAvatar(
                 // child: Image.asset(
                 //   "assets/images/userpic.png"
