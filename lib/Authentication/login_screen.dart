@@ -224,9 +224,11 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:flutter_svg/svg.dart';
 import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/Authentication/registration_screen.dart';
+import 'package:hospital_app/Service/Auth_Service.dart';
 import 'package:hospital_app/pages/home_page.dart';
 // import 'package:untitled/Authentication/SignUp.dart';
 // import 'package:untitled/Screen/HomeScreen.dart';
@@ -239,9 +241,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool isLoading = false;
+  AuthClass authClass = AuthClass();
   @override
   Widget build(BuildContext context) {
     bool obs_text = true;
@@ -269,13 +273,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(
-                              height: 200,
+                              height: 180,
                               child: Image.asset(
                                 "Assets/doc_pat.jpg",
                                 fit: BoxFit.contain,
                               )),
                           SizedBox(
                             height: 35,
+                          ),
+                          buttonItem(
+                              "Assets/google.svg", "Continue with Google", 30,
+                              () async {
+                            await authClass.googleSignIn(context);
+                          }),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          Text(
+                            "or",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 13,
                           ),
                           TextField(
                               autofocus: false,
@@ -292,7 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 hintText: "E-mail",
                                 //  labelText: "Email"
                               )),
-                          SizedBox(height: 35),
+                          SizedBox(height: 20),
                           TextField(
                               obscureText: obs_text ? true : false,
                               autofocus: false,
@@ -314,7 +333,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 hintText: "Password",
                                 // labelText: "Password"
                               )),
-                          SizedBox(height: 40),
+                          SizedBox(height: 20),
                           GestureDetector(
                               onTap: () {
                                 if (_email.text.isNotEmpty &&
@@ -356,7 +375,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold)))),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -382,5 +401,38 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ));
+  }
+
+  Widget buttonItem(
+      String imagepath, String buttonName, double size, Function()? onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: BorderSide(width: 1, color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                imagepath,
+                height: size,
+                width: size,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                buttonName,
+                style: TextStyle(fontSize: 17),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
