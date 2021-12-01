@@ -41,20 +41,20 @@ class MyDrawer extends StatelessWidget {
             Navigator.pushNamed(context, MyRoute.profileRoute);
           },
         ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.heart_fill,
-            color: Colors.white,
-          ),
-          title: Text("Favourite",
-              textScaleFactor: 1.2,
-              style: TextStyle(
-                color: Colors.white,
-              )),
-          onTap: () {
-            Navigator.pushNamed(context, MyRoute.starredRoute);
-          },
-        ),
+        // ListTile(
+        //   leading: Icon(
+        //     CupertinoIcons.heart_fill,
+        //     color: Colors.white,
+        //   ),
+        //   title: Text("Favourite",
+        //       textScaleFactor: 1.2,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //       )),
+        //   onTap: () {
+        //     Navigator.pushNamed(context, MyRoute.starredRoute);
+        //   },
+        // ),
         ListTile(
           leading: Icon(
             CupertinoIcons.doc_plaintext,
@@ -86,18 +86,18 @@ class MyDrawer extends StatelessWidget {
             );
           },
         ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.bell,
-            color: Colors.white,
-          ),
-          title: Text("Reminder",
-              textScaleFactor: 1.2,
-              style: TextStyle(
-                color: Colors.white,
-              )),
-          onTap: () {},
-        ),
+        // ListTile(
+        //   leading: Icon(
+        //     CupertinoIcons.bell,
+        //     color: Colors.white,
+        //   ),
+        //   title: Text("Reminder",
+        //       textScaleFactor: 1.2,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //       )),
+        //   onTap: () {},
+        // ),
         ListTile(
           leading: Icon(
             CupertinoIcons.settings,
