@@ -241,158 +241,146 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    bool obs_text=true;
+    bool obs_text = true;
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
-          backgroundColor: Colors.white,
+              //color: Colors.black,
+              ),
+          //backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
         ),
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: isLoading
-            ? Center(
-            child: Container(child: CircularProgressIndicator())
-        )
-            :SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(left: 8, right: 8),
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(36),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                        height: 200,
-                        child: Image.asset(
-                          "Assets/doc_pat.jpg",
-                          fit: BoxFit.contain,
-                        )),
-                    SizedBox(
-                      height: 35,
-                    ),
-                    TextField(
-                      autofocus: false,
-                        keyboardType: TextInputType.emailAddress,
-                        controller:_email,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            hintText: "E-mail",
-                          //  labelText: "Email"
-                        )
-                    ),
-                    SizedBox(
-                        height: 35
-                    ),
-                    TextField(
-                        obscureText: obs_text?true:false,
-                        autofocus: false,
-                        controller: _password,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.vpn_key),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            suffixIcon: IconButton(icon:Icon(Icons.remove_red_eye),onPressed: (){
-                              obs_text=false;
-                              setState(() {
+            ? Center(child: Container(child: CircularProgressIndicator()))
+            : SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  //color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(36),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                              height: 200,
+                              child: Image.asset(
+                                "Assets/doc_pat.jpg",
+                                fit: BoxFit.contain,
+                              )),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          TextField(
+                              autofocus: false,
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _email,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.email),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                hintText: "E-mail",
+                                //  labelText: "Email"
+                              )),
+                          SizedBox(height: 35),
+                          TextField(
+                              obscureText: obs_text ? true : false,
+                              autofocus: false,
+                              controller: _password,
+                              textInputAction: TextInputAction.done,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.vpn_key),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                suffixIcon: IconButton(
+                                  icon: Icon(Icons.remove_red_eye),
+                                  onPressed: () {
+                                    obs_text = false;
+                                    setState(() {});
+                                  },
+                                ),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                hintText: "Password",
+                                // labelText: "Password"
+                              )),
+                          SizedBox(height: 40),
+                          GestureDetector(
+                              onTap: () {
+                                if (_email.text.isNotEmpty &&
+                                    _password.text.isNotEmpty) {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
 
-                              });
-                            },),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Password",
-                            // labelText: "Password"
-                        )
-                    ),
-                    SizedBox(
-                        height: 40
-                    ),
-                    GestureDetector(
-                        onTap: (){
-                          if(_email.text.isNotEmpty && _password.text.isNotEmpty){
-                            setState(() {
-                              isLoading = true;
-                            });
-
-                            hospitalLogIn(_email.text, _password.text).then((user){
-                              if(user != null){
-                                setState(() {
-                                  isLoading = false;
-                                });
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (_) => DoctorHomePage())
-                                );
-                              }
-                              else{
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              }
-                            });
-                          } else{
-                            print("please fill the form correctly");
-                          }
-                        },
-                        child: Container(
-                            height: size.height / 14,
-                            width: size.width / 3.2,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                color: Colors.blue
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                                "Log In",
-                                style: TextStyle(
-                                    fontSize: 15.6,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold
-                                )
-                            )
-                        )
-                    ),
-                    SizedBox(height: 30,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don't have an account"),
-                        GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (_)=>HospitalSignUpScreen()));
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                child: Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.bold
-                                    )
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-
-                  ]
-          ),
+                                  hospitalLogIn(_email.text, _password.text)
+                                      .then((user) {
+                                    if (user != null) {
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  DoctorHomePage()));
+                                    } else {
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                    }
+                                  });
+                                } else {
+                                  print("please fill the form correctly");
+                                }
+                              },
+                              child: Container(
+                                  height: size.height / 14,
+                                  width: size.width / 3.2,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                      color: Colors.blue),
+                                  alignment: Alignment.center,
+                                  child: Text("Log In",
+                                      style: TextStyle(
+                                          fontSize: 15.6,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)))),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Don't have an account"),
+                              GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                HospitalSignUpScreen()));
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      child: Text("Sign Up",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.bold)))),
+                            ],
+                          ),
+                        ]),
+                  ),
                 ),
-              ),
-        )
-    );
+              ));
   }
 }

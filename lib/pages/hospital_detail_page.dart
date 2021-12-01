@@ -68,7 +68,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
     hospitalPhoneNo = argsDL.hospitalPhoneNo;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Hospital App")),
       body: StreamBuilder(
           stream: _firestoreDBDoctorList

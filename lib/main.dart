@@ -11,7 +11,6 @@ import 'package:hospital_app/pages/app_home_page.dart';
 import 'package:hospital_app/pages/appointment_list.dart';
 import 'package:hospital_app/pages/doctor_appointment_detail_page.dart';
 import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
-import 'package:hospital_app/pages/doctor_history_page.dart';
 import 'package:hospital_app/pages/doctor_login_page.dart';
 import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/pages/doctor_request_detail_page.dart';
@@ -66,7 +65,8 @@ class _MyAppState extends State<MyApp> {
                             "/": (context) => Authenticate(),
                             MyRoute.appHomeRoute: (context) => AppHomePage(),
                             MyRoute.loginRoute: (context) => LoginScreen(),
-                            MyRoute.hospitalLoginRoute: (context) => HospitalLoginScreen(),
+                            MyRoute.hospitalLoginRoute: (context) =>
+                                HospitalLoginScreen(),
                             MyRoute.homeRoute: (context) => HomePage(),
                             MyRoute.settingRoute: (context) => SettingPage(),
                             MyRoute.starredRoute: (context) => StarredPage(),
@@ -90,14 +90,12 @@ class _MyAppState extends State<MyApp> {
                             MyRoute.appointmentListRoute: (context) =>
                                 AppointmentListPage(),
                             MyRoute.addDoctorListRoute: (context) =>
-                            AddDoctorListPage(),
+                                AddDoctorListPage(),
                             MyRoute.appointmentRequestedRoute: (context) =>
-                            AppointmentRequested(),
-                            MyRoute.doctorHistoryRoute: (context) =>
-                                DoctorHistoryPage()
+                                AppointmentRequested()
                           })));
         }
-        return Center(child: CircularProgressIndicator());
+        return CircularProgressIndicator();
       },
     );
   }

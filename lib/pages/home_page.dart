@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Hospital App")),
       body: StreamBuilder(
           stream: firestoreDB,
@@ -72,14 +72,14 @@ class _HomePageState extends State<HomePage> {
                                             Text(
                                                 "${(snapshot.data! as QuerySnapshot).docs[index]['name']}",
                                                 style: TextStyle(
-                                                    color: Colors.black,
+                                                    // color: Colors.black,
                                                     fontSize: 20,
                                                     fontWeight:
                                                         FontWeight.bold)),
                                             Text(
                                                 "${(snapshot.data! as QuerySnapshot).docs[index]['address']}",
                                                 style: TextStyle(
-                                                    color: Colors.grey,
+                                                    //color: Colors.grey,
                                                     fontSize: 18,
                                                     fontStyle:
                                                         FontStyle.italic)),
