@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
@@ -53,13 +55,13 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
                   },
                 ),
                 const SizedBox(height: 24),
-                buildName(doctor),
+                buildName(snapshot),
                 const SizedBox(height: 24),
-                bulidSpeciality(doctor),
+                bulidPhoneNo(snapshot),
                 const SizedBox(height: 24),
-                buildEducation(doctor),
-                const SizedBox(height: 48),
-                buildDescription(doctor),
+                //buildEducation(doctor),
+                //const SizedBox(height: 48),
+                buildAddress(snapshot),
               ],
             );
           }),
@@ -83,56 +85,71 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
         ],
       );
 
-  buildDescription(Doctor doctor) => Container(
+  buildAddress(snapshot) => Container(
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Description',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(CupertinoIcons.building_2_fill)),
+                Text(
+                  'Address',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             Text(
-              doctor.description,
+              snapshot.data!['address'],
               style: TextStyle(fontSize: 16, height: 1.4),
             )
           ],
         ),
       );
 
-  bulidSpeciality(Doctor doctor) => Container(
+  bulidPhoneNo(snapshot) => Container(
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Speciality',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.call),
+                ),
+                Text(
+                  'Phone number',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             Text(
-              doctor.speciality,
+              snapshot.data!['phoneNo'],
               style: TextStyle(fontSize: 16, height: 1.4),
             )
           ],
         ),
       );
 
-  buildEducation(Doctor doctor) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Education',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              doctor.education,
-              style: TextStyle(fontSize: 16, height: 1.4),
-            )
-          ],
-        ),
-      );
+  // buildEducation(Doctor doctor) => Container(
+  //       padding: EdgeInsets.symmetric(horizontal: 48),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Text(
+  //             'Education',
+  //             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  //           ),
+  //           Text(
+  //             doctor.education,
+  //             style: TextStyle(fontSize: 16, height: 1.4),
+  //           )
+  //         ],
+  //       ),
+  //     );
 }
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
