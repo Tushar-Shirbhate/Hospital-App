@@ -43,7 +43,7 @@ class ProfileWidget extends StatelessWidget {
             width: 128,
             height: 128,
             child: InkWell(
-              onTap: onClicked,
+              onTap: () {},
             )),
       ),
     );

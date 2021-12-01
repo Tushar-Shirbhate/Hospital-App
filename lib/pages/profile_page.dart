@@ -33,34 +33,36 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: null, icon: Icon(CupertinoIcons.profile_circled)),
         title: Text('Profile'),
       ),
-      body: StreamBuilder<DocumentSnapshot>(
-          stream: _firestoreDBUserProf
-              .collection("users")
-              .doc(_auth.currentUser!.uid)
-              .snapshots(),
-          builder: (BuildContext context, snapshot) {
-            if (!snapshot.hasData) return CircularProgressIndicator();
-            return ListView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                ProfileWidget(
-                  imagepath: user.imagepath,
-                  onClicked: () async {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => EditProfilePage()),
-                    );
-                  },
-                ),
-                const SizedBox(height: 24),
-                buildName(snapshot),
-                const SizedBox(height: 48),
-                buildPhone(snapshot),
-                const SizedBox(height: 48),
-                buildAddress(snapshot),
-              ],
-            );
-          }),
+      body: Builder(builder: (context) {
+        return StreamBuilder<DocumentSnapshot>(
+            stream: _firestoreDBUserProf
+                .collection("users")
+                .doc(_auth.currentUser!.uid)
+                .snapshots(),
+            builder: (BuildContext context, snapshot) {
+              if (!snapshot.hasData) return CircularProgressIndicator();
+              return ListView(
+                physics: BouncingScrollPhysics(),
+                children: [
+                  ProfileWidget(
+                    imagepath: user.imagepath,
+                    onClicked: () async {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => EditProfilePage()),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  buildName(snapshot),
+                  const SizedBox(height: 48),
+                  buildPhone(snapshot),
+                  const SizedBox(height: 48),
+                  buildAddress(snapshot),
+                ],
+              );
+            });
+      }),
     );
   }
 
