@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                                 HospitalLoginScreen(),
                             MyRoute.homeRoute: (context) => HomePage(),
                             MyRoute.settingRoute: (context) => SettingPage(),
-                            MyRoute.starredRoute: (context) => StarredPage(),
+                          //  MyRoute.starredRoute: (context) => StarredPage(),
                             MyRoute.detailRoute: (context) =>
                                 HospitalDetailPage(),
                             MyRoute.profileRoute: (context) => ProfilePage(),

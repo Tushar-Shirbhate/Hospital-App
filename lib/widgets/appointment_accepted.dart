@@ -82,7 +82,7 @@ class _AppointmentAcceptedState extends State<AppointmentAccepted> {
                                         showDialog(
                                           context: context,
                                           builder: (ctx) => AlertDialog(
-                                            title: Text("Add Doctor Detail"),
+                                            title: Text("Cancel Appointment"),
                                             content: SingleChildScrollView(
                                               child: Column(
                                                 children: [

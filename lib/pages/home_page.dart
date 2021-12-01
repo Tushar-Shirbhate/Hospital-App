@@ -59,11 +59,11 @@ class _HomePageState extends State<HomePage> {
                                 padding: EdgeInsets.all(10),
                                 height: 100,
                                 width: double.infinity,
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
+                              //  child: Row(
+                                //    mainAxisAlignment:
+                                 //       MainAxisAlignment.spaceBetween,
+                               //     children: [
+                                    child:  Column(
                                           // mainAxisAlignment:
                                           //     MainAxisAlignment.start,
                                           crossAxisAlignment:
@@ -91,8 +91,10 @@ class _HomePageState extends State<HomePage> {
                                             //       fontSize: 16,
                                             //     ))
                                           ]),
-                                      Icon(CupertinoIcons.heart),
-                                    ]))),
+                                   //   Icon(CupertinoIcons.heart),
+                                   // ]
+                         //   )
+                        )),
                       ),
                       //  );
                     );
