@@ -259,6 +259,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                      "patientUid": patientUid,
                                      "hospitalUid": _auth.currentUser!.uid,
                                      "doctorName": doctorName,
+                                     "email": _auth.currentUser!.email,
+                                     "hospitalName": _auth.currentUser!.displayName,
                                      "date": date,
                                      "fromTime": argsAp.fromTime,
                                      "toTime": argsAp.toTime
