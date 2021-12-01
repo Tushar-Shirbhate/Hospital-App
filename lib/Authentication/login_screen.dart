@@ -281,18 +281,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 35,
                           ),
-                          buttonItem(
-                              "Assets/google.svg", "Continue with Google", 30,
-                              () async {
-                            await authClass.googleSignIn(context);
-                          }),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          Text(
-                            "or",
-                            style: TextStyle(fontSize: 17),
-                          ),
+                          // buttonItem(
+                          //     "Assets/google.svg", "Continue with Google", 30,
+                          //     () async {
+                          //   await authClass.googleSignIn(context);
+                          // }),
+                          // SizedBox(
+                          //   height: 13,
+                          // ),
+                          // Text(
+                          //   "or",
+                          //   style: TextStyle(fontSize: 17),
+                          // ),
                           SizedBox(
                             height: 13,
                           ),
