@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    // final user = UserPreferences.myUser;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -44,15 +44,15 @@ class _ProfilePageState extends State<ProfilePage> {
               return ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
-                  ProfileWidget(
-                    imagepath: user.imagepath,
-                    onClicked: () async {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => EditProfilePage()),
-                      );
-                    },
-                  ),
+                  // ProfileWidget(
+                  //   imagepath: user.imagepath,
+                  //   onClicked: () async {
+                  //     Navigator.of(context).push(
+                  //       MaterialPageRoute(
+                  //           builder: (context) => EditProfilePage()),
+                  //     );
+                  //   },
+                  // ),
                   const SizedBox(height: 24),
                   buildName(snapshot),
                   const SizedBox(height: 48),

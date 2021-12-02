@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    // final user = UserPreferences.myUser;
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         // once Completed, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return ThemeProvider(
-              //initTheme:
+              initTheme: ThemeData.light(),
               //  user.isDarkmode ? MyThemes.darkTheme : MyThemes.lightTheme,
               child: Builder(
                   builder: (context) => MaterialApp(
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                                 HospitalLoginScreen(),
                             MyRoute.homeRoute: (context) => HomePage(),
                             MyRoute.settingRoute: (context) => SettingPage(),
-                          //  MyRoute.starredRoute: (context) => StarredPage(),
+                            //  MyRoute.starredRoute: (context) => StarredPage(),
                             MyRoute.detailRoute: (context) =>
                                 HospitalDetailPage(),
                             MyRoute.profileRoute: (context) => ProfilePage(),
@@ -95,10 +95,9 @@ class _MyAppState extends State<MyApp> {
                                 AddDoctorListPage(),
                             MyRoute.appointmentRequestedRoute: (context) =>
                                 AppointmentRequested(),
-                            MyRoute.reportRoute: (context) =>
-                                  ReportPage(),
+                            MyRoute.reportRoute: (context) => ReportPage(),
                             MyRoute.doctorHistoryRoute: (context) =>
-                                  DoctorHistoryPage()
+                                DoctorHistoryPage()
                           })));
         }
         return CircularProgressIndicator();
