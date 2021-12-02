@@ -42,7 +42,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0)
                                 ),
-                                height: 230,
+                                height: 245,
                                 padding: EdgeInsets.all(15),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
