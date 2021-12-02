@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/pages/edit_profilePage.dart';
+import 'package:hospital_app/utils/storage_service.dart';
 import 'package:hospital_app/utils/user.dart';
 import 'package:hospital_app/widgets/profile_widget.dart';
 import 'package:hospital_app/widgets/user_preferences.dart';
@@ -23,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   late final Map<String, dynamic> userMap;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestoreDBUserProf = FirebaseFirestore.instance;
-
+  final Storage storage = Storage();
   @override
   Widget build(BuildContext context) {
     // final user = UserPreferences.myUser;
@@ -44,15 +45,40 @@ class _ProfilePageState extends State<ProfilePage> {
               return ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
-                  // ProfileWidget(
-                  //   imagepath: user.imagepath,
-                  //   onClicked: () async {
-                  //     Navigator.of(context).push(
-                  //       MaterialPageRoute(
-                  //           builder: (context) => EditProfilePage()),
-                  //     );
-                  //   },
-                  // ),
+                  FutureBuilder(
+                      future: storage.downloadURL('Profile_pic.jpg'),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<String> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          return ProfileWidget(
+                            imagepath: Image.network(
+                              snapshot.data!,
+                            ),
+                            onClicked: () async {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfilePage()),
+                              );
+                            },
+                          );
+                        }
+                        if (snapshot.connectionState ==
+                                ConnectionState.waiting ||
+                            !snapshot.hasData) {
+                          return Container(
+                              alignment: Alignment.topCenter,
+                              height: 10,
+                              width: 10,
+                              child: CircularProgressIndicator());
+                        }
+                        return Container(
+                          alignment: Alignment.topCenter,
+                          height: 10,
+                          width: 10,
+                          child: CircularProgressIndicator(),
+                        );
+                      }),
                   const SizedBox(height: 24),
                   buildName(snapshot),
                   const SizedBox(height: 48),

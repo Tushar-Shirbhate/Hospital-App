@@ -1,11 +1,23 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/utils/routes.dart';
+import 'package:hospital_app/utils/storage_service.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  final Storage storage = Storage();
+  late final Map<String, dynamic> userMap;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestoreDBUserProf = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -14,18 +26,57 @@ class MyDrawer extends StatelessWidget {
       child: ListView(padding: EdgeInsets.zero, children: [
         DrawerHeader(
           padding: EdgeInsets.zero,
-          child: UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              accountName: Text("Username"),
-              accountEmail: Text("username@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                // child: Image.asset(
-                //   "assets/images/userpic.png"
-                // ),
-                backgroundImage: NetworkImage(
-                  'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
-                ),
-              )),
+          child: Builder(builder: (context) {
+            StreamBuilder<DocumentSnapshot>(
+                stream: _firestoreDBUserProf
+                    .collection("users")
+                    .doc(_auth.currentUser!.uid)
+                    .snapshots(),
+                builder: (BuildContext context, snapshot) {
+                  if (!snapshot.hasData) return CircularProgressIndicator();
+                  return FutureBuilder(
+                      future: storage.downloadURL('Profile_pic.jpg'),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<String> snapshot2) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          UserAccountsDrawerHeader(
+                            decoration: BoxDecoration(color: Colors.blue),
+                            accountName: Text(
+                              snapshot.data!['name'],
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
+                            ),
+                            accountEmail: Text(
+                              snapshot.data!['email'],
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                            currentAccountPicture: CircleAvatar(
+                              backgroundImage: NetworkImage(snapshot2.data!),
+                              /*'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100'*/
+                            ),
+                          );
+                        }
+                        return Container(
+                          alignment: Alignment.center,
+                          width: 10,
+                          height: 10,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        );
+                      });
+                });
+            return Container(
+              alignment: Alignment.center,
+              width: 10,
+              height: 10,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            );
+          }),
         ),
         ListTile(
           leading: Icon(
@@ -80,10 +131,7 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.white,
               )),
           onTap: () {
-            Navigator.pushNamed(
-                context,
-                MyRoute.reportRoute
-            );
+            Navigator.pushNamed(context, MyRoute.reportRoute);
           },
         ),
         // ListTile(
