@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital_app/utils/storage_service.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ProfileWidget extends StatelessWidget {
   final String imagepath;
@@ -32,7 +35,7 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = NetworkImage(imagepath);
+    dynamic image = Image.network(imagepath);
 
     return ClipOval(
       child: Material(
