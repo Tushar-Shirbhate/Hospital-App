@@ -7,7 +7,7 @@ import 'package:hospital_app/utils/storage_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class ProfileWidget extends StatelessWidget {
-  final String imagepath;
+  final Image imagepath;
   final bool isEdit;
   final VoidCallback onClicked;
 
@@ -35,13 +35,13 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    dynamic image = Image.network(imagepath);
+    Image image1 = imagepath;
 
     return ClipOval(
       child: Material(
         color: Colors.transparent,
         child: Ink.image(
-            image: image,
+            image: image1.image, //image as ImageProvider,
             fit: BoxFit.cover,
             width: 128,
             height: 128,

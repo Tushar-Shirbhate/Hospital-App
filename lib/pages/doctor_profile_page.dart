@@ -45,15 +45,15 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
             return ListView(
               physics: BouncingScrollPhysics(),
               children: [
-                ProfileWidget(
-                  imagepath: doctor.imagepath,
-                  onClicked: () async {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => DoctorEditProfilePage()),
-                    );
-                  },
-                ),
+                // ProfileWidget(
+                //   imagepath: doctor.imagepath,
+                //   onClicked: () async {
+                //     Navigator.of(context).push(
+                //       MaterialPageRoute(
+                //           builder: (context) => DoctorEditProfilePage()),
+                //     );
+                //   },
+                // ),
                 const SizedBox(height: 24),
                 buildName(snapshot),
                 const SizedBox(height: 24),

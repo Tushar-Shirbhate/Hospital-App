@@ -46,11 +46,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 physics: BouncingScrollPhysics(),
                 children: [
-                  // ProfileWidget(
-                  //   imagepath: user.imagepath,
-                  //   isEdit: true,
-                  //   onClicked: () async {},
-                  // ),
+                  FutureBuilder(
+                      future: storage.downloadURL('Profile_pic.jpg'),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<String> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          return ProfileWidget(
+                            imagepath: Image.network(
+                              snapshot.data!,
+                            ),
+                            isEdit: true,
+                            onClicked: () async {},
+                          );
+                        }
+                        if (snapshot.connectionState ==
+                                ConnectionState.waiting ||
+                            !snapshot.hasData) {
+                          return CircularProgressIndicator();
+                        }
+                        return CircularProgressIndicator();
+                      }),
                   const SizedBox(
                     height: 24,
                   ),

@@ -26,11 +26,11 @@ class _DoctorEditProfilePageState extends State<DoctorEditProfilePage> {
         padding: EdgeInsets.symmetric(horizontal: 32),
         physics: BouncingScrollPhysics(),
         children: [
-          ProfileWidget(
-            imagepath: doctor.imagepath,
-            isEdit: true,
-            onClicked: () async {},
-          ),
+          // ProfileWidget(
+          //   imagepath: doctor.imagepath,
+          //   isEdit: true,
+          //   onClicked: () async {},
+          // ),
           const SizedBox(
             height: 24,
           ),
