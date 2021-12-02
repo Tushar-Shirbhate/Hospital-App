@@ -22,6 +22,7 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
   @override
   Widget build(BuildContext context) {
     // final argsDL = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsDoctorList;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Doctor List")),
@@ -46,7 +47,7 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.0)),
-                              height: 140,
+                              height: size.height / 4.9,
                               padding: EdgeInsets.all(15),
                               child: Column(
                                   mainAxisAlignment:

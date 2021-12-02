@@ -17,6 +17,7 @@ class _ReportPageState extends State<ReportPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
             leading: Icon(CupertinoIcons.doc_person, color: Colors.white,),
@@ -40,7 +41,7 @@ class _ReportPageState extends State<ReportPage> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0)
                                 ),
-                                height: 245,
+                                height: size.height/2.8,
                                 padding: EdgeInsets.all(15),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

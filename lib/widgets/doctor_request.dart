@@ -16,6 +16,7 @@ class _DoctorRequestState extends State<DoctorRequest> {
   
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
             leading: Icon(Icons.request_page_outlined),
@@ -56,7 +57,7 @@ class _DoctorRequestState extends State<DoctorRequest> {
                         child: Card(
                             elevation: 5,
                             child: Container(
-                                height: 100,
+                                height: size.height / 6.8,
                                 padding: EdgeInsets.fromLTRB(15,15,15,15),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
