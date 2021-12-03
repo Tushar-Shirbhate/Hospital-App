@@ -26,57 +26,45 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(padding: EdgeInsets.zero, children: [
         DrawerHeader(
           padding: EdgeInsets.zero,
-          child: Builder(builder: (context) {
-            StreamBuilder<DocumentSnapshot>(
-                stream: _firestoreDBUserProf
-                    .collection("users")
-                    .doc(_auth.currentUser!.uid)
-                    .snapshots(),
-                builder: (BuildContext context, snapshot) {
-                  if (!snapshot.hasData) return CircularProgressIndicator();
-                  return FutureBuilder(
-                      future: storage.downloadURL('Profile_pic.jpg'),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<String> snapshot2) {
-                        if (snapshot.connectionState == ConnectionState.done &&
-                            snapshot.hasData) {
-                          UserAccountsDrawerHeader(
-                            decoration: BoxDecoration(color: Colors.blue),
-                            accountName: Text(
-                              snapshot.data!['name'],
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                            accountEmail: Text(
-                              snapshot.data!['email'],
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black),
-                            ),
-                            currentAccountPicture: CircleAvatar(
-                              backgroundImage: NetworkImage(snapshot2.data!),
-                              /*'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100'*/
-                            ),
-                          );
-                        }
-                        return Container(
-                          alignment: Alignment.center,
-                          width: 10,
-                          height: 10,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        );
-                      });
-                });
-            return Container(
-              alignment: Alignment.center,
-              width: 10,
-              height: 10,
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            );
-          }),
+          child: StreamBuilder<DocumentSnapshot>(
+            stream: _firestoreDBUserProf
+                .collection("users")
+                .doc(_auth.currentUser!.uid)
+                .snapshots(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              future:
+              storage.downloadURL('Profile_pic.jpg');
+              // if (!snapshot.hasData) return CircularProgressIndicator();
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.hasData) {
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(color: Colors.blue),
+                  accountName: Text(
+                    snapshot.data!['name'],
+                    style: TextStyle(fontSize: 5, color: Colors.white),
+                  ),
+                  accountEmail: Text(
+                    snapshot.data!['email'],
+                    style: TextStyle(fontSize: 5, color: Colors.black),
+                  ),
+                  currentAccountPicture: CircleAvatar(
+                    radius: 10,
+                    backgroundImage: NetworkImage(
+                      snapshot.data!,
+                    ),
+                    //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
+                  ),
+                );
+              }
+              // if (snapshot.connectionState == ConnectionState.waiting ||
+              //   !snapshot.hasData)
+              return Container(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ));
+            },
+          ),
         ),
         ListTile(
           leading: Icon(
@@ -177,4 +165,19 @@ class _MyDrawerState extends State<MyDrawer> {
       ]),
     ));
   }
+
+  // Widget error(snapshot) {
+  //   if (snapshot.connectionState == ConnectionState.waiting ||
+  //       !snapshot.hasData) {
+  //     return Container(
+  //       alignment: Alignment.center,
+  //       width: 10,
+  //       height: 10,
+  //       child: CircularProgressIndicator(
+  //         color: Colors.white,
+  //       ),
+  //     );
+  //   }
+  //   ;
+  // }
 }
