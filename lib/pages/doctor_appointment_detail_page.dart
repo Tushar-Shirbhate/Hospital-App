@@ -9,7 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:hospital_app/pages/chat_room.dart';
+import 'package:hospital_app/pages/not_report.dart';
 import 'package:hospital_app/pages/report_view.dart';
+import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_arguments_appointment.dart';
 
 class DoctorAppointmentDetailPage extends StatefulWidget{
@@ -175,7 +177,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             InkWell(
-                                 onTap: uploadReportToFirebase,
+                                 onTap:uploadReportToFirebase,
+
                                  child: Icon(
                                  Icons.upload_file,
                                  size: 50,
@@ -207,10 +210,20 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                if (snapshot.hasData) {
                                  return InkWell(
                                    onTap: () {
-                                     Navigator.push(
-                                         context, MaterialPageRoute(builder: (
-                                         context) =>
-                                         ReportView(x['reportFileUrl'])));
+                                    try{
+                                      if(x['reportFileUrl'] != null){
+                                        print("hi");
+                                        Navigator.push(
+                                            context, MaterialPageRoute(builder: (
+                                            context) =>
+                                            ReportView(x['reportFileUrl'])));
+                                      }
+
+                                    }
+                                    catch(e){
+                                      print("upload report");
+                                      Navigator.pushNamed(context, MyRoute.notReportRoute);
+                                    }
                                    },
                                    child:Container(
                                        width: 150,
@@ -387,6 +400,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
   }
 
   uploadReportToFirebase() async{
+
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     File pick = File(result!.files.single.path.toString());
     var file = pick.readAsBytesSync();
@@ -405,8 +419,12 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
       "reportFileUrl": reportUrl,
       "num": "Report-${date}${patientName}${doctorName}"
     });
+
 }
 }
+
+
+
 
 
 

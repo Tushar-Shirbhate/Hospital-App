@@ -19,6 +19,7 @@ import 'package:hospital_app/pages/edit_profilePage.dart';
 import 'package:hospital_app/pages/home_page.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/Authentication/login_screen.dart';
+import 'package:hospital_app/pages/not_report.dart';
 import 'package:hospital_app/pages/profile_page.dart';
 import 'package:hospital_app/pages/report_page.dart';
 import 'package:hospital_app/pages/starred_page.dart';
@@ -97,7 +98,8 @@ class _MyAppState extends State<MyApp> {
                                 AppointmentRequested(),
                             MyRoute.reportRoute: (context) => ReportPage(),
                             MyRoute.doctorHistoryRoute: (context) =>
-                                DoctorHistoryPage()
+                                DoctorHistoryPage(),
+                            MyRoute.notReportRoute: (context) => NotReport()
                           })));
         }
         return CircularProgressIndicator();

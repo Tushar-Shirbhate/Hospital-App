@@ -109,44 +109,87 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                         height: 5,
                                       ),
 
-                                      StreamBuilder(
-                                          stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection("reportFileList").doc("${_map['date']}${_map['patientName']}${_map['doctorName']}").snapshots(),
-                                          builder: (context, AsyncSnapshot snapshot) {
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          StreamBuilder(
+                                              stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection("reportFileList").doc("${_map['date']}${_map['patientName']}${_map['doctorName']}").snapshots(),
+                                              builder: (context, AsyncSnapshot snapshot) {
 
-                                            var x = snapshot.data;
+                                                var x = snapshot.data;
 
-                                            if (!snapshot.hasData) {
-                                              return Center(child: CircularProgressIndicator());
-                                            }
-                                            if (snapshot.hasData) {
-                                              return InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context, MaterialPageRoute(builder: (
-                                                      context) =>
-                                                      ReportView(x['reportFileUrl'])));
-                                                },
-                                                child:  Container(
-                                                    width: 150,
-                                                    height: 37,
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.blueAccent,
-                                                        borderRadius: BorderRadius.circular(20.0)
-                                                    ),
-                                                    child: Center(
-                                                        child: Text(
-                                                            "Report",
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                color: CupertinoColors.black
-                                                            ))))
-                                              );
-                                            }
-                                            //  }
-                                            return Center(
-                                                child: SizedBox(height:40)
-                                            );
-                                          }
+                                                if (!snapshot.hasData) {
+                                                  return Center(child: CircularProgressIndicator());
+                                                }
+                                                if (snapshot.hasData) {
+                                                  return InkWell(
+                                                    onTap: () {
+                                                      try{
+                                                        if(x['reportFileUrl'] != null){
+                                                          print("hi");
+                                                          Navigator.push(
+                                                              context, MaterialPageRoute(builder: (
+                                                              context) =>
+                                                              ReportView(x['reportFileUrl'])));
+                                                        }
+
+                                                      }
+                                                      catch(e){
+                                                        print("upload report");
+                                                        Navigator.pushNamed(context, MyRoute.notReportRoute);
+                                                      }
+                                                    },
+                                                    child:  Container(
+                                                        width: 150,
+                                                        height: 37,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.blueAccent,
+                                                            borderRadius: BorderRadius.circular(20.0)
+                                                        ),
+                                                        child: Center(
+                                                            child: Text(
+                                                                "Report",
+                                                                style: TextStyle(
+                                                                    fontSize: 20,
+                                                                    color: CupertinoColors.black
+                                                                ))))
+                                                  );
+                                                }
+                                                //  }
+                                                return Center(
+                                                    child: SizedBox(height:40)
+                                                );
+                                              }
+                                          ),
+                                          InkWell(
+                                            onTap: (){
+                                              String id = snapshot
+                                                  .data!.docs[index].id;
+                                              _firestoreDBPatientAppointment
+                                                  .doc(_auth.currentUser!.uid)
+                                                  .collection('patientHistoryList')
+                                                  .doc(id)
+                                                  .delete();
+                                              _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection("reportFileList")
+                                                  .doc("${_map['date']}${_auth.currentUser!.displayName}${_map['doctorName']}")
+                                                  .delete();
+                                            },
+                                            child: Container(
+                                                width: 150,
+                                                height: 37,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.redAccent,
+                                                    borderRadius: BorderRadius.circular(20.0)
+                                                ),
+                                                child: Center(
+                                                    child: Text(
+                                                        "Delete",
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color: CupertinoColors.black
+                                                        )))),
+                                          )
+                                        ],
                                       ),
                                     ]
                                 )

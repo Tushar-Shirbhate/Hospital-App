@@ -9,13 +9,14 @@ class ReportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Report")
-      ),
-      body: SfPdfViewer.network(
-        reportUrl,
-        controller: _pdfViewerController
-      )
+        appBar: AppBar(
+            title: Text("Report")
+        ),
+        body: SfPdfViewer.network(
+            reportUrl,
+            controller: _pdfViewerController
+        )
     );
+
   }
 }
