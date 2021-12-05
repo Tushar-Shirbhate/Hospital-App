@@ -253,6 +253,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, "/");
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
           iconTheme: IconThemeData(
               //color: Colors.transparent,
               ),
