@@ -1,15 +1,9 @@
 // ignore_for_file: annotate_overrides, file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
-//import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:hospital_app/utils/themes.dart';
-//import 'package:hospital_app/widgets/user_preferences.dart';
-//import 'package:hospital_app/widgets/change_theme_button_switch_widget.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
 class SettingPage extends StatefulWidget {
@@ -19,10 +13,8 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool _switchValue = false;
-  bool isDarkMode = false; //Theme.of(context).brightness == Brightness.dark;
+  bool isDarkMode = false;
   Widget build(BuildContext context) {
-    //var user = UserPreferences.myUser;
-    //final icon = CupertinoIcons.moon_stars;
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -89,7 +81,6 @@ class _SettingPageState extends State<SettingPage> {
                     title: Text('ON/OFF'),
                     trailing: ThemeSwitcher(
                       builder: (context) => Switch(
-                        //icon: Icon(icon),
                         value: _switchValue,
                         onChanged: (bool newValue) {
                           setState(() {
@@ -103,55 +94,8 @@ class _SettingPageState extends State<SettingPage> {
                             switcher.changeTheme(theme: theme);
                           });
                         },
-                        //     // groupValue: 1,
-                        //     // onChanged: null,
-                        //     // activeColor: Colors.deepPurple,
-                        //     // toggleable: true,
-                        //   ),
-                        // ),
                       ),
                     ),
-                  ),
-                  Divider(
-                    height: 15,
-                    indent: 15,
-                    endIndent: 15,
-                    thickness: 2,
-                    color: Colors.blue,
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.notifications),
-                          Text(
-                            'Notification',
-                            style: TextStyle(
-                              fontSize: 25,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTile(
-                        title: Text('ON/OFF'),
-                        trailing: LiteRollingSwitch(
-                          value: false,
-                          colorOn: Colors.blueAccent,
-                          colorOff: Colors.grey,
-                          iconOn: Icons.notifications_active,
-                          iconOff: Icons.notifications_off,
-                          onChanged: (bool position) {
-                            // ignore: unused_label
-                            themeMode:
-                            ThemeMode.dark;
-                          },
-                          // groupValue: 1,
-                          // onChanged: null,
-                          // activeColor: Colors.deepPurple,
-                          // toggleable: true,
-                        ),
-                      ),
-                    ],
                   ),
                   Divider(
                     height: 15,
