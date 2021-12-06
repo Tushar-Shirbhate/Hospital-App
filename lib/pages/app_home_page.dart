@@ -19,6 +19,7 @@ class _AppHomePageState extends State<AppHomePage> {
             title: Text(
               "Hospital App"
             ),
+            automaticallyImplyLeading: false,
           ),
           body: SingleChildScrollView(
             child: Container(

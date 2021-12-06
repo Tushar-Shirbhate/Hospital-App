@@ -16,6 +16,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: Icon(CupertinoIcons.doc_plaintext),
@@ -60,7 +61,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
                         child: Card(
                             elevation: 5,
                             child: Container(
-                                height: 100,
+                                height: size.height/6.8,
                                 padding: EdgeInsets.fromLTRB(15,15,15,15),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,

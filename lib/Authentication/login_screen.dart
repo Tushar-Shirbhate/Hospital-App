@@ -253,6 +253,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, "/");
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
           iconTheme: IconThemeData(
               //color: Colors.transparent,
               ),
@@ -403,36 +409,36 @@ class _LoginScreenState extends State<LoginScreen> {
               ));
   }
 
-  Widget buttonItem(
-      String imagepath, String buttonName, double size, Function()? onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 60,
-        child: Card(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-              side: BorderSide(width: 1, color: Colors.grey)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                imagepath,
-                height: size,
-                width: size,
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(
-                buttonName,
-                style: TextStyle(fontSize: 17),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget buttonItem(
+  //     String imagepath, String buttonName, double size, Function()? onTap) {
+  //   return InkWell(
+  //     onTap: onTap,
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       height: 60,
+  //       child: Card(
+  //         shape: RoundedRectangleBorder(
+  //             borderRadius: BorderRadius.circular(15),
+  //             side: BorderSide(width: 1, color: Colors.grey)),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             SvgPicture.asset(
+  //               imagepath,
+  //               height: size,
+  //               width: size,
+  //             ),
+  //             SizedBox(
+  //               width: 15,
+  //             ),
+  //             Text(
+  //               buttonName,
+  //               style: TextStyle(fontSize: 17),
+  //             )
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

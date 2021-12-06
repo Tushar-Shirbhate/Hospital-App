@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Hospital App")),
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                             elevation: 5,
                             child: Container(
                                 padding: EdgeInsets.all(10),
-                                height: 100,
+                                height: size.height / 6.8,
                                 width: double.infinity,
                               //  child: Row(
                                 //    mainAxisAlignment:

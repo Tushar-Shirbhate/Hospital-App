@@ -246,6 +246,12 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, "/");
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
           iconTheme: IconThemeData(
               //color: Colors.black,
               ),

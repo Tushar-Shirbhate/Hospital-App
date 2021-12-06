@@ -66,6 +66,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
     String id = argsDL.id;
      hospitalEmail = argsDL.hospitalEmail;
     hospitalPhoneNo = argsDL.hospitalPhoneNo;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       //backgroundColor: Colors.white,
@@ -91,7 +92,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.0)),
-                              height: 200,
+                              height: size.height / 3.7,
                               padding: EdgeInsets.all(15),
                               child: Column(
                                   mainAxisAlignment:

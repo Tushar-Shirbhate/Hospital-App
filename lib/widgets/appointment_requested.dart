@@ -16,6 +16,7 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
           stream: _firestoreDBApDoctorList.doc(_auth.currentUser!.uid).collection("appointmentRequestedDoctorList").snapshots(),
@@ -33,7 +34,7 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.0)
                               ),
-                              height: 200,
+                              height: size.height/3.7,
                               padding: EdgeInsets.all(15),
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
