@@ -1,12 +1,17 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, use_function_type_syntax_for_parameters
+
+//import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/utils.dart';
 import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/storage_service.dart';
+//import {getStorage , ref} from 'firebase/storage';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -14,6 +19,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  var _image1;
   final Storage storage = Storage();
   late final Map<String, dynamic> userMap;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,34 +41,34 @@ class _MyDrawerState extends State<MyDrawer> {
               future:
               storage.downloadURL('Profile_pic.jpg');
               // if (!snapshot.hasData) return CircularProgressIndicator();
-              if (snapshot.connectionState == ConnectionState.done &&
-                  snapshot.hasData) {
-                UserAccountsDrawerHeader(
+              if (snapshot.hasData) {
+                return UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Colors.blue),
                   accountName: Text(
                     snapshot.data!['name'],
-                    style: TextStyle(fontSize: 5, color: Colors.white),
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   accountEmail: Text(
                     snapshot.data!['email'],
-                    style: TextStyle(fontSize: 5, color: Colors.black),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                   currentAccountPicture: CircleAvatar(
                     radius: 10,
                     backgroundImage: NetworkImage(
-                      snapshot.data!,
+                      storage
+                          .downloadURL('Profile_pic.jpg')
+                          .toString(), //picture().toString(),
                     ),
                     //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
                   ),
                 );
+              } else {
+                return Container(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ));
               }
-              // if (snapshot.connectionState == ConnectionState.waiting ||
-              //   !snapshot.hasData)
-              return Container(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ));
             },
           ),
         ),
@@ -166,18 +172,24 @@ class _MyDrawerState extends State<MyDrawer> {
     ));
   }
 
-  // Widget error(snapshot) {
-  //   if (snapshot.connectionState == ConnectionState.waiting ||
-  //       !snapshot.hasData) {
-  //     return Container(
-  //       alignment: Alignment.center,
-  //       width: 10,
-  //       height: 10,
-  //       child: CircularProgressIndicator(
-  //         color: Colors.white,
-  //       ),
-  //     );
-  //   }
-  //   ;
+  // Future<String> picture() {
+  //   FirebaseStorage storage = FirebaseStorage.instance;
+  //   Reference ref = storage.ref('/test').child('Profile_pic.');
+  //   Future<String> downloadTask = ref.getDownloadURL();
+  //   // downloadTask.then((res) {
+  //   //   res.ref.getDownloadURL();
+  //   // });
+  //   var dowurl = downloadTask;
+  //   return dowurl;
   // }
+  Future<String> picture() {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref('/test/Profile_pic.jpg');
+    Future<String> downloadTask = ref.getDownloadURL();
+    // downloadTask.then((res) {
+    //   res.ref.getDownloadURL();
+    // });
+    var dowurl = downloadTask;
+    return dowurl;
+  }
 }
