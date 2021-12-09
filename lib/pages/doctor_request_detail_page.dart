@@ -32,18 +32,133 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
     String toTime = "${time2.hour} : ${time2.minute}";
 
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-
+    final size = MediaQuery.of(context).size;
     String patientListId = args.patientRequestListId;
 
 
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
-            title: Text(
-                "Requested Patient"
-            )
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined,
+                // color: Color.fromRGBO(206, 147, 216, 1),
+                color: Color.fromRGBO(254, 23, 72, 1)
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          actions: [
+            InkWell(
+              onTap: ()async{
+                firestoreDBPatientList.doc(_auth.currentUser!.uid)
+                    .collection('patientAcceptedList')
+                    .add({
+                  "patientName":args.patientName,
+                  "email": args.patientEmail,
+                  "phoneNo": args.patientPhoneNumber,
+                  "patientUid": args.patientUid,
+                  "doctorName": args.doctorName,
+                  "doctorPost": args.doctorPost,
+                  "doctorSpeciality": args.doctorSpeciality,
+                  "doctorEducation": args.doctorEducation,
+                  "date":date,
+                  "fromTime":fromTime,
+                  "toTime":toTime
+                });
+                firestoreDBPatientList.doc(args.patientUid)
+                    .collection('appointmentAcceptedDoctorList')
+                    .add({
+                  "patientUid": args.patientUid,
+                  "hospitalUid": _auth.currentUser!.uid,
+                  "doctorName": args.doctorName,
+                  "doctorPost": args.doctorPost,
+                  "doctorSpeciality": args.doctorSpeciality,
+                  "doctorEducation": args.doctorEducation,
+                  "date":date,
+                  "fromTime":fromTime,
+                  "toTime":toTime
+                });
+
+                String id;
+                FirebaseFirestore.instance.collection("users")
+                    .doc(_auth.currentUser!.uid)
+                    .collection("patientRequestList")
+                    .where("email", isEqualTo: args.patientEmail)
+                    .where("doctorName", isEqualTo: args.doctorName)
+                    .where("patientName", isEqualTo: args.patientName)
+                    .where("uid", isEqualTo: args.patientUid)
+                    .get()
+                    .then((snapshot) {
+                  id = snapshot.docs[0].id;
+                  FirebaseFirestore.instance.collection("users")
+                      .doc(_auth.currentUser!.uid)
+                      .collection("patientRequestList").doc(id).delete();
+                  print(id);
+                });
+
+                String id2;
+                FirebaseFirestore.instance.collection("users")
+                    .doc(args.patientUid)
+                    .collection("appointmentRequestedDoctorList")
+                    .where("doctorName", isEqualTo: args.doctorName)
+                    .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+                    .get()
+                    .then((snapshot) {
+                  id2 = snapshot.docs[0].id;
+                  FirebaseFirestore.instance.collection("users")
+                      .doc(args.patientUid)
+                      .collection("appointmentRequestedDoctorList").doc(id2).delete();
+                  print(id2);
+                });
+                Navigator.pop(context);
+              },
+              child: Container(
+                  margin: EdgeInsets.all(9),
+                  width: 90,
+                  height: 15,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    // color: Color.fromRGBO(206, 147, 216, 1),
+                    color: Color.fromRGBO(254, 23, 72, 1),
+                    // color: Color.fromRGBO(18, 211, 154, 1),
+                  ),
+                  child: Center(
+                    child: Text(
+                        "Accept",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            // color: Color.fromRGBO(254, 23, 72, 1)
+                            color: Colors.white
+
+                        )
+                    ),
+                  )
+              ),
+            ),
+
+          ],
+          // backgroundColor: Color.fromRGBO(250, 228, 252, 1),
+          backgroundColor:  Color.fromRGBO(206, 147, 216, 1),
+          elevation: 0,
         ),
         body: SingleChildScrollView(
-            child: Column(
+        padding: EdgeInsets.all(15),
+            child: Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                color: Color.fromRGBO(250, 228, 252, 1),
+             ),
+                padding: EdgeInsets.all(12),
+                height: size.height / 1.5,
+                width: double.infinity,
+               child: Column(
                 children: [
                   SizedBox(height: 20,),
                   Container(
@@ -52,6 +167,7 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     child: Text(
                         "Name: ${args.patientName}",
                         style: TextStyle(
+                            color: Color.fromRGBO(09, 105, 105, 1),
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic
@@ -65,6 +181,7 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     child: Text(
                         "Email: ${args.patientEmail}",
                         style: TextStyle(
+                            color: Color.fromRGBO(09, 105, 105, 1),
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic
@@ -78,6 +195,7 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     child: Text(
                         "Doctor: ${args.doctorName}",
                         style: TextStyle(
+                            color: Color.fromRGBO(09, 105, 105, 1),
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic
@@ -92,7 +210,8 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                       height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(color: Colors.blue),
+                        border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                        // border: Border.all(color: Colors.blue),
                         color: Colors.white,
                       ),
                       child: Row(
@@ -101,11 +220,15 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                           Text(
                             date,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Color.fromRGBO(206, 123, 25, 1),
+                                // color: Colors.black,
                                 fontSize: 30
                             ),
                           ),
-                          IconButton(onPressed: _pickDate, icon: Icon(Icons.date_range)),
+                          IconButton(onPressed: _pickDate,
+                              icon: Icon(Icons.date_range,
+                                color: Color.fromRGBO(206, 123, 25, 1),
+                              )),
                         ],
                       )
 
@@ -120,7 +243,8 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(color: Colors.blue),
+                      border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                      // border: Border.all(color: Colors.blue),
                       color: Colors.white,
                     ),
                     child: Row(
@@ -129,11 +253,15 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                         Text(
                             fromTime,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Color.fromRGBO(206, 123, 25, 1),
+                                // color: Colors.black,
                                 fontSize: 30
                             )
                         ),
-                        IconButton(onPressed: _pickTime1, icon: Icon(Icons.lock_clock)),
+                        IconButton(onPressed: _pickTime1,
+                            icon: Icon(Icons.lock_clock,
+                              color: Color.fromRGBO(206, 123, 25, 1),
+                            )),
                       ],
                     ),
                   ),
@@ -147,7 +275,8 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(color: Colors.blue),
+                      border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                      // border: Border.all(color: Colors.blue),
                       color: Colors.white,
                     ),
                     child: Row(
@@ -156,169 +285,74 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                         Text(
                             toTime,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Color.fromRGBO(206, 123, 25, 1),
+                                // color: Colors.black,
                                 fontSize: 30
                             )
                         ),
-                        IconButton(onPressed: _pickTime2, icon: Icon(Icons.lock_clock)),
+                        IconButton(onPressed: _pickTime2,
+                            icon: Icon(Icons.lock_clock,
+                              color: Color.fromRGBO(206, 123, 25, 1),
+                            )),
                       ],
                     ),
                   ),
-                  SizedBox(height: 40,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                            InkWell(
-                            onTap: () async {
-                              firestoreDBPatientList.doc(_auth.currentUser!.uid)
-                                  .collection('patientAcceptedList')
-                                  .add({
-                                "patientName":args.patientName,
-                                "email": args.patientEmail,
-                                "phoneNo": args.patientPhoneNumber,
-                                "patientUid": args.patientUid,
-                                "doctorName": args.doctorName,
-                                "doctorPost": args.doctorPost,
-                                "doctorSpeciality": args.doctorSpeciality,
-                                "doctorEducation": args.doctorEducation,
-                                "date":date,
-                                "fromTime":fromTime,
-                                "toTime":toTime
-                              });
-                              firestoreDBPatientList.doc(args.patientUid)
-                                  .collection('appointmentAcceptedDoctorList')
-                                  .add({
-                                "patientUid": args.patientUid,
-                                "hospitalUid": _auth.currentUser!.uid,
-                                "doctorName": args.doctorName,
-                                "doctorPost": args.doctorPost,
-                                "doctorSpeciality": args.doctorSpeciality,
-                                "doctorEducation": args.doctorEducation,
-                                "date":date,
-                                "fromTime":fromTime,
-                                "toTime":toTime
-                              });
-
-                              String id;
-                               FirebaseFirestore.instance.collection("users")
-                                  .doc(_auth.currentUser!.uid)
-                                  .collection("patientRequestList")
-                                   .where("email", isEqualTo: args.patientEmail)
-                                   .where("doctorName", isEqualTo: args.doctorName)
-                                   .where("patientName", isEqualTo: args.patientName)
-                                   .where("uid", isEqualTo: args.patientUid)
-                               .get()
-                               .then((snapshot) {
-                                   id = snapshot.docs[0].id;
-                                   FirebaseFirestore.instance.collection("users")
-                                       .doc(_auth.currentUser!.uid)
-                                       .collection("patientRequestList").doc(id).delete();
-                                   print(id);
-                               });
-
-                               String id2;
-                               FirebaseFirestore.instance.collection("users")
-                                  .doc(args.patientUid)
-                                  .collection("appointmentRequestedDoctorList")
-                                   .where("doctorName", isEqualTo: args.doctorName)
-                                   .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
-                               .get()
-                               .then((snapshot) {
-                                   id2 = snapshot.docs[0].id;
-                                   FirebaseFirestore.instance.collection("users")
-                                       .doc(args.patientUid)
-                                       .collection("appointmentRequestedDoctorList").doc(id2).delete();
-                                   print(id2);
-                               });
-
-
-                              //firestoreDBPatientList.doc(args.patientUid).collection('patientAcceptedList').add(patientRequest);
-                              
-                              //await firestoreDBPatientList.doc(patientListId).update({"patientName":"Patient 2"}).then((value) => print('updated'));
-                            //await firestoreDBPatientList.doc(patientListId).delete().then((value) => print('deleted'));
-
-                              Navigator.pop(context);
-                              },
-                            child: Container(
-                                width: 125,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: Colors.greenAccent,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                      "Accept",
-                                      style: TextStyle(
-                                          fontSize: 26,
-                                          color: Colors.white
-                                      )
-                                  ),
-                                )
-                            ),
-                     //     );
-                     //   }
-                    ),
-                      InkWell(
-                        onTap: () async{
-                          String id;
-                          FirebaseFirestore.instance.collection("users")
-                              .doc(_auth.currentUser!.uid)
-                              .collection("patientRequestList")
-                              .where("email", isEqualTo: args.patientEmail)
-                              .where("doctorName", isEqualTo: args.doctorName)
-                              .where("patientName", isEqualTo: args.patientName)
-                              .where("uid", isEqualTo: args.patientUid)
-                              .get()
-                              .then((snapshot) {
-                            id = snapshot.docs[0].id;
-                            FirebaseFirestore.instance.collection("users")
-                                .doc(_auth.currentUser!.uid)
-                                .collection("patientRequestList").doc(id).delete();
-                            print(id);
-                          });
-
-                          String id2;
-                          FirebaseFirestore.instance.collection("users")
-                              .doc(args.patientUid)
-                              .collection("appointmentRequestedDoctorList")
-                              .where("doctorName", isEqualTo: args.doctorName)
-                              .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
-                              .get()
-                              .then((snapshot) {
-                            id2 = snapshot.docs[0].id;
-                            FirebaseFirestore.instance.collection("users")
-                                .doc(args.patientUid)
-                                .collection("appointmentRequestedDoctorList").doc(id2).delete();
-                            print(id2);
-                          });
-
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                            width: 125,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: Colors.redAccent,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Reject",
-                                style: TextStyle(
-                                    fontSize: 26,
-                                    color: Colors.white
-                                ),
-                              ),
-                            )
-                        ),
-                      )
-                    ],
-                  ),
                 ]
+            ),
+    ),
             )
-        )
+        ),
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+          child: FloatingActionButton(
+            elevation: 3,
+            backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+            onPressed: () async{
+              String id;
+              FirebaseFirestore.instance.collection("users")
+                  .doc(_auth.currentUser!.uid)
+                  .collection("patientRequestList")
+                  .where("email", isEqualTo: args.patientEmail)
+                  .where("doctorName", isEqualTo: args.doctorName)
+                  .where("patientName", isEqualTo: args.patientName)
+                  .where("uid", isEqualTo: args.patientUid)
+                  .get()
+                  .then((snapshot) {
+                id = snapshot.docs[0].id;
+                FirebaseFirestore.instance.collection("users")
+                    .doc(_auth.currentUser!.uid)
+                    .collection("patientRequestList").doc(id).delete();
+                print(id);
+              });
+
+              String id2;
+              FirebaseFirestore.instance.collection("users")
+                  .doc(args.patientUid)
+                  .collection("appointmentRequestedDoctorList")
+                  .where("doctorName", isEqualTo: args.doctorName)
+                  .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+                  .get()
+                  .then((snapshot) {
+                id2 = snapshot.docs[0].id;
+                FirebaseFirestore.instance.collection("users")
+                    .doc(args.patientUid)
+                    .collection("appointmentRequestedDoctorList").doc(id2).delete();
+                print(id2);
+              });
+
+              Navigator.pop(context);
+            },
+            child: Center(
+              child:  Icon(Icons.delete,
+                    size: 28,
+                    color: Colors.white,
+                  ),
+            ),
+          ),
+        ),
+      ),
     );
   }
   _pickDate() async {

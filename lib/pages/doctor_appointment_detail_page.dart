@@ -72,6 +72,7 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
   @override
   Widget build(BuildContext context) {
     final argsAp = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsAppointment;
+    final size = MediaQuery.of(context).size;
 
     date = argsAp.date;
     patientName = argsAp.patientName;
@@ -82,22 +83,137 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
 
 
       return Scaffold(
+       // backgroundColor: Color.fromRGBO(250, 228, 252, 1),
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
-          title: Text(
-            "Appointment Detail"
-          )
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined,
+                // color: Color.fromRGBO(206, 147, 216, 1),
+                color: Color.fromRGBO(254, 23, 72, 1)
+          ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          actions: [
+            InkWell(
+                onTap: ()async{
+      // await _firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
+      _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid)
+          .collection('patientHistoryList')
+          .add({
+      "patientName": patientName,
+      "email": patientEmail,
+      "patientUid": patientUid,
+      "doctorName": doctorName,
+      "date": date,
+      "fromTime": argsAp.fromTime,
+      "toTime": argsAp.toTime
+      });
+      _firestoreDBPatientRequestList.doc(patientUid)
+          .collection('appointmentHistoryDoctorList')
+          .add({
+      "patientUid": patientUid,
+      "hospitalUid": _auth.currentUser!.uid,
+      "doctorName": doctorName,
+      "email": _auth.currentUser!.email,
+      "hospitalName": _auth.currentUser!.displayName,
+      "date": date,
+      "fromTime": argsAp.fromTime,
+      "toTime": argsAp.toTime
+      });
+
+
+      String id;
+      FirebaseFirestore.instance.collection("users")
+          .doc(_auth.currentUser!.uid)
+          .collection("patientAcceptedList")
+          .where("email", isEqualTo: patientEmail)
+          .where("doctorName", isEqualTo: argsAp.doctorName)
+          .where("patientName", isEqualTo: argsAp.patientName)
+          .where("patientUid", isEqualTo: argsAp.patientUid)
+          .get()
+          .then((snapshot) {
+      id = snapshot.docs[0].id;
+      FirebaseFirestore.instance.collection("users")
+          .doc(_auth.currentUser!.uid)
+          .collection("patientAcceptedList").doc(id).delete();
+      print(id);
+      });
+
+      String id2;
+      FirebaseFirestore.instance.collection("users")
+          .doc(argsAp.patientUid)
+          .collection("appointmentAcceptedDoctorList")
+          .where("doctorName", isEqualTo: argsAp.doctorName)
+          .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
+          .get()
+          .then((snapshot) {
+      id2 = snapshot.docs[0].id;
+      FirebaseFirestore.instance.collection("users")
+          .doc(argsAp.patientUid)
+          .collection("appointmentAcceptedDoctorList").doc(id2).delete();
+      print(id2);
+      });
+
+
+      Navigator.pop(context);
+      },
+                child: Container(
+                  margin: EdgeInsets.all(9),
+                      width: 90,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                       // color: Color.fromRGBO(206, 147, 216, 1),
+                          color: Color.fromRGBO(254, 23, 72, 1),
+                        // color: Color.fromRGBO(18, 211, 154, 1),
+                      ),
+                      child: Center(
+                        child: Text(
+                            "Done",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                // color: Color.fromRGBO(254, 23, 72, 1)
+                                color: Colors.white
+
+                        )
+                        ),
+                      )
+                  ),
+            )
+          ],
+          // backgroundColor: Color.fromRGBO(250, 228, 252, 1),
+          backgroundColor:  Color.fromRGBO(206, 147, 216, 1),
+          elevation: 0,
         ),
         body: SingleChildScrollView(
                 padding: EdgeInsets.all(15),
-                 child: Column(
-                  children: [
-                    SizedBox(height: 5,),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(15,0,0,0),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
+                 child: Card(
+                   elevation: 3,
+                   shape: RoundedRectangleBorder(
+                   borderRadius: BorderRadius.circular(20.0),
+                   ),
+                     child: Container(
+                       decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(20),
+                       border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                       color: Color.fromRGBO(250, 228, 252, 1),
+                       ),
+                       padding: EdgeInsets.all(12),
+                       height: size.height / 1.5,
+                       width: double.infinity,
+                      child: Column(
+                      children: [
+                         SizedBox(height: 5,),
+                         Container(
+                          padding: EdgeInsets.fromLTRB(15,0,0,0),
+                          alignment: Alignment.centerLeft,
+                          child: Text(
                           "Name: ${argsAp.patientName}",
                           style: TextStyle(
+                              // color: Color.fromRGBO(254, 23, 72, 1),
+                              color: Color.fromRGBO(09, 105, 105, 1),
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic
@@ -111,6 +227,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                       child: Text(
                           "Email: ${argsAp.email}",
                           style: TextStyle(
+                              // color: Color.fromRGBO(254, 23, 72, 1),
+                              color: Color.fromRGBO(09, 105, 105, 1),
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic
@@ -124,6 +242,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                       child: Text(
                           "Doctor: ${argsAp.doctorName}",
                           style: TextStyle(
+                              // color: Color.fromRGBO(254, 23, 72, 1),
+                              color: Color.fromRGBO(09, 105, 105, 1),
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic
@@ -137,11 +257,13 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.date_range),
+                          Icon(Icons.date_range,color: Color.fromRGBO(206, 123, 25, 1),
+                          ),
                                Text(
                                    " Date: ${argsAp.date}",
                                     style: TextStyle(
-                                   fontSize: 24,
+                                        color: Color.fromRGBO(206, 123, 25, 1),
+                                        fontSize: 24,
                                    fontWeight: FontWeight.bold,
                                    fontStyle: FontStyle.italic
                                     )
@@ -154,11 +276,14 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                         padding: EdgeInsets.fromLTRB(15,0,0,0),
                         child: Row(
                            children: [
-                                Icon(Icons.lock_clock),
+                                Icon(Icons.lock_clock,
+                                  color: Color.fromRGBO(206, 123, 25, 1),
+                                ),
                               Text(
                                   " Time: ${argsAp.fromTime} - ${argsAp.toTime}",
                                 style: TextStyle(
-                                fontSize: 24,
+                                    color: Color.fromRGBO(206, 123, 25, 1),
+                                    fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic
                                 )
@@ -169,9 +294,21 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                     SizedBox(
                        height: 25
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 90,
+                       Card(
+                         elevation: 0,
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(20.0),
+                         ),
+                         child: Container(
+                             // decoration: BoxDecoration(
+                             //   borderRadius: BorderRadius.circular(20),
+                             //   border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                             //   color: Color.fromRGBO(250, 228, 252, 1),
+                             // ),
+                             color: Color.fromRGBO(250, 228, 252, 1),
+                             padding: EdgeInsets.all(12),
+                             height: size.height / 6.5,
+                             width: double.infinity,
                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -182,7 +319,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                  child: Icon(
                                  Icons.upload_file,
                                  size: 50,
-                                 color: Colors.grey,
+                                   // color: Color.fromRGBO(206, 123, 25, 1),
+                                   color: Colors.grey,
                              ),
                           ),
                             Text(
@@ -191,12 +329,13 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                  fontSize: 24,
                                  fontWeight: FontWeight.bold,
                                  fontStyle: FontStyle.italic,
-                                 color: Colors.grey
+                                  // color: Color.fromRGBO(206, 123, 25, 1),
+                                  color: Colors.grey
                               )
                             )
                           ]
                        )
-                    ),
+                    )),
                        SizedBox(height: 20,),
                        StreamBuilder(
                           stream: _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid).collection("reportFileList").doc("${date}${patientName}${doctorName}").snapshots(),
@@ -218,7 +357,6 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                             context) =>
                                             ReportView(x['reportFileUrl'])));
                                       }
-
                                     }
                                     catch(e){
                                       print("upload report");
@@ -227,8 +365,9 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                    },
                                    child:Container(
                                        width: 150,
-                                       height: 37,
+                                       height: size.height/17,
                                        decoration: BoxDecoration(
+                                           // color: Color.fromRGBO(254, 23, 72, 1),
                                            color: Colors.blueAccent,
                                            borderRadius: BorderRadius.circular(20.0)
                                        ),
@@ -237,7 +376,8 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                                "Report",
                                                style: TextStyle(
                                                    fontSize: 20,
-                                                   color: CupertinoColors.black
+                                                 fontWeight: FontWeight.bold,
+                                                   color: CupertinoColors.white
                                                ))))
                                  );
                                }
@@ -247,125 +387,19 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
                                );
                            }
                        ),
-                    SizedBox(height: 30,),
-                    Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                 onTap: () async{
-                                 // await _firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
-                                   _firestoreDBPatientRequestList.doc(_auth.currentUser!.uid)
-                                       .collection('patientHistoryList')
-                                       .add({
-                                     "patientName": patientName,
-                                     "email": patientEmail,
-                                     "patientUid": patientUid,
-                                     "doctorName": doctorName,
-                                     "date": date,
-                                     "fromTime": argsAp.fromTime,
-                                     "toTime": argsAp.toTime
-                                   });
-                                   _firestoreDBPatientRequestList.doc(patientUid)
-                                       .collection('appointmentHistoryDoctorList')
-                                       .add({
-                                     "patientUid": patientUid,
-                                     "hospitalUid": _auth.currentUser!.uid,
-                                     "doctorName": doctorName,
-                                     "email": _auth.currentUser!.email,
-                                     "hospitalName": _auth.currentUser!.displayName,
-                                     "date": date,
-                                     "fromTime": argsAp.fromTime,
-                                     "toTime": argsAp.toTime
-                                   });
-
-
-                                   String id;
-                                   FirebaseFirestore.instance.collection("users")
-                                       .doc(_auth.currentUser!.uid)
-                                       .collection("patientAcceptedList")
-                                       .where("email", isEqualTo: patientEmail)
-                                       .where("doctorName", isEqualTo: argsAp.doctorName)
-                                       .where("patientName", isEqualTo: argsAp.patientName)
-                                       .where("patientUid", isEqualTo: argsAp.patientUid)
-                                       .get()
-                                       .then((snapshot) {
-                                     id = snapshot.docs[0].id;
-                                     FirebaseFirestore.instance.collection("users")
-                                         .doc(_auth.currentUser!.uid)
-                                         .collection("patientAcceptedList").doc(id).delete();
-                                     print(id);
-                                   });
-
-                                   String id2;
-                                   FirebaseFirestore.instance.collection("users")
-                                       .doc(argsAp.patientUid)
-                                       .collection("appointmentAcceptedDoctorList")
-                                       .where("doctorName", isEqualTo: argsAp.doctorName)
-                                       .where("hospitalUid", isEqualTo: _auth.currentUser!.uid)
-                                       .get()
-                                       .then((snapshot) {
-                                     id2 = snapshot.docs[0].id;
-                                     FirebaseFirestore.instance.collection("users")
-                                         .doc(argsAp.patientUid)
-                                         .collection("appointmentAcceptedDoctorList").doc(id2).delete();
-                                     print(id2);
-                                   });
-
-
-                                   Navigator.pop(context);
-                                  },
-                                  child: Container(
-                                    width: 125,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.greenAccent,
-                                    ),
-                                   child: Center(
-                                      child: Text(
-                                           "Done",
-                                          style: TextStyle(
-                                          fontSize: 26,
-                                              color: Colors.white
-                                )
-                             ),
-                          )
-                      ),
-                  ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                            },
-                                child: Container(
-                                    width: 125,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.redAccent,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                      "Cancel",
-                                      style: TextStyle(
-                                      fontSize: 26,
-                                      color: Colors.white
-                                    )))
-                                ),
-                              )
-                            ],
-                        ),
                   ],
                  ),
               ),
-
+                 )),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(60,0,0,30),
               child: FloatingActionButton(
-                child: Icon(Icons.call),
+                elevation: 3,
+                backgroundColor:  Color.fromRGBO(254, 23, 72, 1),
+                child: Icon(Icons.call, color: Colors.white,),
                 onPressed: () async{
                   await FlutterPhoneDirectCaller.callNumber(patientPhoneNo);
                 },
@@ -373,7 +407,9 @@ class _DoctorAppointmentDetailPageState extends State<DoctorAppointmentDetailPag
             ), Padding(
               padding: EdgeInsets.fromLTRB(0,0,28,30),
               child: FloatingActionButton(
-                child: Icon(Icons.messenger_rounded),
+                elevation: 3,
+                backgroundColor:  Color.fromRGBO(254, 23, 72, 1),
+                child: Icon(Icons.messenger_rounded, color: Colors.white,),
                 onPressed: (){
                   onClick();
                   if(userMap != null){

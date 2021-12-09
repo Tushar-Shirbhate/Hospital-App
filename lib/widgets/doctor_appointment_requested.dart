@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_arguments.dart';
 
-class DoctorRequest extends StatefulWidget{
+class DoctorAppointmentRequested extends StatefulWidget{
   @override
-  State<DoctorRequest> createState() => _DoctorRequestState();
+  State<DoctorAppointmentRequested> createState() => _DoctorAppointmentRequestedState();
 }
 
-class _DoctorRequestState extends State<DoctorRequest> {
+class _DoctorAppointmentRequestedState extends State<DoctorAppointmentRequested> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final CollectionReference _firestoreDBPatientList = FirebaseFirestore.instance.collection("users");
   
@@ -18,12 +18,7 @@ class _DoctorRequestState extends State<DoctorRequest> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-            leading: Icon(Icons.request_page_outlined),
-            title: Text(
-                "Request"
-            )
-        ),
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestoreDBPatientList.doc(_auth.currentUser!.uid).collection('patientRequestList').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -34,8 +29,8 @@ class _DoctorRequestState extends State<DoctorRequest> {
                   Map<String, dynamic> _map = snapshot.data!.docs[index]
                   .data() as Map<String, dynamic>;
                   return SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(15,15,15,0.2),
-                    child: InkWell(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                      child: InkWell(
                         onTap: () async{
                           Navigator.pushNamed(
                             context,
@@ -55,10 +50,19 @@ class _DoctorRequestState extends State<DoctorRequest> {
                           );
                         },
                         child: Card(
-                            elevation: 5,
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                             child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                                  color: Color.fromRGBO(250, 228, 252, 1),
+                                ),
+                                padding: EdgeInsets.all(10),
                                 height: size.height / 6.8,
-                                padding: EdgeInsets.fromLTRB(15,15,15,15),
+                                width: double.infinity,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +70,7 @@ class _DoctorRequestState extends State<DoctorRequest> {
                                     Text(
                                         _map['patientName'],
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: Color.fromRGBO(09, 105, 105, 1),
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)
                                 ),
@@ -74,13 +78,13 @@ class _DoctorRequestState extends State<DoctorRequest> {
                                 Text(
                                     "Date: --",
                                     style: TextStyle(
-                                        color: Colors.black54,
+                                        color: Color.fromRGBO(206, 123, 25, 1),
                                         fontSize: 18,
                                         fontStyle: FontStyle.italic)
                                 ),Text(
                                 "Time: --",
                                 style: TextStyle(
-                                    color: Colors.black54,
+                                    color: Color.fromRGBO(206, 123, 25, 1),
                                     fontSize: 18,
                                     fontStyle: FontStyle.italic)
                             )

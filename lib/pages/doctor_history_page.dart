@@ -21,11 +21,25 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
-            leading: Icon(CupertinoIcons.clock_fill),
-            title: Text(
-                "History"
-            )
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0,15,0),
+            child: Text("History",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
+
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         ),
         body: StreamBuilder<QuerySnapshot>(
             stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientHistoryList').snapshots(),
@@ -37,14 +51,21 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                     Map<String, dynamic> _map = snapshot.data!.docs[index]
                         .data() as Map<String, dynamic>;
                     return SingleChildScrollView(
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                         child: Card(
-                            elevation : 5,
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0)
+                                  borderRadius: BorderRadius.circular(20),
+                                  border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                                  color: Color.fromRGBO(250, 228, 252, 1),
                                 ),
-                                height: size.height/2.8,
-                                padding: EdgeInsets.all(15),
+                                padding: EdgeInsets.all(12),
+                                height: size.height / 2.8,
+                                width: double.infinity,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -60,6 +81,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                   Text(
                                                     "Name: ${_map['patientName']}",
                                                     style: TextStyle(
+                                                        color: Color.fromRGBO(09, 105, 105, 1),
                                                         fontSize: 24,
                                                         fontWeight: FontWeight.bold,
                                                         fontStyle: FontStyle.italic
@@ -69,6 +91,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                   Text(
                                                     "Email: ${_map['email']}",
                                                     style: TextStyle(
+                                                        color: Color.fromRGBO(09, 105, 105, 1),
                                                         fontSize: 24,
                                                         fontWeight: FontWeight.bold,
                                                         fontStyle: FontStyle.italic
@@ -78,6 +101,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                   Text(
                                                     "Doctor: ${_map['doctorName']}",
                                                     style: TextStyle(
+                                                        color: Color.fromRGBO(09, 105, 105, 1),
                                                         fontSize: 24,
                                                         fontWeight: FontWeight.bold,
                                                         fontStyle: FontStyle.italic
@@ -87,8 +111,8 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                   Text(
                                                       "Date: ${_map['date']}",
                                                       style: TextStyle(
-                                                        fontSize: 18,
-                                                        color:  Colors.black54,
+                                                          color: Color.fromRGBO(206, 123, 25, 1),
+                                                          fontSize: 18,
                                                         fontStyle: FontStyle.italic
                                                       )
                                                   ),
@@ -96,8 +120,8 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                   Text(
                                                       "Time: ${_map['fromTime']} - ${_map['toTime']}",
                                                       style: TextStyle(
-                                                        fontSize: 18,
-                                                          color:  Colors.black54,
+                                                          color: Color.fromRGBO(206, 123, 25, 1),
+                                                          fontSize: 18,
                                                           fontStyle: FontStyle.italic
                                                       )),
 
@@ -151,7 +175,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                                 "Report",
                                                                 style: TextStyle(
                                                                     fontSize: 20,
-                                                                    color: CupertinoColors.black
+                                                                    color: CupertinoColors.white
                                                                 ))))
                                                   );
                                                 }
@@ -178,7 +202,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                 width: 150,
                                                 height: 37,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.redAccent,
+                                                    color: Color.fromRGBO(254, 23, 72, 1),
                                                     borderRadius: BorderRadius.circular(20.0)
                                                 ),
                                                 child: Center(
@@ -186,7 +210,7 @@ class _DoctorHistoryPageState extends State<DoctorHistoryPage> {
                                                         "Delete",
                                                         style: TextStyle(
                                                             fontSize: 20,
-                                                            color: CupertinoColors.black
+                                                            color: CupertinoColors.white
                                                         )))),
                                           )
                                         ],

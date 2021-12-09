@@ -37,8 +37,15 @@ class ChatRoom extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
       appBar: AppBar(
-        title: StreamBuilder<DocumentSnapshot>(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_outlined,
+              color: Color.fromRGBO(254, 23, 72, 1)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title:  StreamBuilder<DocumentSnapshot>(
           stream:
           _firestore.collection("users").doc(userMap['uid']).snapshots(),
           builder: (context, snapshot) {
@@ -46,11 +53,12 @@ class ChatRoom extends StatelessWidget {
               return Container(
                 child: Column(
                   children: [
-                    Text(userMap['name']),
-                    // Text(
-                    //   snapshot.data!['status'],
-                    //   style: TextStyle(fontSize: 14),
-                    // ),
+                    Text(userMap['name'],
+                      style: TextStyle(
+                          fontStyle:FontStyle.italic,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Color.fromRGBO(254, 23, 72, 1)),),
                   ],
                 ),
               );
@@ -59,6 +67,8 @@ class ChatRoom extends StatelessWidget {
             }
           },
         ),
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -66,6 +76,7 @@ class ChatRoom extends StatelessWidget {
             Container(
               height: size.height / 1.25,
               width: size.width,
+
               child: StreamBuilder<QuerySnapshot>(
                 stream: _firestore
                     .collection('chatroom')
@@ -103,17 +114,36 @@ class ChatRoom extends StatelessWidget {
                     Container(
                       height: size.height / 17,
                       width: size.width / 1.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color.fromRGBO(250, 228, 252, 1),
+                  ),
                       child: TextField(
                         controller: _message,
                         decoration: InputDecoration(
-                            hintText: "Send Message",
+                             hintText: "Send Message",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                            )),
+                            ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              color: Color.fromRGBO(254, 23, 72, 1),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              color: Color.fromRGBO(254, 23, 72, 1),
+                              width: 2.0,
+                            ),
+                        ),
                       ),
-                    ),
+                    ),),
                     IconButton(
-                        icon: Icon(Icons.send), onPressed: onSendMessage),
+                        icon: Icon(Icons.send),
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                        onPressed: onSendMessage),
                   ],
                 ),
               ),
@@ -137,8 +167,12 @@ class ChatRoom extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
           margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.blue,
+            borderRadius: BorderRadius.circular(12),
+              // border:  Border.all(
+              //   color: Color.fromRGBO(254, 23, 72, 1),),
+                color: Color.fromRGBO(254, 23, 72, 1),
+            // color: Colors.blue,
+            // color: Color.fromRGBO(250, 228, 252, 1),
           ),
           child: Text(
             map['message'],

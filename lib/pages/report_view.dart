@@ -8,9 +8,25 @@ class ReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
-            title: Text("Report")
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(95, 0,15,0),
+            child: Text("Report",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
+
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         ),
         body: SfPdfViewer.network(
             reportUrl,

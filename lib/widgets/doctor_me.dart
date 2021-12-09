@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/HospitalAuthentication/Hospital_Methods.dart';
+import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 //import 'package:tushar_h/utils/routes.dart';
 
@@ -13,172 +14,88 @@ class _DoctorMeState extends State<DoctorMe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
-          leading: Icon(CupertinoIcons.heart_solid),
-          title: Text("Me"),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.all(15),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Column(children: [
-                    SizedBox(height: 90),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, MyRoute.doctorProfileRoute);
-                      },
-                      child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(35.0),
-                            color: Colors.red,
+          automaticallyImplyLeading: false,
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(145, 0,15,0),
+            child: Text("Profile",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
+
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+          actions: [
+            PopupMenuButton<int>(
+              color: Color.fromRGBO(254, 23, 72, 1),
+              icon: Icon(Icons.more_horiz,color: Color.fromRGBO(254, 23, 72, 1)),
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(
+                          CupertinoIcons.clock,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        Text(
+                            "History",
+                          style: TextStyle(
+                            color: Colors.white
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(CupertinoIcons.profile_circled),
-                              Text(
-                                "Profile",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 30),
-                              ),
-                              Icon(Icons.arrow_forward_ios),
-                            ],
-                          )),
-                    ),
-                    SizedBox(height: 10),
-                    // InkWell(
-                    //   onTap: () {
-                    //     Navigator.pushNamed(context, MyRoute.doctorEditProfileRoute);
-                    //   },
-                    //   child: Container(
-                    //       width: double.infinity,
-                    //       padding: EdgeInsets.fromLTRB(25,0,25,0),
-                    //       height: 60,
-                    //       decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(35.0),
-                    //           color: Colors.red,
-                    //       ),
-                    //         child: Row(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //           children: [
-                    //             Icon(Icons.edit),
-                    //             Text(
-                    //                 "Edit Profile",
-                    //                 style: TextStyle(
-                    //                     color: Colors.black,
-                    //                     fontSize: 30
-                    //                 )
-                    //             ),
-                    //             Icon(Icons.arrow_forward_ios),
-                    //           ],
-                    //         ),
-                    //   ),
-                    //),
-                 //   SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, MyRoute.addDoctorListRoute);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.0),
-                          color: Colors.red,
+                        )
+                      ],
+                    )), PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          CupertinoIcons.settings,
+                          color: Colors.white,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.person_pin_circle_sharp),
-                            Text("Doctor List",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 30)),
-                            Icon(Icons.arrow_forward_ios),
-                          ],
+                        const SizedBox(
+                          width: 7,
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, MyRoute.doctorHistoryRoute);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.0),
-                          color: Colors.red,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(CupertinoIcons.clock_fill),
-                            Text("History",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 30)),
-                            Icon(Icons.arrow_forward_ios),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, MyRoute.settingRoute);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(35.0),
-                            color: Colors.red),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(CupertinoIcons.settings_solid),
-                            Text("Settings",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 30)),
-                            Icon(Icons.arrow_forward_ios),
-                          ],
-                        ),
-                      ),
-                    ),  SizedBox(height: 10),
-                    InkWell(
-                      onTap: () {
-                        hospitalLogOut(context);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(35.0),
-                            color: Colors.red),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.logout),
-                            Text("Log Out",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 30)),
-                            Icon(Icons.arrow_forward_ios),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ]))),
-        ));
+                        Text(
+                            "Settings",
+                          style: TextStyle(
+                            color: Colors.white
+                          ),
+                        )
+                      ],
+                    )),
+              ],
+              onSelected: (item) => SelectedItem(context, item),
+            ),
+            Container(
+              // margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              // padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              child: IconButton(
+                  onPressed: (){
+                    hospitalLogOut(context);
+                  },
+                  icon: Icon(Icons.logout, color: Color.fromRGBO(254, 23, 72, 1),)
+              ),
+            ),
+          ],
+        ),
+        body: DoctorProfilePage());
+  }
+  void SelectedItem(BuildContext context, item) {
+    switch (item) {
+      case 0:
+        Navigator.pushNamed(context, MyRoute.doctorHistoryRoute);
+        break;
+      case 1:
+        Navigator.pushNamed(context, MyRoute.settingRoute);
+        break;
+    }
   }
 }

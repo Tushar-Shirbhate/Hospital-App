@@ -18,6 +18,7 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
       body: StreamBuilder<QuerySnapshot>(
           stream: _firestoreDBApDoctorList.doc(_auth.currentUser!.uid).collection("appointmentRequestedDoctorList").snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshots) {
@@ -28,14 +29,21 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                   Map<String, dynamic> map =snapshots.data!.docs[index]
                       .data() as Map<String, dynamic>;
                   return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                       child: Card(
-                          elevation : 5,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                           child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0)
+                                borderRadius: BorderRadius.circular(20),
+                                border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+                                color: Color.fromRGBO(250, 228, 252, 1),
                               ),
-                              height: size.height/3.7,
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(12),
+                              height: size.height / 3.7,
+                              width: double.infinity,
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -51,6 +59,7 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                                 Text(
                                                   map['doctorName'],
                                                   style: TextStyle(
+                                                      color: Color.fromRGBO(09, 105, 105, 1),
                                                       fontSize: 24,
                                                       fontWeight: FontWeight.bold
                                                   ),
@@ -58,17 +67,20 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                                 Text(
                                                     map['doctorPost'],
                                                     style: TextStyle(
+                                                      color: Color.fromRGBO(206, 123, 25, 1),
                                                       fontSize: 16,
                                                     )
                                                 ),
                                                 Text(
                                                     map['doctorSpeciality'],
                                                     style: TextStyle(
+                                                      color: Color.fromRGBO(206, 123, 25, 1),
                                                       fontSize: 16,
                                                     )),
                                                 Text(
                                                     map['doctorEducation'],
                                                     style: TextStyle(
+                                                      color: Color.fromRGBO(206, 123, 25, 1),
                                                       fontSize: 16,
                                                     )),
                                               ]
@@ -146,20 +158,20 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                           ),
                                         );
                                       },
-                                      child: Container(
+                                      child:Container(
+                                          margin: EdgeInsets.fromLTRB(50, 5, 50, 5),
                                           width: double.infinity,
                                           height: 37,
                                           decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius: BorderRadius.circular(20.0)
-                                          ),
+                                              color: Colors.black45,
+                                              borderRadius:
+                                              BorderRadius.circular(20.0)),
                                           child: Center(
-                                              child: Text(
-                                                  "Pending...",
+                                              child: Text("Pending...",
                                                   style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: CupertinoColors.black
-                                                  )))),
+                                                      fontSize: 19,
+                                                      color: CupertinoColors
+                                                          .white)))),
                                     )
                                   ]
                               )

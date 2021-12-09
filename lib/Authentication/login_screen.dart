@@ -252,38 +252,64 @@ class _LoginScreenState extends State<LoginScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           leading: IconButton(
-            onPressed: (){
-              Navigator.pushNamed(context, "/");
-            },
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+            onPressed: () => Navigator.pushNamed(context, "/"),
           ),
-          iconTheme: IconThemeData(
-              //color: Colors.transparent,
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(95, 0,15,0),
+            child: Text("Log In",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)
               ),
-          // backgroundColor: Colors.white,
+
+            ),
+          ),
           elevation: 0,
-          centerTitle: true,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         ),
         body: isLoading
             ? Center(child: Container(child: CircularProgressIndicator()))
             : SingleChildScrollView(
+              padding: EdgeInsets.all(15),
+                child: Card(
+                  // margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                  color: Color.fromRGBO(254, 23, 72, 1),),
+                  color: Color.fromRGBO(250, 228, 252, 1),
+                ),
+                  height: size.height / 1.3,
+                  width: double.infinity,
                 child: Container(
                   padding: EdgeInsets.only(left: 8, right: 8),
                   // color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.all(36),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(
-                              height: 180,
-                              child: Image.asset(
-                                "Assets/doc_pat.jpg",
-                                fit: BoxFit.contain,
-                              )),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              "Assets/images/patientTwo.png",
+                              fit: BoxFit.fitHeight,
+                              height: 146,
+                            ),
+                          ),
                           SizedBox(
                             height: 35,
                           ),
@@ -299,46 +325,100 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   "or",
                           //   style: TextStyle(fontSize: 17),
                           // ),
-                          SizedBox(
-                            height: 13,
+                          // SizedBox(
+                          //   height: 13,
+                          // ),
+                          Container(
+                            height: size.height / 14,
+                            width: size.width / 1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+
+                              color: Color.fromRGBO(250, 228, 252, 1),
+                            ),
+                            child: TextField(
+                                autofocus: false,
+                                keyboardType: TextInputType.emailAddress,
+                                controller: _email,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.email,
+                                    color: Color.fromRGBO(254, 23, 72, 1),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  hintText: "E-mail",
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      // color: Color.fromRGBO(250, 228, 252, 1),
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      // color: Color.fromRGBO(250, 228, 252, 1),
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  //  labelText: "Email"
+                                )),
                           ),
-                          TextField(
-                              autofocus: false,
-                              keyboardType: TextInputType.emailAddress,
-                              controller: _email,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.email),
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                hintText: "E-mail",
-                                //  labelText: "Email"
-                              )),
                           SizedBox(height: 20),
-                          TextField(
-                              obscureText: obs_text ? true : false,
-                              autofocus: false,
-                              controller: _password,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.vpn_key),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                suffixIcon: IconButton(
-                                  icon: Icon(Icons.remove_red_eye),
-                                  onPressed: () {
-                                    obs_text = false;
-                                    setState(() {});
-                                  },
-                                ),
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                hintText: "Password",
-                                // labelText: "Password"
-                              )),
+                          Container(
+                            height: size.height / 14,
+                            width: size.width / 1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+
+                              color: Color.fromRGBO(250, 228, 252, 1),
+                            ),
+                            child: TextField(
+                                obscureText: obs_text ? true : false,
+                                autofocus: false,
+                                controller: _password,
+                                textInputAction: TextInputAction.done,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.vpn_key,
+                                    color: Color.fromRGBO(254, 23, 72, 1),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(Icons.remove_red_eye,
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                    ),
+                                    onPressed: () {
+                                      obs_text = false;
+                                      setState(() {});
+                                    },
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                  hintText: "Password",
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      // color: Color.fromRGBO(250, 228, 252, 1),
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      // color: Color.fromRGBO(250, 228, 252, 1),
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  // labelText: "Password"
+                                )),
+                          ),
                           SizedBox(height: 20),
                           GestureDetector(
                               onTap: () {
@@ -373,11 +453,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   width: size.width / 3.2,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(40),
-                                      color: Colors.blue),
+                                      color: Color.fromRGBO(254, 23, 72, 1),
+                                      // color: Colors.blue
+                                  ),
                                   alignment: Alignment.center,
                                   child: Text("Log In",
                                       style: TextStyle(
-                                          fontSize: 15.6,
+                                          fontSize: 16,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold)))),
                           SizedBox(
@@ -386,7 +468,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Don't have an account"),
+                              Text("Don't have an account?"),
                               GestureDetector(
                                   onTap: () {
                                     Navigator.push(
@@ -398,14 +480,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                       alignment: Alignment.center,
                                       child: Text("Sign Up",
                                           style: TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.blue,
+                                              fontSize: 16,
+                                              color: Color.fromRGBO(254, 23, 72, 1),
+                                              // color: Colors.blue,
                                               fontWeight: FontWeight.bold)))),
                             ],
                           ),
                         ]),
                   ),
                 ),
+    ),
+                )
               ));
   }
 

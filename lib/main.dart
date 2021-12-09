@@ -6,7 +6,7 @@ import 'package:hospital_app/Authentication/Authenticate.dart';
 import 'package:hospital_app/HospitalAuthentication/hospital_login_screen.dart';
 import 'package:hospital_app/pages/DoctorHomePage.dart';
 import 'package:hospital_app/pages/Setting_page.dart';
-import 'package:hospital_app/pages/add_doctor_list_page.dart';
+import 'package:hospital_app/widgets/add_doctor_list_page.dart';
 import 'package:hospital_app/pages/app_home_page.dart';
 import 'package:hospital_app/pages/appointment_list.dart';
 import 'package:hospital_app/pages/doctor_appointment_detail_page.dart';

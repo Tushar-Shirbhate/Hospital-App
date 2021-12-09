@@ -19,14 +19,47 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
       return DefaultTabController(
         length: 2,
         child:  Scaffold(
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
           appBar: AppBar(
-              title: Text("Appointment"),
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+              // backgroundColor:  Color.fromRGBO(254, 23, 72, 1),
+              elevation: 0,
+              title:  Padding(
+                padding: const EdgeInsets.fromLTRB(60, 0,15,0),
+                child: Text("Appointment",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Color.fromRGBO(254, 23, 72, 1)),
+
+                ),
+              ),
             bottom:  TabBar(
-              tabs: [
-                Tab(text: "Requested"),
-                Tab(text: "Accepted"),
-              ]
-            )
+                labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                indicatorColor: Color.fromRGBO(254, 23, 72, 1),
+                tabs: [
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
+                      width: double.infinity,
+                      child: Tab(text: "Accepted")), Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
+                      width: double.infinity,
+                      child: Tab(text: "Requested",)),
+                ]
+            ),
           ),
           body:  TabBarView(
               children: <Widget>[
