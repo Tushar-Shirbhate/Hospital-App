@@ -59,15 +59,15 @@ store images and pdfs.
 ---
 ## Feautures
 
-- [ ] Log in 
-- [] sign up
+- [x] Log in 
+- [x] sign up
 - [x] Theme changing
-- [] chat
-- [] call
-- [] Report uploading and retrieving
-- [] Appointment taking
-- [] editing profile
-- [] Adding and deleting doctors list
+- [x] chat
+- [x] call
+- [x] Report uploading and retrieving
+- [x] Appointment taking
+- [x] editing profile
+- [xx] Adding and deleting doctors list
 
 ---
 ## Application
