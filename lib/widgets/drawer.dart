@@ -22,151 +22,151 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
-      color: Color.fromRGBO(254, 23, 72, 1),
-      child: ListView(padding: EdgeInsets.zero, children: [
-        Container(
           color: Color.fromRGBO(254, 23, 72, 1),
-          child: DrawerHeader(
-            padding: EdgeInsets.zero,
-            child: StreamBuilder<DocumentSnapshot>(
-              stream: _firestoreDBUserProf
-                  .collection("users")
-                  .doc(_auth.currentUser!.uid)
-                  .snapshots(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                future:
-                storage.downloadURL('Profile_pic.jpg');
-                // if (!snapshot.hasData) return CircularProgressIndicator();
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData) {
-                  UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    accountName: Text(
-                      snapshot.data!['name'],
-                      style: TextStyle(fontSize: 5, color: Colors.white),
-                    ),
-                    accountEmail: Text(
-                      snapshot.data!['email'],
-                      style: TextStyle(fontSize: 5, color: Colors.black),
-                    ),
-                    currentAccountPicture: CircleAvatar(
-                      radius: 10,
-                      backgroundImage: NetworkImage(
-                        snapshot.data!,
-                      ),
-                      //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
-                    ),
-                  );
-                }
-                // if (snapshot.connectionState == ConnectionState.waiting ||
-                //   !snapshot.hasData)
-                return Container(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ));
+          child: ListView(padding: EdgeInsets.zero, children: [
+            Container(
+              color: Color.fromRGBO(254, 23, 72, 1),
+              child: DrawerHeader(
+                padding: EdgeInsets.zero,
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: _firestoreDBUserProf
+                      .collection("users")
+                      .doc(_auth.currentUser!.uid)
+                      .snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    future:
+                    storage.downloadURL('Profile_pic.jpg');
+                    // if (!snapshot.hasData) return CircularProgressIndicator();
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      UserAccountsDrawerHeader(
+                        decoration: BoxDecoration(color: Colors.blue),
+                        accountName: Text(
+                          snapshot.data!['name'],
+                          style: TextStyle(fontSize: 5, color: Colors.white),
+                        ),
+                        accountEmail: Text(
+                          snapshot.data!['email'],
+                          style: TextStyle(fontSize: 5, color: Colors.black),
+                        ),
+                        currentAccountPicture: CircleAvatar(
+                          radius: 10,
+                          backgroundImage: NetworkImage(
+                            snapshot.data!,
+                          ),
+                          //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
+                        ),
+                      );
+                    }
+                    // if (snapshot.connectionState == ConnectionState.waiting ||
+                    //   !snapshot.hasData)
+                    return Container(
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ));
+                  },
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                CupertinoIcons.profile_circled,
+                color: Colors.white,
+              ),
+              title: Text("Profile",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onTap: () {
+                Navigator.pushNamed(context, MyRoute.profileRoute);
               },
             ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.profile_circled,
-            color: Colors.white,
-          ),
-          title: Text("Profile",
-              textScaleFactor: 1.2,
-              style: TextStyle(
+            ListTile(
+              leading: Icon(
+                CupertinoIcons.doc_plaintext,
                 color: Colors.white,
-              )),
-          onTap: () {
-            Navigator.pushNamed(context, MyRoute.profileRoute);
-          },
-        ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.doc_plaintext,
-            color: Colors.white,
-          ),
-          title: Text("Appointment",
-              textScaleFactor: 1.2,
-              style: TextStyle(
+              ),
+              title: Text("Appointment",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onTap: () {
+                Navigator.pushNamed(context, MyRoute.appointmentListRoute);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                CupertinoIcons.doc_person,
                 color: Colors.white,
-              )),
-          onTap: () {
-            Navigator.pushNamed(context, MyRoute.appointmentListRoute);
-          },
-        ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.doc_person,
-            color: Colors.white,
-          ),
-          title: Text("Report",
-              textScaleFactor: 1.2,
-              style: TextStyle(
+              ),
+              title: Text("Report",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onTap: () {
+                Navigator.pushNamed(context, MyRoute.reportRoute);
+              },
+            ),
+            // ListTile(
+            //   leading: Icon(
+            //     CupertinoIcons.bell,
+            //     color: Colors.white,
+            //   ),
+            //   title: Text("Reminder",
+            //       textScaleFactor: 1.2,
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //       )),
+            //   onTap: () {},
+            // ),
+            ListTile(
+              leading: Icon(
+                CupertinoIcons.settings,
                 color: Colors.white,
-              )),
-          onTap: () {
-            Navigator.pushNamed(context, MyRoute.reportRoute);
-          },
-        ),
-        // ListTile(
-        //   leading: Icon(
-        //     CupertinoIcons.bell,
-        //     color: Colors.white,
-        //   ),
-        //   title: Text("Reminder",
-        //       textScaleFactor: 1.2,
-        //       style: TextStyle(
-        //         color: Colors.white,
-        //       )),
-        //   onTap: () {},
-        // ),
-        ListTile(
-          leading: Icon(
-            CupertinoIcons.settings,
-            color: Colors.white,
-          ),
-          title: Text("Settings",
-              textScaleFactor: 1.2,
-              style: TextStyle(
+              ),
+              title: Text("Settings",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onTap: () {
+                Navigator.pushNamed(context, MyRoute.settingRoute);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.logout,
                 color: Colors.white,
-              )),
-          onTap: () {
-            Navigator.pushNamed(context, MyRoute.settingRoute);
-          },
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.logout,
-            color: Colors.white,
-          ),
-          title: Text("Log Out",
-              textScaleFactor: 1.2,
-              style: TextStyle(
-                color: Colors.white,
-              )),
-          onTap: () {
-            logOut(context);
-          },
-        ),
-      ]),
-    ));
+              ),
+              title: Text("Log Out",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onTap: () {
+                logOut(context);
+              },
+            ),
+          ]),
+        ));
   }
 
-  // Widget error(snapshot) {
-  //   if (snapshot.connectionState == ConnectionState.waiting ||
-  //       !snapshot.hasData) {
-  //     return Container(
-  //       alignment: Alignment.center,
-  //       width: 10,
-  //       height: 10,
-  //       child: CircularProgressIndicator(
-  //         color: Colors.white,
-  //       ),
-  //     );
-  //   }
-  //   ;
-  // }
+// Widget error(snapshot) {
+//   if (snapshot.connectionState == ConnectionState.waiting ||
+//       !snapshot.hasData) {
+//     return Container(
+//       alignment: Alignment.center,
+//       width: 10,
+//       height: 10,
+//       child: CircularProgressIndicator(
+//         color: Colors.white,
+//       ),
+//     );
+//   }
+//   ;
+// }
 }

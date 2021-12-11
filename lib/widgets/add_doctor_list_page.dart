@@ -17,8 +17,7 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
   final TextEditingController _doctorSpeciality = TextEditingController();
   final TextEditingController _doctorEducation = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final CollectionReference _firestoreDBDoctorList =
-      FirebaseFirestore.instance.collection("users");
+  final CollectionReference _firestoreDBDoctorList = FirebaseFirestore.instance.collection("users");
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +120,7 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                             "doctorSpeciality": _doctorSpeciality.text,
                             "doctorEducation": _doctorEducation.text,
                           };
-                          _firestoreDBDoctorList
-                              .doc(_auth.currentUser!.uid)
-                              .collection('doctorList')
-                              .add(doctorList);
+                          _firestoreDBDoctorList.doc(_auth.currentUser!.uid).collection('doctorList').add(doctorList);
 
                           _doctorName.clear();
                           _doctorPost.clear();
