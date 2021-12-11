@@ -85,6 +85,7 @@ quality medication to patients.
 3. Add google maps to reach Hospitals easily
 4. Online payment feature
 5. Feature to book ambulance 
+6. ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/images/Hospital_pic.jpg)
 
 
 
