@@ -38,6 +38,30 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                 fontSize: 24,
                 //color: Color.fromRGBO(254, 23, 72, 1)
               ),
+<<<<<<< HEAD
+=======
+            bottom:  TabBar(
+                labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                indicatorColor: Color.fromRGBO(254, 23, 72, 1),
+                tabs: [
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
+                      width: double.infinity,
+                      child: Tab(text: "Requested",)),
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
+                      width: double.infinity,
+                      child: Tab(text: "Accepted")),
+                ]
+>>>>>>> ad3d5c6c7b8152a10fae5493cd0488cd7cf05fca
             ),
           ),
           bottom: TabBar(
