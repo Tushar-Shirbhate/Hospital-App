@@ -33,7 +33,7 @@ piyushmotwani1230@gmail.com
 
 ## Description
 
-- A flutter app made by group in Inheritance Program conducted in
+- A **flutter app** made by group in Inheritance Program conducted in
 college.
 - It makes patient to take Appointment from any doctors in any
 hospital. Patient can send request to any doctors in any hospital and
@@ -45,7 +45,7 @@ and time in appointment.
 - Hospital can upload report and it shows
 to both hospital and patient. 
 - They can change the theme, edit their profile.
-It uses Firebase Authentication to Sign Up and Login, Firebase Database to store patients and hospitals data, Firebase Storage to
+It uses **Firebase Authentication** to Sign Up and Login, **Firebase Database** to store patients and hospitals data, **Firebase Storage** to
 store images and pdfs.
 
 
