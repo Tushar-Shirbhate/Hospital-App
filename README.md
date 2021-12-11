@@ -59,7 +59,7 @@ store images and pdfs.
 ---
 ## Feautures
 
-- [] Log in 
+- [ ] Log in 
 - [] sign up
 - [x] Theme changing
 - [] chat
