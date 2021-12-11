@@ -88,14 +88,12 @@ quality medication to patients.
 
 
 ## Screenshots
-Onboarding Screens
-![test image size](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png){:class="img-responsive"}
-![test image size](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png){:height="5%" width="5%"}
-![test image size](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png){:height="700px" width="400px"}
-Authentication Screens
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png)
-Hospital workflow
+## Onboarding Screens
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png"  width="250" height="540"/>  
+## Authentication Screens
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png"  width="250" height="540"/>
+## Hospital workflow
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234704.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234708.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234716.png)
@@ -111,7 +109,7 @@ Hospital workflow
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234846.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234850.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234859.png)
-Patient workflow
+## Patient workflow
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233810.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234163.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234186.png)
