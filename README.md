@@ -61,13 +61,13 @@ store images and pdfs.
 
 - [x] Log in 
 - [x] sign up
-- [x] Theme changing
-- [x] chat
-- [x] call
-- [x] Report uploading and retrieving
-- [x] Appointment taking
-- [x] editing profile
-- [xx] Adding and deleting doctors list
+- [x] Booking Appointment
+- [x] Chat
+- [x] Call
+- [x] Generating Report
+- [x] Adding and deleting doctors 
+- [ ] Editing profile
+- [ ] Theme changing
 
 ---
 ## Application
