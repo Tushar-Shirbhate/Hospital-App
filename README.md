@@ -30,7 +30,7 @@ piyushmotwani1230@gmail.com
 
 ---
 
-## Description
+## Application
 ---
 It is an app which offers complete telemedicine solutions for you and your family.Book doctor appointments online with any doctor, in and around your locality. It is also a place where you can ask a doctor,  health questions and get expert answers to your health queries.
 
@@ -39,6 +39,8 @@ It is an app which offers complete telemedicine solutions for you and your famil
 1.Dart 
 
 2.Flutter
+
+3.Firebase
 
 ---
 ## Feautures
