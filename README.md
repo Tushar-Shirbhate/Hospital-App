@@ -32,7 +32,15 @@ piyushmotwani1230@gmail.com
 
 ## Application
 ---
-It is an app which offers complete telemedicine solutions for you and your family.Book doctor appointments online with any doctor, in and around your locality. It is also a place where you can ask a doctor,  health questions and get expert answers to your health queries.
+A flutter app made by group in Inheritance Program conducted in
+college.
+It makes patient to take Appointment from any doctors in any
+hospital. Patient can contact to hospital via Call and Chat features
+in app. Hospital also call and message to patient and giving date
+and time in appointment. Hospital can upload report and it shows
+to both hospital and patient. They can change the theme, edit their profile.
+It uses Firebase Authentication to Sign Up and Login, Firebase Database to store patients and hospitals data, Firebase Storage to
+store images and pdfs.
 
 ---
 ## Technology Stack
