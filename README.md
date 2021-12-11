@@ -37,7 +37,7 @@ It is an app which offers complete telemedicine solutions for you and your famil
 ---
 ## Technology Stack
 1.Dart 
----
+
 2.Flutter
 
 ---
