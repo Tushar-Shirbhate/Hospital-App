@@ -1,7 +1,7 @@
 
 # Hospital App
 ---
-# Tech-Warriors
+Team name: Tech-Warriors
 ---
 ## Team members
 
