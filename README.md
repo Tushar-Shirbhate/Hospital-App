@@ -35,7 +35,8 @@ piyushmotwani1230@gmail.com
 - A flutter app made by group in Inheritance Program conducted in
 college.
 - It makes patient to take Appointment from any doctors in any
-hospital. 
+hospital. Patient can send request to any doctors in any hospital and
+it will accepted by hospital and they will give time and date to patient.
 - Patient can contact to hospital via Call and Chat features
 in app. 
 - Hospital also call and message to patient and giving date
@@ -66,10 +67,6 @@ store images and pdfs.
 7. and many more
 
 ---
----
-## Application
-A patient can consult doctor online without need of physically visiting doctor either though app's chat
-feature or directly calling to doctor or hospital.
 ---
 ## Future Scope
 1. Add search bar
