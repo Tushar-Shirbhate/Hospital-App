@@ -29,22 +29,38 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Hospital App")),
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(70, 0, 15, 0),
+          child: Text(
+            "Hospital App",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Color.fromRGBO(254, 23, 72, 1)),
+          ),
+        ),
+        //backgroundColor: Colors.blue, //Color.fromRGBO(206, 147, 216, 1),
+        backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+        iconTheme: IconThemeData(color: Color.fromRGBO(254, 23, 72, 1)),
+        elevation: 0,
+      ),
       body: StreamBuilder(
           stream: firestoreDB,
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
             return ListView.builder(
                 itemCount: (snapshot.data! as QuerySnapshot).docs.length,
                 itemBuilder: (BuildContext context, int index) {
-                  // List doctorList = (snapshot.data! as QuerySnapshot).docs[index]["doctorList"];
-                  //Map<String, dynamic>  doctorList =
                   if ((snapshot.data! as QuerySnapshot).docs[index]
                           ['profession'] ==
                       "Hospital") {
-                    String hospitalEmail = (snapshot.data! as QuerySnapshot).docs[index]['email'];
-                    String hospitalPhoneNo = (snapshot.data! as QuerySnapshot).docs[index]['phoneNo'];
+                    String hospitalEmail =
+                        (snapshot.data! as QuerySnapshot).docs[index]['email'];
+                    String hospitalPhoneNo = (snapshot.data! as QuerySnapshot)
+                        .docs[index]['phoneNo'];
                     String id =
                         (snapshot.data! as QuerySnapshot).docs[index]['uid'];
                     return SingleChildScrollView(
@@ -52,50 +68,47 @@ class _HomePageState extends State<HomePage> {
                       child: InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, MyRoute.detailRoute,
-                              arguments: ScreenArgumentsDoctorList(id, hospitalEmail, hospitalPhoneNo));
+                              arguments: ScreenArgumentsDoctorList(
+                                  id, hospitalEmail, hospitalPhoneNo));
                         },
                         child: Card(
-                            elevation: 5,
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                             child: Container(
-                                padding: EdgeInsets.all(10),
-                                height: size.height / 6.8,
-                                width: double.infinity,
-                              //  child: Row(
-                                //    mainAxisAlignment:
-                                 //       MainAxisAlignment.spaceBetween,
-                               //     children: [
-                                    child:  Column(
-                                          // mainAxisAlignment:
-                                          //     MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                "${(snapshot.data! as QuerySnapshot).docs[index]['name']}",
-                                                style: TextStyle(
-                                                    // color: Colors.black,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Text(
-                                                "${(snapshot.data! as QuerySnapshot).docs[index]['address']}",
-                                                style: TextStyle(
-                                                    //color: Colors.grey,
-                                                    fontSize: 18,
-                                                    fontStyle:
-                                                        FontStyle.italic)),
-                                            // Text(
-                                            //     "${(snapshot.data! as QuerySnapshot)
-                                            //         .docs[index]['hospitalRating']}",
-                                            //     style: TextStyle(
-                                            //       color: Colors.deepOrange,
-                                            //       fontSize: 16,
-                                            //     ))
-                                          ]),
-                                   //   Icon(CupertinoIcons.heart),
-                                   // ]
-                         //   )
-                        )),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                                color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              padding: EdgeInsets.all(10),
+                              height: size.height / 6.8,
+                              width: double.infinity,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "${(snapshot.data! as QuerySnapshot).docs[index]['name']}",
+                                        style: TextStyle(
+                                            //color: Colors.deepOrange,
+                                            color:
+                                                Color.fromRGBO(09, 105, 105, 1),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                        "${(snapshot.data! as QuerySnapshot).docs[index]['address']}",
+                                        style: TextStyle(
+                                            color: Colors.blueGrey,
+                                            fontSize: 18,
+                                            fontStyle: FontStyle.italic)),
+                                  ]),
+                              //   Icon(CupertinoIcons.heart),
+                              // ]
+                              //   )
+                            )),
                       ),
                       //  );
                     );

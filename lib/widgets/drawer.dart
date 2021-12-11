@@ -28,7 +28,8 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
-      color: Colors.blue,
+      color: Colors.blueAccent,
+      //color: Color.fromRGBO(254, 23, 72, 1),
       child: ListView(padding: EdgeInsets.zero, children: [
         DrawerHeader(
           padding: EdgeInsets.zero,
@@ -43,7 +44,10 @@ class _MyDrawerState extends State<MyDrawer> {
               // if (!snapshot.hasData) return CircularProgressIndicator();
               if (snapshot.hasData) {
                 return UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blue),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    //color: Color.fromRGBO(254, 23, 72, 1)
+                  ),
                   accountName: Text(
                     snapshot.data!['name'],
                     style: TextStyle(fontSize: 20, color: Colors.white),
@@ -86,20 +90,6 @@ class _MyDrawerState extends State<MyDrawer> {
             Navigator.pushNamed(context, MyRoute.profileRoute);
           },
         ),
-        // ListTile(
-        //   leading: Icon(
-        //     CupertinoIcons.heart_fill,
-        //     color: Colors.white,
-        //   ),
-        //   title: Text("Favourite",
-        //       textScaleFactor: 1.2,
-        //       style: TextStyle(
-        //         color: Colors.white,
-        //       )),
-        //   onTap: () {
-        //     Navigator.pushNamed(context, MyRoute.starredRoute);
-        //   },
-        // ),
         ListTile(
           leading: Icon(
             CupertinoIcons.doc_plaintext,

@@ -27,7 +27,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool isLoading = false;
 
-  void onClick () async{
+  void onClick() async {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
     setState(() {
@@ -38,39 +38,58 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
         .collection("users")
         .where("email", isEqualTo: hospitalEmail)
         .get()
-        .then((value){
+        .then((value) {
       setState(() {
         userMap = value.docs[0].data();
-        isLoading =false;
+        isLoading = false;
       });
       print(userMap);
       print(hospitalEmail);
     });
   }
 
-  String chatRoomId(String user1, String user2){
-    if(user1[0].toLowerCase().codeUnits[0] >
-        user2.toLowerCase().codeUnits[0]){
+  String chatRoomId(String user1, String user2) {
+    if (user1[0].toLowerCase().codeUnits[0] >
+        user2.toLowerCase().codeUnits[0]) {
       return "$user1$user2";
-    }
-    else{
+    } else {
       return "$user2$user1";
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     final argsDL =
         ModalRoute.of(context)!.settings.arguments as ScreenArgumentsDoctorList;
     String id = argsDL.id;
-     hospitalEmail = argsDL.hospitalEmail;
+    hospitalEmail = argsDL.hospitalEmail;
     hospitalPhoneNo = argsDL.hospitalPhoneNo;
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      //backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Hospital App")),
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_outlined,
+              color: Color.fromRGBO(254, 23, 72, 1)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(70, 0, 15, 0),
+          child: Text(
+            "Doctors",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Color.fromRGBO(254, 23, 72, 1)),
+          ),
+        ),
+        // backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+        iconTheme: IconThemeData(color: Color.fromRGBO(254, 23, 72, 1)),
+        elevation: 0,
+      ),
       body: StreamBuilder(
           stream: _firestoreDBDoctorList
               .doc(id)
@@ -87,13 +106,26 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                       .data() as Map<String, dynamic>;
 
                   return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                       child: Card(
-                          elevation: 5,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                           child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0)),
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  // color: Colors.deepOrange,
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                                //color: Colors.blueAccent,
+                                color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              padding: EdgeInsets.all(12),
                               height: size.height / 3.7,
-                              padding: EdgeInsets.all(15),
+                              width: double.infinity,
+                              //  padding: EdgeInsets.all(15),
                               child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -111,19 +143,31 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                                             Text(
                                               map['doctorName'],
                                               style: TextStyle(
+                                                  // color: Colors.white,
+                                                  color: Color.fromRGBO(
+                                                      09, 105, 105, 1),
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(map['doctorPost'],
                                                 style: TextStyle(
+                                                  //color: Colors.yellow,
+                                                  color: Color.fromRGBO(
+                                                      206, 123, 25, 1),
                                                   fontSize: 16,
                                                 )),
                                             Text(map['doctorSpeciality'],
                                                 style: TextStyle(
+                                                  //color: Colors.yellow,
+                                                  color: Color.fromRGBO(
+                                                      206, 123, 25, 1),
                                                   fontSize: 16,
                                                 )),
                                             Text(map['doctorEducation'],
                                                 style: TextStyle(
+                                                  //color: Colors.yellow,
+                                                  color: Color.fromRGBO(
+                                                      206, 123, 25, 1),
                                                   fontSize: 16,
                                                 )),
                                           ]),
@@ -222,18 +266,21 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                                         );
                                       },
                                       child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(50, 5, 50, 5),
                                           width: double.infinity,
                                           height: 37,
                                           decoration: BoxDecoration(
-                                              color: Colors.greenAccent,
+                                              color: Color.fromRGBO(
+                                                  18, 211, 154, 1),
                                               borderRadius:
                                                   BorderRadius.circular(20.0)),
                                           child: Center(
                                               child: Text("Get Appointment",
                                                   style: TextStyle(
-                                                      fontSize: 16,
+                                                      fontSize: 19,
                                                       color: CupertinoColors
-                                                          .black)))),
+                                                          .white)))),
                                     )
                                   ]))));
                 });
@@ -245,13 +292,16 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
           child: Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
-              child: Icon(Icons.call),
-              onPressed: () async{
+              backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+              child: Icon(
+                Icons.call,
+                color: Colors.white,
+              ),
+              onPressed: () async {
                 //Indirect Phone call
-              //  launch('tel://$number');
+                //  launch('tel://$number');
                 //Indirect Phone call
                 await FlutterPhoneDirectCaller.callNumber(hospitalPhoneNo);
-
               },
             ),
           ),
@@ -259,22 +309,21 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
         Align(
           alignment: Alignment.bottomLeft,
           child: FloatingActionButton(
-            child: Icon(Icons.messenger_rounded),
+            backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+            child: Icon(
+              Icons.messenger_rounded,
+              color: Colors.white,
+            ),
             onPressed: () {
               onClick();
-              if(userMap != null){
+              if (userMap != null) {
                 String roomId = chatRoomId(
-                    _auth.currentUser!.displayName!,
-                    userMap!['name']
-                );
+                    _auth.currentUser!.displayName!, userMap!['name']);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => ChatRoom(
-                            chatRoomId: roomId,
-                            userMap: userMap!)
-                    )
-                );
+                        builder: (_) =>
+                            ChatRoom(chatRoomId: roomId, userMap: userMap!)));
               }
             },
           ),

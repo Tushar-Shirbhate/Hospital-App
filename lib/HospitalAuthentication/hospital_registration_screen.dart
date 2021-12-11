@@ -361,116 +361,248 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back,color: Colors.lightBlueAccent,),
-            // passing this to
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text('Register Hospital!',style: TextStyle(color: Colors.lightBlueAccent),),
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(45, 0,15,0),
+            child: Text("Register Hospital!",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
+
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         ),
-        backgroundColor: Colors.white,
         body: isLoading
             ? Center(
             child: Container(child: CircularProgressIndicator())
         )
             :Center(
-          child: SingleChildScrollView(
+              child: SingleChildScrollView(
+             padding: EdgeInsets.all(15),
+             child: Card(
+    // margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+    ),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                color: Color.fromRGBO(254, 23, 72, 1),),
+                color: Color.fromRGBO(250, 228, 252, 1),
+              ),
+              height: size.height / 1.0,
+              width: double.infinity,
             child: Container(
               padding: EdgeInsets.only(left: 8, right: 8),
-              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[SizedBox(
-                        height: 146,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          "Assets/doc_pat.jpg",
-                          fit: BoxFit.contain,
-                        )),
-                      SizedBox(
-                        height: 30,
+                          "Assets/images/patientTwo.png",
+                          fit: BoxFit.fitHeight,
+                          height: 146,
+                        ),
                       ),
-                      TextField(
-                          controller:_name,
-                          autofocus: false,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.person_rounded),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Hospital Name",
-                            // labelText: "Name"
-                          )
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: size.height / 14,
+                        width: size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                          color: Color.fromRGBO(250, 228, 252, 1),
+                        ),
+                        child: TextField(
+                            controller:_name,
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person_rounded,
+                                color: Color.fromRGBO(254, 23, 72, 1),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Hospital Name",
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  width: 2.0,
+                                ),
+                              ),
+                              // labelText: "Name"
+                            )
+                        ),
                       ),SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
-                      TextField(
-                          controller:_phoneNo,
-                          autofocus: false,
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.phone),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Mobile Number",
-                            // labelText: "Name"
-                          )
+                      Container(
+                        height: size.height / 14,
+                        width: size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                          color: Color.fromRGBO(250, 228, 252, 1),
+                        ),
+                        child: TextField(
+                            controller:_phoneNo,
+                            autofocus: false,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.phone,
+                                color: Color.fromRGBO(254, 23, 72, 1),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Mobile Number",
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  width: 2.0,
+                                ),
+                              ),
+                              // labelText: "Name"
+                            )
+                        ),
                       ),SizedBox(
-                          height: 30
+                          height: 20
                       ),
-                      TextField(
-                          autofocus: false,
-                          keyboardType: TextInputType.emailAddress,
-                          controller:_email,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            hintText: "E-mail",
-                            //  labelText: "Email"
-                          )
+                      Container(
+                        height: size.height / 14,
+                        width: size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                          color: Color.fromRGBO(250, 228, 252, 1),
+                        ),
+                        child: TextField(
+                            autofocus: false,
+                            keyboardType: TextInputType.emailAddress,
+                            controller:_email,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.email,
+                                color: Color.fromRGBO(254, 23, 72, 1),
+                              ),
+                              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              hintText: "E-mail",
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  width: 2.0,
+                                ),
+                              ),
+                              //  labelText: "Email"
+                            )
+                        ),
                       ),
                       SizedBox(
-                          height: 30
-                      ),TextField(
-                          obscureText: obs_text?true:false,
-                          autofocus: false,
-                          controller: _password,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.vpn_key),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            suffixIcon: IconButton(icon:Icon(Icons.remove_red_eye),onPressed: (){
-                              // obs_text=false;
-                              // setState(() {
-                              //
-                              // });
-                            },),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Password",
-                            // labelText: "Password"
-                          )
+                          height: 20
+                      ),Container(
+                        height: size.height / 14,
+                        width: size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                          color: Color.fromRGBO(250, 228, 252, 1),
+                        ),
+                        child: TextField(
+                            obscureText: obs_text?true:false,
+                            autofocus: false,
+                            controller: _password,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.vpn_key,
+                                color: Color.fromRGBO(254, 23, 72, 1),
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              suffixIcon: IconButton(
+                                icon:Icon(Icons.remove_red_eye,
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),onPressed: (){
+                                // obs_text=false;
+                                // setState(() {
+                                //
+                                // });
+                              },),
+                              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Password",
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  width: 2.0,
+                                ),
+                              ),
+                              // labelText: "Password"
+                            )
+                        ),
                       ),
                       SizedBox(
-                          height: 30
+                          height: 20
                       ),
                           // TextField(
                       //     autofocus: false,
@@ -488,23 +620,49 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
                       // SizedBox(
                       //   height: 30,
                       // ),
-                      TextField(
-                          controller:_address,
-                          autofocus: false,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.home),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Address",
-                            // labelText: "Name"
-                          )
+                      Container(
+                        height: size.height / 14,
+                        width: size.width / 1,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                          color: Color.fromRGBO(250, 228, 252, 1),
+                        ),
+                        child: TextField(
+                            controller:_address,
+                            autofocus: false,
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.home,
+                                color: Color.fromRGBO(254, 23, 72, 1),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Address",
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  // color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  width: 2.0,
+                                ),
+                              ),
+                              // labelText: "Name"
+                            )
+                        ),
                       ),
                       SizedBox(
-                          height: 30
+                          height: 20
                       ),
                       GestureDetector(
                           onTap: (){
@@ -538,7 +696,8 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
                               width: size.width / 3.2,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(40),
-                                  color: Colors.blue
+                                  color:  Color.fromRGBO(254, 23, 72, 1),
+                                  // color: Colors.blue
                               ),
                               alignment: Alignment.center,
                               child: Text(
@@ -551,32 +710,32 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
                               )
                           )
                       ),
-                      SizedBox(height: 15,),
-                      GestureDetector(
-                          onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_)=> HospitalLoginScreen())
-                            );
-                          },
-                          child: Container(
-                              alignment: Alignment.center,
-                              child: Text(
-                                  "Log In",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold
-                                  )
-                              )
-                          )
-                      ),
+                      // SizedBox(height: 15,),
+                      // GestureDetector(
+                      //     onTap: (){
+                      //       Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(builder: (_)=> HospitalLoginScreen())
+                      //       );
+                      //     },
+                      //     child: Container(
+                      //         alignment: Alignment.center,
+                      //         child: Text(
+                      //             "Log In",
+                      //             style: TextStyle(
+                      //                 fontSize: 15,
+                      //                 color: Colors.blue,
+                      //                 fontWeight: FontWeight.bold
+                      //             )
+                      //         )
+                      //     )
+                      // ),
                     ]
                 ),
               ),
             ),
           ),
-        )
+        )))
     );
   }
 }

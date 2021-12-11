@@ -25,14 +25,32 @@ class _ProfilePageState extends State<ProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestoreDBUserProf = FirebaseFirestore.instance;
   final Storage storage = Storage();
+
   @override
   Widget build(BuildContext context) {
-    // final user = UserPreferences.myUser;
+    final size = MediaQuery.of(context).size;
+// final user = UserPreferences.myUser;
     return Scaffold(
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(
-            onPressed: null, icon: Icon(CupertinoIcons.profile_circled)),
-        title: Text('Profile'),
+          icon: Icon(Icons.arrow_back_ios_outlined,
+              color: Color.fromRGBO(254, 23, 72, 1)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(95, 0, 15, 0),
+          child: Text(
+            "Profile",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Color.fromRGBO(254, 23, 72, 1)),
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
       ),
       body: Builder(builder: (context) {
         return StreamBuilder<DocumentSnapshot>(
@@ -42,50 +60,80 @@ class _ProfilePageState extends State<ProfilePage> {
                 .snapshots(),
             builder: (BuildContext context, snapshot) {
               if (!snapshot.hasData) return CircularProgressIndicator();
-              return ListView(
-                physics: BouncingScrollPhysics(),
-                children: [
-                  FutureBuilder(
-                      future: storage.downloadURL('Profile_pic.jpg'),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<String> snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done &&
-                            snapshot.hasData) {
-                          return ProfileWidget(
-                            imagepath: Image.network(
-                              snapshot.data!,
-                            ),
-                            onClicked: () async {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) => EditProfilePage()),
-                              );
-                            },
-                          );
-                        }
-                        if (snapshot.connectionState ==
-                                ConnectionState.waiting ||
-                            !snapshot.hasData) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      padding: EdgeInsets.all(15),
+                      child: Card(
+                          margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Container(
+                              padding: EdgeInsets.fromLTRB(12, 70, 12, 12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  //color: Colors.blue,
+                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                ),
+                                color: Colors.greenAccent,
+                                //color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              height: size.height / 1.8,
+                              width: double.infinity,
+                              child: ListView(
+                                physics: BouncingScrollPhysics(),
+                                children: [
+                                  const SizedBox(height: 24),
+                                  buildName(snapshot),
+                                  const SizedBox(height: 48),
+                                  bulidPhoneNo(snapshot),
+                                  const SizedBox(height: 48),
+                                  buildAddress(snapshot),
+                                ],
+                              ))),
+                    ),
+                    FutureBuilder(
+                        future: storage.downloadURL('Profile_pic.jpg'),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String> snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return ProfileWidget(
+                              imagepath: Image.network(
+                                snapshot.data!,
+                              ),
+                              onClicked: () async {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => EditProfilePage()),
+                                );
+                              },
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              !snapshot.hasData) {
+                            return Container(
+                                alignment: Alignment.topCenter,
+                                height: 10,
+                                width: 10,
+                                child: CircularProgressIndicator());
+                          }
                           return Container(
-                              alignment: Alignment.topCenter,
-                              height: 10,
-                              width: 10,
-                              child: CircularProgressIndicator());
-                        }
-                        return Container(
-                          alignment: Alignment.topCenter,
-                          height: 10,
-                          width: 10,
-                          child: CircularProgressIndicator(),
-                        );
-                      }),
-                  const SizedBox(height: 24),
-                  buildName(snapshot),
-                  const SizedBox(height: 48),
-                  buildPhone(snapshot),
-                  const SizedBox(height: 48),
-                  buildAddress(snapshot),
-                ],
+                            alignment: Alignment.topCenter,
+                            height: 10,
+                            width: 10,
+                            child: CircularProgressIndicator(),
+                          );
+                        }),
+                  ],
+                ),
               );
             });
       }),
@@ -97,6 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Text(
             snapshot.data!['name'],
             style: TextStyle(
+              color: Color.fromRGBO(09, 105, 105, 1),
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
@@ -104,7 +153,12 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 4),
           Text(
             snapshot.data!['email'],
-            style: TextStyle(color: Colors.blue),
+            style: TextStyle(
+              color: Color.fromRGBO(206, 123, 25, 1),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              //color: Colors.deepOrange
+            ),
           )
         ],
       );
@@ -114,35 +168,121 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Address',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  CupertinoIcons.building_2_fill,
+                  color: Color.fromRGBO(09, 105, 105, 1),
+                ),
+                Text(
+                  ' Address',
+                  style: TextStyle(
+                      color: Color.fromRGBO(09, 105, 105, 1),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             Text(
               snapshot.data!['address'],
-              style: TextStyle(fontSize: 16, height: 1.4),
-            )
-          ],
-        ),
-      );
-
-  buildPhone(snapshot) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Phone No.',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              snapshot.data!['phoneNo'],
-              style: TextStyle(fontSize: 16, height: 1.4),
+              style: TextStyle(
+                  //color: Colors.deepOrange,
+                  color: Color.fromRGBO(206, 123, 25, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  height: 1.4),
             )
           ],
         ),
       );
 }
+
+bulidPhoneNo(snapshot) => Container(
+      padding: EdgeInsets.symmetric(horizontal: 48),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.call,
+                color: Color.fromRGBO(09, 105, 105, 1),
+              ),
+              Text(
+                ' Phone number',
+                style: TextStyle(
+                    color: Color.fromRGBO(09, 105, 105, 1),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Text(
+            snapshot.data!['phoneNo'],
+            style: TextStyle(
+                //color: Colors.deepOrange,
+                color: Color.fromRGBO(206, 123, 25, 1),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                height: 1.4),
+          )
+        ],
+      ),
+    );
+  // buildName(snapshot) => Column(
+  //       children: [
+  //         Text(
+  //           snapshot.data!['name'],
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.bold,
+  //             fontSize: 24,
+  //           ),
+  //         ),
+  //         const SizedBox(height: 4),
+  //         Text(
+  //           snapshot.data!['email'],
+  //           style: TextStyle(color:Color.fromRGBO(1,1,1,1),
+  // ),
+  //         )
+  //       ],
+  //     );
+  //
+  // buildAddress(snapshot) => Container(
+  //       padding: EdgeInsets.symmetric(horizontal: 48),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Text(
+  //             'Address',
+  //             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  //           ),
+  //           Text(
+  //             snapshot.data!['address'],
+  //             style: TextStyle(fontSize: 16, height: 1.4),
+  //           )
+  //         ],
+  //       ),
+  //     );
+  //
+  // buildPhone(snapshot) => Container(
+  //       padding: EdgeInsets.symmetric(horizontal: 48),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Text(
+  //             'Phone No.',
+  //             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  //           ),
+  //           Text(
+  //             snapshot.data!['phoneNo'],
+  //             style: TextStyle(fontSize: 16, height: 1.4,
+  //               color: Colors.black,
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     );
+
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';

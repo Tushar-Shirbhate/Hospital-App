@@ -16,22 +16,42 @@ class _SettingPageState extends State<SettingPage> {
   bool isDarkMode = false;
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           leading: IconButton(
-            onPressed: null,
-            icon: Icon(CupertinoIcons.settings),
+            icon: Icon(Icons.arrow_back_ios_outlined,
+                color: Color.fromRGBO(254, 23, 72, 1)),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text('Settings'),
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(100, 0, 15, 0),
+            child: Text(
+              "Settings",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         ),
         body: Container(
             padding: EdgeInsets.all(10.0),
             child: Column(children: [
               Row(
                 children: [
-                  Icon(Icons.lock),
+                  Icon(
+                    Icons.lock,
+                    //color: Colors.indigo,
+                    color: Color.fromRGBO(254, 23, 72, 1),
+                  ),
                   Text(
                     'Change Password',
                     style: TextStyle(
+                      //color: Colors.indigoAccent,
+                      color: Color.fromRGBO(254, 23, 72, 1),
                       fontSize: 25,
                     ),
                   ),
@@ -62,16 +82,23 @@ class _SettingPageState extends State<SettingPage> {
                 indent: 15,
                 endIndent: 15,
                 thickness: 2,
-                color: Colors.blue,
+                //color: Colors.deepOrange,
+                color: Color.fromRGBO(254, 23, 72, 1),
               ),
               Column(
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.dark_mode),
+                      Icon(
+                        Icons.dark_mode,
+                        //color: Colors.indigo,
+                        color: Color.fromRGBO(254, 23, 72, 1),
+                      ),
                       Text(
                         'Dark Theme',
                         style: TextStyle(
+                          //  color: Colors.indigoAccent,
+                          color: Color.fromRGBO(254, 23, 72, 1),
                           fontSize: 25,
                         ),
                       ),
@@ -102,16 +129,23 @@ class _SettingPageState extends State<SettingPage> {
                     indent: 15,
                     endIndent: 15,
                     thickness: 2,
-                    color: Colors.blue,
+                    //color: Colors.deepOrange,
+                    color: Color.fromRGBO(254, 23, 72, 1),
                   ),
                   Column(
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.contact_support),
+                          Icon(
+                            Icons.contact_support,
+                            //color: Colors.indigo,
+                            color: Color.fromRGBO(254, 23, 72, 1),
+                          ),
                           Text(
                             'Contact Us',
                             style: TextStyle(
+                              //  color: Colors.indigoAccent,
+                              color: Color.fromRGBO(254, 23, 72, 1),
                               fontSize: 25,
                             ),
                           ),

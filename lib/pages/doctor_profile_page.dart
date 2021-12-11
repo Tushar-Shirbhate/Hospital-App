@@ -29,12 +29,9 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
   final FirebaseFirestore _firestoreDBHosProf = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: null, icon: Icon(CupertinoIcons.profile_circled)),
-        title: Text('Profile'),
-      ),
+      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
       body: StreamBuilder<DocumentSnapshot>(
           stream: _firestoreDBHosProf
               .collection("users")
@@ -42,27 +39,45 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
               .snapshots(),
           builder: (BuildContext context, snapshot) {
             if (!snapshot.hasData) return CircularProgressIndicator();
-            return ListView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                // ProfileWidget(
-                //   imagepath: doctor.imagepath,
-                //   onClicked: () async {
-                //     Navigator.of(context).push(
-                //       MaterialPageRoute(
-                //           builder: (context) => DoctorEditProfilePage()),
-                //     );
-                //   },
-                // ),
-                const SizedBox(height: 24),
-                buildName(snapshot),
-                const SizedBox(height: 24),
-                bulidPhoneNo(snapshot),
-                const SizedBox(height: 24),
-                //buildEducation(doctor),
-                //const SizedBox(height: 48),
-                buildAddress(snapshot),
-              ],
+            return SingleChildScrollView(
+                padding: EdgeInsets.all(15),
+            child: Card(
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Container(
+            decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
+            color: Color.fromRGBO(250, 228, 252, 1),
+            ),
+            padding: EdgeInsets.all(12),
+            height: size.height / 2.1,
+            width: double.infinity,
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                children: [
+                  // ProfileWidget(
+                  //   imagepath: doctor.imagepath,
+                  //   onClicked: () async {
+                  //     Navigator.of(context).push(
+                  //       MaterialPageRoute(
+                  //           builder: (context) => DoctorEditProfilePage()),
+                  //     );
+                  //   },
+                  // ),
+                  const SizedBox(height: 24),
+                  buildName(snapshot),
+                  const SizedBox(height: 24),
+                  bulidPhoneNo(snapshot),
+                  const SizedBox(height: 24),
+                  //buildEducation(doctor),
+                  //const SizedBox(height: 48),
+                  buildAddress(snapshot),
+                ],
+              ),
+                  ))
             );
           }),
     );
@@ -73,6 +88,7 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
           Text(
             snapshot.data!['name'],
             style: TextStyle(
+              color: Color.fromRGBO(09, 105, 105, 1),
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
@@ -80,7 +96,12 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
           const SizedBox(height: 4),
           Text(
             snapshot.data!['email'],
-            style: TextStyle(color: Colors.blue),
+            style: TextStyle(
+                color: Color.fromRGBO(206, 123, 25, 1),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+                // color: Colors.blue
+            ),
           )
         ],
       );
@@ -92,18 +113,23 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
           children: [
             Row(
               children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(CupertinoIcons.building_2_fill)),
+                 Icon(CupertinoIcons.building_2_fill,
+                   color: Color.fromRGBO(09, 105, 105, 1),
+                 ),
                 Text(
-                  'Address',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ' Address',
+                  style: TextStyle(
+                      color: Color.fromRGBO(09, 105, 105, 1),
+                      fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             Text(
               snapshot.data!['address'],
-              style: TextStyle(fontSize: 16, height: 1.4),
+              style: TextStyle(
+                  color: Color.fromRGBO(206, 123, 25, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18, height: 1.4),
             )
           ],
         ),
@@ -116,19 +142,23 @@ class _DoctorProfilePageState extends State<DoctorProfilePage> {
           children: [
             Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.call),
-                ),
+                 Icon(Icons.call,
+                   color: Color.fromRGBO(09, 105, 105, 1),
+                 ),
                 Text(
-                  'Phone number',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ' Phone number',
+                  style: TextStyle(
+                      color: Color.fromRGBO(09, 105, 105, 1),
+                      fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             Text(
               snapshot.data!['phoneNo'],
-              style: TextStyle(fontSize: 16, height: 1.4),
+              style: TextStyle(
+                  color: Color.fromRGBO(206, 123, 25, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18, height: 1.4),
             )
           ],
         ),
