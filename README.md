@@ -67,6 +67,10 @@ store images and pdfs.
 
 ---
 ---
+## Application
+A patient can consult doctor online without need of physically visiting doctor either though app's chat
+feature or directly calling to doctor or hospital.
+---
 ## Future Scope
 1. Add search bar
 2. Add video call feature
