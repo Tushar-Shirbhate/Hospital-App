@@ -6,6 +6,7 @@ _
 ---
 
 [Rik Chatterjee](https://github.com/TheArchitet)
+-
 rikchat15@gmail.com
 
 [Gaurav Tejwani](https://github.com/GauravMaheshTejwani)
