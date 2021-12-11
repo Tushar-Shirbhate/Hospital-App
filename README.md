@@ -89,8 +89,7 @@ quality medication to patients.
 
 ## Screenshots
 Onboarding Screens
-![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png | width=100)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png =250x250)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png){:class="img-responsive"}
 Authentication Screens
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png)
