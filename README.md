@@ -59,13 +59,15 @@ store images and pdfs.
 ---
 ## Feautures
 
-1. Access video consultations
-2. Find & book appointments with a doctor near you.
-3. Book ambulance in 60 sec
-4. Previous Visit History
-5. User friendly for both patient as well as doctor
-6. Online payment
-7. and many more
+- [] Log in 
+- [] sign up
+- [x] Theme changing
+- [] chat
+- [] call
+- [] Report uploading and retrieving
+- [] Appointment taking
+- [] editing profile
+- [] Adding and deleting doctors list
 
 ---
 ## Application
