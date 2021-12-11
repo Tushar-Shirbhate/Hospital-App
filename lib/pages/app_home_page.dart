@@ -123,7 +123,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                       ),
                                     ),
                                     Text(
-                                          "Hospital",
+                                          "  Hospital",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 30
@@ -188,7 +188,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                       ),
                                     ),
                                     Text(
-                                          "User",
+                                          "Patient",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 30
