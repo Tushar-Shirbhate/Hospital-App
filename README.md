@@ -85,7 +85,40 @@ quality medication to patients.
 3. Add google maps to reach Hospitals easily
 4. Online payment feature
 5. Feature to book ambulance 
-6. ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/images/Hospital_pic.jpg)
 
 
-
+## Screenshots
+Onboarding Screens
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png)
+Authentication Screens
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png)
+Hospital workflow
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234704.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234708.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234716.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234745.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234765.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234271.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234782.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234791.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234795.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234812.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234838.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234841.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234846.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234850.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234859.png)
+Patient workflow
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233810.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234163.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234186.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234262.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234271.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234283.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234286.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234622.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234626.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234632.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234637.png)
+ ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234660.png)
