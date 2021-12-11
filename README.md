@@ -14,7 +14,8 @@ gauravtejwani7559@gmail.com
 [Tushar Shirbhate](https://github.com/Tushar-Shirbhate) - 
 tgshirbhate04@gmail.com
 
-[Piyush Motwani](https://github.com/Piyushmotwani)
+[Piyush Motwani](https://github.com/Piyushmotwani) - 
+piyushmotwani1230@gmail.com
 
 
 ---
