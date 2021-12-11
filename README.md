@@ -5,14 +5,17 @@ _
 ## Team members
 ---
 
-[Rik Chatterjee](https://github.com/TheArchitet)-
+[Rik Chatterjee](https://github.com/TheArchitet) -
 rikchat15@gmail.com
 
-[Gaurav Tejwani](https://github.com/GauravMaheshTejwani)
+[Gaurav Tejwani](https://github.com/GauravMaheshTejwani) -
+gauravtejwani7559@gmail.com
 
-[Tushar Shirbhate](https://github.com/Tushar-Shirbhate)
+[Tushar Shirbhate](https://github.com/Tushar-Shirbhate) - 
+tgshirbhate04@gmail.com
 
 [Piyush Motwani](https://github.com/Piyushmotwani)
+
 
 ---
 
