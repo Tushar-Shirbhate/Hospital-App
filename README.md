@@ -94,22 +94,25 @@ quality medication to patients.
 <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png"  width="250" height="540"/>  
 <img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png"  width="250" height="540"/>
 ## Hospital workflow
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234704.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234708.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234716.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234745.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234765.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234271.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234782.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234791.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234795.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234812.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234838.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234841.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234846.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234850.png)
- ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234859.png)
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234704.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234708.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234716.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234745.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234765.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234271.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234782.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234791.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234795.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234812.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234838.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234841.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234846.png"  width="250" height="540"/>  
+<img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234850.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234859.png"  width="250" height="540"/>  
+
+
 ## Patient workflow
+
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233810.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234163.png)
  ![This is an image](https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639234186.png)
