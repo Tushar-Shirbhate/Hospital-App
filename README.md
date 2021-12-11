@@ -75,6 +75,7 @@ A patient can consult the doctor online without the need of physically visiting 
 using app's call or chatroom feature and doctors across world can register in this app enabling 
 quality medication to patients.
 ---
+---
 ## Future Scope
 1. Add search bar
 2. Add video call feature
