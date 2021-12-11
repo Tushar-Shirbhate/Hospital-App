@@ -50,14 +50,15 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                       ),
                       margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
                       width: double.infinity,
-                      child: Tab(text: "Accepted")), Container(
+                      child: Tab(text: "Requested",)),
+                  Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color.fromRGBO(254, 23, 72, 1),
                       ),
                       margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
                       width: double.infinity,
-                      child: Tab(text: "Requested",)),
+                      child: Tab(text: "Accepted")),
                 ]
             ),
           ),
