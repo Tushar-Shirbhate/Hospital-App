@@ -29,7 +29,7 @@ piyushmotwani1230@gmail.com
 
 [Sarah Tisekar](https://github.com/sarah-nisar)
 
----
+
 
 ## Description
 
@@ -48,7 +48,7 @@ to both hospital and patient.
 It uses Firebase Authentication to Sign Up and Login, Firebase Database to store patients and hospitals data, Firebase Storage to
 store images and pdfs.
 
----
+
 ## Technology Stack
 1.Dart 
 
@@ -56,7 +56,7 @@ store images and pdfs.
 
 3.Firebase
 
----
+
 ## Feautures
 
 - [x] Log in 
@@ -69,7 +69,7 @@ store images and pdfs.
 - [ ] Editing profile
 - [ ] Theme changing
 
----
+
 ## Application
 
 In the era of lockdown and covid it is becoming difficult for a patient to visit a doctor.
@@ -78,7 +78,7 @@ A patient can consult the doctor online without the need of physically visiting 
 using app's call or chatroom feature and doctors across world can register in this app enabling 
 quality medication to patients.
 
----
+
 ## Future Scope
 1. Add search bar
 2. Add video call feature
