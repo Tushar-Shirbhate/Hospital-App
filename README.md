@@ -66,5 +66,13 @@ store images and pdfs.
 7. and many more
 
 ---
+---
+## Future Scope
+1. Add search bar
+2. Add video call feature
+3. Add google maps to reach Hospitals easily
+4. Online payment feature
+5. Feature to book ambulance 
+
 
 
