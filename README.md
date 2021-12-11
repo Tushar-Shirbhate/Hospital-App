@@ -3,7 +3,7 @@ _
 # Tech-Warriors
 ---
 ## Team members
----
+
 
 [Rik Chatterjee](https://github.com/TheArchitet) -
 rikchat15@gmail.com
@@ -21,7 +21,7 @@ piyushmotwani1230@gmail.com
 ---
 
 ## Mentors
----
+
 [Priya Nagda](https://github.com/pri1311)
 
 [Vaishnavi Shah](https://github.com/vaishnavirshah)
@@ -31,7 +31,7 @@ piyushmotwani1230@gmail.com
 ---
 
 ## Description
----
+
 - A flutter app made by group in Inheritance Program conducted in
 college.
 - It makes patient to take Appointment from any doctors in any
@@ -57,7 +57,7 @@ store images and pdfs.
 
 ---
 ## Feautures
----
+
 1. Access video consultations
 2. Find & book appointments with a doctor near you.
 3. Book ambulance in 60 sec
@@ -68,7 +68,7 @@ store images and pdfs.
 
 ---
 ## Application
----
+
 In the era of lockdown and covid it is becoming difficult for a patient to visit a doctor.
 So keeping this in mind we develop a app as a solution to this problems.
 A patient can consult the doctor online without the need of physically visiting the doctor 
