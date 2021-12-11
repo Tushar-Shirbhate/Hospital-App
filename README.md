@@ -67,7 +67,7 @@ store images and pdfs.
 7. and many more
 
 ---
-# Application
+## Application
 ---
 In the era of lockdown and covid it is becoming difficult for a patient to visit a doctor.
 So keeping this in mind we develop a app as a solution to this problems.
