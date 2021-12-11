@@ -74,7 +74,7 @@ So keeping this in mind we develop a app as a solution to this problems.
 A patient can consult the doctor online without the need of physically visiting the doctor 
 using app's call or chatroom feature and doctors across world can register in this app enabling 
 quality medication to patients.
----
+
 ---
 ## Future Scope
 1. Add search bar
