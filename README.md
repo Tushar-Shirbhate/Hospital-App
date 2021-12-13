@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-_
-=======
-
->>>>>>> f6c79e44906973f4722d4184277d54e1a808b9bc
+-
 # Hospital App
 
 Team name: Tech-Warriors
