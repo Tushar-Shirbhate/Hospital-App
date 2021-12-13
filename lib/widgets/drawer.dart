@@ -201,53 +201,62 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
-<<<<<<< HEAD
-      color: Colors.blueAccent,
-      //color: Color.fromRGBO(254, 23, 72, 1),
+      color: Color.fromRGBO(254, 23, 72, 1),
       child: ListView(padding: EdgeInsets.zero, children: [
-        DrawerHeader(
-          padding: EdgeInsets.zero,
-          child: StreamBuilder<DocumentSnapshot>(
-            stream: _firestoreDBUserProf
-                .collection("users")
-                .doc(_auth.currentUser!.uid)
-                .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              future:
-              storage.downloadURL('Profile_pic.jpg');
-              // if (!snapshot.hasData) return CircularProgressIndicator();
-              if (snapshot.hasData) {
-                return UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    //color: Color.fromRGBO(254, 23, 72, 1)
-                  ),
-                  accountName: Text(
-                    snapshot.data!['name'],
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  accountEmail: Text(
-                    snapshot.data!['email'],
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    radius: 10,
-                    backgroundImage: NetworkImage(
-                      storage
-                          .downloadURL('Profile_pic.jpg')
-                          .toString(), //picture().toString(),
+        Container(
+          color: Color.fromRGBO(254, 23, 72, 1),
+          child: DrawerHeader(
+            padding: EdgeInsets.zero,
+            child: StreamBuilder<DocumentSnapshot>(
+              stream: _firestoreDBUserProf
+                  .collection("users")
+                  .doc(_auth.currentUser!.uid)
+                  .snapshots(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                future:
+                storage.downloadURL('Profile_pic.jpg');
+                // if (!snapshot.hasData) return CircularProgressIndicator();
+                if (snapshot.hasData) {
+                  return UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(254, 23, 72, 1),
+                      image: DecorationImage(
+                          image: AssetImage("Assets/images/doctor.png"),
+                          fit: BoxFit.fitHeight),
                     ),
+                    accountName: Text(
+                      snapshot.data!['name'],
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    accountEmail: Text(
+                      snapshot.data!['email'],
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                    // currentAccountPictureSize: Size.square(75),
+                    // currentAccountPicture: CircleAvatar(
+                    //   radius: 20,
+                    //     backgroundImage:
+                    //     NetworkImage("https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/images/doctor.png")
+                    // backgroundImage: DecorationImage(
+                    //     image: AssetImage("Assets/images/doctor.png"),
+                    //     fit: BoxFit.cover),
+                    // backgroundImage: NetworkImage(
+                    //   storage
+                    //       .downloadURL('Profile_pic.jpg')
+                    //       .toString(), //picture().toString(),
+                    // ),
                     //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
-                  ),
-                );
-              } else {
-                return Container(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ));
-              }
-            },
+                    // ),
+                  );
+                } else {
+                  return Container(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ));
+                }
+              },
+            ),
           ),
         ),
         ListTile(
@@ -258,163 +267,96 @@ class _MyDrawerState extends State<MyDrawer> {
           title: Text("Profile",
               textScaleFactor: 1.2,
               style: TextStyle(
-=======
-          color: Color.fromRGBO(254, 23, 72, 1),
-          child: ListView(padding: EdgeInsets.zero, children: [
-            Container(
-              color: Color.fromRGBO(254, 23, 72, 1),
-              child: DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: StreamBuilder<DocumentSnapshot>(
-                  stream: _firestoreDBUserProf
-                      .collection("users")
-                      .doc(_auth.currentUser!.uid)
-                      .snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    future:
-                    storage.downloadURL('Profile_pic.jpg');
-                    // if (!snapshot.hasData) return CircularProgressIndicator();
-                    if (snapshot.hasData) {
-                      return UserAccountsDrawerHeader(
-                        decoration: BoxDecoration(color: Color.fromRGBO(254, 23, 72, 1),
-                            image: DecorationImage(
-                                image: AssetImage("Assets/images/doctor.png"),
-                                fit: BoxFit.fitHeight),
-                        ),
-                        accountName: Text(
-                          snapshot.data!['name'],
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                        accountEmail: Text(
-                          snapshot.data!['email'],
-                          style: TextStyle(fontSize: 15, color: Colors.white),
-                        ),
-                        // currentAccountPictureSize: Size.square(75),
-                        // currentAccountPicture: CircleAvatar(
-                        //   radius: 20,
-                        //     backgroundImage:
-                        //     NetworkImage("https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/images/doctor.png")
-                            // backgroundImage: DecorationImage(
-                            //     image: AssetImage("Assets/images/doctor.png"),
-                            //     fit: BoxFit.cover),
-                          // backgroundImage: NetworkImage(
-                          //   storage
-                          //       .downloadURL('Profile_pic.jpg')
-                          //       .toString(), //picture().toString(),
-                          // ),
-                          //'https://images.ctfassets.net/6rsj5ae0g75g/6nf3rNaaVaUqYcoAcciSeC/a43b6f3da7352837e0db54dc86339420/Last_few_hours_more_for_FlutterLive._Join_us_from_anywhere_around_the_world._Flutter_Excitement_flutterio.jpg?w=450&fl=progressive&q=100',
-                        // ),
-                      );
-                    } else {
-                      return Container(
-                          alignment: Alignment.center,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ));
-                    }
-                  },
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.profile_circled,
->>>>>>> ad3d5c6c7b8152a10fae5493cd0488cd7cf05fca
                 color: Colors.white,
-              ),
-              title: Text("Profile",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onTap: () {
-                Navigator.pushNamed(context, MyRoute.profileRoute);
-              },
-            ),
-            // ListTile(
-            //   leading: Icon(
-            //     CupertinoIcons.heart_fill,
-            //     color: Colors.white,
-            //   ),
-            //   title: Text("Favourite",
-            //       textScaleFactor: 1.2,
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //       )),
-            //   onTap: () {
-            //     Navigator.pushNamed(context, MyRoute.starredRoute);
-            //   },
-            // ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.doc_plaintext,
+              )),
+          onTap: () {
+            Navigator.pushNamed(context, MyRoute.profileRoute);
+          },
+        ),
+        // ListTile(
+        //   leading: Icon(
+        //     CupertinoIcons.heart_fill,
+        //     color: Colors.white,
+        //   ),
+        //   title: Text("Favourite",
+        //       textScaleFactor: 1.2,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //       )),
+        //   onTap: () {
+        //     Navigator.pushNamed(context, MyRoute.starredRoute);
+        //   },
+        // ),
+        ListTile(
+          leading: Icon(
+            CupertinoIcons.doc_plaintext,
+            color: Colors.white,
+          ),
+          title: Text("Appointment",
+              textScaleFactor: 1.2,
+              style: TextStyle(
                 color: Colors.white,
-              ),
-              title: Text("Appointment",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onTap: () {
-                Navigator.pushNamed(context, MyRoute.appointmentListRoute);
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.doc_person,
+              )),
+          onTap: () {
+            Navigator.pushNamed(context, MyRoute.appointmentListRoute);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            CupertinoIcons.doc_person,
+            color: Colors.white,
+          ),
+          title: Text("Report",
+              textScaleFactor: 1.2,
+              style: TextStyle(
                 color: Colors.white,
-              ),
-              title: Text("Report",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onTap: () {
-                Navigator.pushNamed(context, MyRoute.reportRoute);
-              },
-            ),
-            // ListTile(
-            //   leading: Icon(
-            //     CupertinoIcons.bell,
-            //     color: Colors.white,
-            //   ),
-            //   title: Text("Reminder",
-            //       textScaleFactor: 1.2,
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //       )),
-            //   onTap: () {},
-            // ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.settings,
+              )),
+          onTap: () {
+            Navigator.pushNamed(context, MyRoute.reportRoute);
+          },
+        ),
+        // ListTile(
+        //   leading: Icon(
+        //     CupertinoIcons.bell,
+        //     color: Colors.white,
+        //   ),
+        //   title: Text("Reminder",
+        //       textScaleFactor: 1.2,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //       )),
+        //   onTap: () {},
+        // ),
+        ListTile(
+          leading: Icon(
+            CupertinoIcons.settings,
+            color: Colors.white,
+          ),
+          title: Text("Settings",
+              textScaleFactor: 1.2,
+              style: TextStyle(
                 color: Colors.white,
-              ),
-              title: Text("Settings",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onTap: () {
-                Navigator.pushNamed(context, MyRoute.settingRoute);
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.logout,
+              )),
+          onTap: () {
+            Navigator.pushNamed(context, MyRoute.settingRoute);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+          title: Text("Log Out",
+              textScaleFactor: 1.2,
+              style: TextStyle(
                 color: Colors.white,
-              ),
-              title: Text("Log Out",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onTap: () {
-                logOut(context);
-              },
-            ),
-          ]),
-        ));
+              )),
+          onTap: () {
+            logOut(context);
+          },
+        ),
+      ]),
+    ));
   }
 
   // Future<String> picture() {

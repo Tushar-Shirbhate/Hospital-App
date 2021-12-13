@@ -15,7 +15,6 @@ class _AppHomePageState extends State<AppHomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        //backgroundColor: Colors.greenAccent,
         backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(1),
@@ -32,7 +31,6 @@ class _AppHomePageState extends State<AppHomePage> {
               ),
             ),
             elevation: 0,
-            // backgroundColor: Colors.greenAccent,
             backgroundColor: Color.fromRGBO(206, 147, 216, 1),
           ),
         ),
@@ -49,7 +47,6 @@ class _AppHomePageState extends State<AppHomePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  //color: Colors.indigo,
                   color: Color.fromRGBO(254, 23, 72, 1),
                 ),
                 color: Color.fromRGBO(250, 228, 252, 1),
@@ -70,7 +67,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                   borderRadius: BorderRadius.circular(20.0),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Color.fromRGBO(100, 147, 216, 1),
+                                      color: Color.fromRGBO(206, 147, 216, 1),
                                       spreadRadius: 5.0,
                                       blurRadius: 15.0,
                                       offset: Offset(8, 9),
@@ -83,34 +80,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                   fit: BoxFit.fitHeight,
                                   height: 200,
                                 ),
-<<<<<<< HEAD
                               ),
-=======
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Image.asset(
-                                        "Assets/images/hospital.png",
-                                        fit: BoxFit.fitHeight,
-                                        height: 60,
-                                      ),
-                                    ),
-                                    Text(
-                                          "  Hospital",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 30
-                                          ),
-                                        ),
-                                    Icon(
-                                        Icons.arrow_forward_ios,
-                                      color: Colors.white,
-                                    )
-                                  ],
-                                )
->>>>>>> 96017d3bdf24ea3617625c4edb6b14739e1b6b36
                             ),
                           ),
                         )),
@@ -133,7 +103,7 @@ class _AppHomePageState extends State<AppHomePage> {
                               borderRadius: BorderRadius.circular(35.0),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color.fromRGBO(100, 147, 216, 1),
+                                  color: Color.fromRGBO(206, 147, 216, 1),
                                   // color: Colors.black,
                                   spreadRadius: 5.0,
                                   blurRadius: 15.0,
@@ -154,37 +124,10 @@ class _AppHomePageState extends State<AppHomePage> {
                                     height: 60,
                                   ),
                                 ),
-<<<<<<< HEAD
                                 Text(
-                                  "Hospital",
+                                  "  Hospital",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
-=======
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Image.asset(
-                                        "Assets/images/crowd.png",
-                                        fit: BoxFit.fitHeight,
-                                        height: 60,
-                                      ),
-                                    ),
-                                    Text(
-                                          "Patient",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 30
-                                          )
-                                      ),
-                                    Icon(
-                                        Icons.arrow_forward_ios,
-                                      color: Colors.white,
-
-                                    )
-                                  ],
->>>>>>> 96017d3bdf24ea3617625c4edb6b14739e1b6b36
                                 ),
                                 Icon(
                                   Icons.arrow_forward_ios,
@@ -210,9 +153,8 @@ class _AppHomePageState extends State<AppHomePage> {
                           padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(35.0),
-                            //color: Colors.blue,
                             color: Color.fromRGBO(254, 23, 72, 1),
-                            //color: Colors.purple,
+                            // color: Colors.purple,
                             //   boxShadow:[
                             //     BoxShadow(
                             //       color: Colors.black,
@@ -223,7 +165,7 @@ class _AppHomePageState extends State<AppHomePage> {
                             //   ]
                             boxShadow: [
                               BoxShadow(
-                                color: Color.fromRGBO(100, 147, 216, 1),
+                                color: Color.fromRGBO(206, 147, 216, 1),
                                 // color: Colors.black,
                                 spreadRadius: 5.0,
                                 blurRadius: 15.0,
@@ -242,7 +184,7 @@ class _AppHomePageState extends State<AppHomePage> {
                                   height: 60,
                                 ),
                               ),
-                              Text("User",
+                              Text("Patient",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30)),
                               Icon(

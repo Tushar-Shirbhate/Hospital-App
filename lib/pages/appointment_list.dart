@@ -26,42 +26,17 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                 color: Color.fromRGBO(254, 23, 72, 1)),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          //backgroundColor: Color.fromRGBO(206, 147, 216, 1),
-          backgroundColor: Color.fromRGBO(254, 23, 72, 1),
+          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+          // backgroundColor:  Color.fromRGBO(254, 23, 72, 1),
           elevation: 0,
           title: Padding(
             padding: const EdgeInsets.fromLTRB(60, 0, 15, 0),
             child: Text(
               "Appointment",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                //color: Color.fromRGBO(254, 23, 72, 1)
-              ),
-<<<<<<< HEAD
-=======
-            bottom:  TabBar(
-                labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                indicatorColor: Color.fromRGBO(254, 23, 72, 1),
-                tabs: [
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(254, 23, 72, 1),
-                      ),
-                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
-                      width: double.infinity,
-                      child: Tab(text: "Requested",)),
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(254, 23, 72, 1),
-                      ),
-                      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
-                      width: double.infinity,
-                      child: Tab(text: "Accepted")),
-                ]
->>>>>>> ad3d5c6c7b8152a10fae5493cd0488cd7cf05fca
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Color.fromRGBO(254, 23, 72, 1)),
             ),
           ),
           bottom: TabBar(
@@ -71,17 +46,6 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      //color: Colors.indigo,
-                      color: Color.fromRGBO(254, 23, 72, 1),
-                    ),
-                    margin:
-                        EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
-                    width: double.infinity,
-                    child: Tab(text: "Accepted")),
-                Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      //color: Colors.indigo,
                       color: Color.fromRGBO(254, 23, 72, 1),
                     ),
                     margin:
@@ -90,6 +54,15 @@ class _AppointmentListPageState extends State<AppointmentListPage> {
                     child: Tab(
                       text: "Requested",
                     )),
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color.fromRGBO(254, 23, 72, 1),
+                    ),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
+                    width: double.infinity,
+                    child: Tab(text: "Accepted")),
               ]),
         ),
         body: TabBarView(children: <Widget>[
