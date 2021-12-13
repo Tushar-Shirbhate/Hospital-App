@@ -83,7 +83,34 @@ class _AppHomePageState extends State<AppHomePage> {
                                   fit: BoxFit.fitHeight,
                                   height: 200,
                                 ),
+<<<<<<< HEAD
                               ),
+=======
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.asset(
+                                        "Assets/images/hospital.png",
+                                        fit: BoxFit.fitHeight,
+                                        height: 60,
+                                      ),
+                                    ),
+                                    Text(
+                                          "  Hospital",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30
+                                          ),
+                                        ),
+                                    Icon(
+                                        Icons.arrow_forward_ios,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                )
+>>>>>>> 96017d3bdf24ea3617625c4edb6b14739e1b6b36
                             ),
                           ),
                         )),
@@ -127,10 +154,37 @@ class _AppHomePageState extends State<AppHomePage> {
                                     height: 60,
                                   ),
                                 ),
+<<<<<<< HEAD
                                 Text(
                                   "Hospital",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
+=======
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.asset(
+                                        "Assets/images/crowd.png",
+                                        fit: BoxFit.fitHeight,
+                                        height: 60,
+                                      ),
+                                    ),
+                                    Text(
+                                          "Patient",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30
+                                          )
+                                      ),
+                                    Icon(
+                                        Icons.arrow_forward_ios,
+                                      color: Colors.white,
+
+                                    )
+                                  ],
+>>>>>>> 96017d3bdf24ea3617625c4edb6b14739e1b6b36
                                 ),
                                 Icon(
                                   Icons.arrow_forward_ios,

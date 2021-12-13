@@ -279,7 +279,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         decoration: BoxDecoration(color: Color.fromRGBO(254, 23, 72, 1),
                             image: DecorationImage(
                                 image: AssetImage("Assets/images/doctor.png"),
-                                fit: BoxFit.cover),
+                                fit: BoxFit.fitHeight),
                         ),
                         accountName: Text(
                           snapshot.data!['name'],
@@ -289,11 +289,14 @@ class _MyDrawerState extends State<MyDrawer> {
                           snapshot.data!['email'],
                           style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
+                        // currentAccountPictureSize: Size.square(75),
                         // currentAccountPicture: CircleAvatar(
-                          // radius: 10,
-                          //   backgroundImage: DecorationImage(
-                          //       image: AssetImage("Assets/images/doctor.png"),
-                          //       fit: BoxFit.cover),
+                        //   radius: 20,
+                        //     backgroundImage:
+                        //     NetworkImage("https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/images/doctor.png")
+                            // backgroundImage: DecorationImage(
+                            //     image: AssetImage("Assets/images/doctor.png"),
+                            //     fit: BoxFit.cover),
                           // backgroundImage: NetworkImage(
                           //   storage
                           //       .downloadURL('Profile_pic.jpg')

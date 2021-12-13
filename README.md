@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 _
 # Hospital App
 # Tech-Warriors
@@ -54,3 +55,6 @@ It is an app which offers complete telemedicine solutions for you and your famil
 ---
 
 
+=======
+
+>>>>>>> 96017d3bdf24ea3617625c4edb6b14739e1b6b36
