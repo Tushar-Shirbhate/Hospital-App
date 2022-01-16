@@ -77,7 +77,10 @@ store images and pdfs.
 6. In the patient section you will see the list of hospitals from where you can select any hospital you wish to admit.
 7. After clicking on the hospital of your choice you will see the list of doctors in the hospital with their specialization.
 8. You can book an appointment by clicking on the 'Get appointment' button.
-9. You can also book your appointment by directly calling to hospital using calling feature or by messaging the hospital.  
+9. You can also book your appointment by directly calling to hospital using calling feature or by messaging the hospital.
+10. For doctors they have to login in their respective hospitals using hospital credentials.
+11. Where they can see appointments of all the doctors in 'Appointments' section.
+12. They can also see the reports in reports section.  
 
 ## Application
 
