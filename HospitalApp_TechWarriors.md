@@ -67,6 +67,18 @@ store images and pdfs.
 - [x] Generating Report
 - [x] Adding and deleting doctors 
 
+## Usage
+1. To use the app clone the repo.
+2. Then run the application in VS Code or Android Studio using an 
+   android emulator or an android phone or an IOS phone.
+3. Then register yourself in the app.
+4. If you are a Hospital then register yourself in the Hospital section using your email-Id.
+5. If you are a Patient then register yourself in the patient section using your email-Id.
+6. In the patient section you will see the list of hospitals from where you can select any hospital you wish to admit.
+7. After clicking on the hospital of your choice you will see the list of doctors in the hospital with their specialization.
+8. You can book an appointment by clicking on the 'Get appointment' button.
+9. You can also book your appointment by directly calling to hospital using calling feature or by messaging the hospital.  
+
 ## Application
 
 In the era of lockdown and covid it is becoming difficult for a patient to visit a doctor.
