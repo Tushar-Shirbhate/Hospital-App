@@ -66,9 +66,6 @@ store images and pdfs.
 - [x] Call
 - [x] Generating Report
 - [x] Adding and deleting doctors 
-- [ ] Editing profile
-- [ ] Theme changing
-
 
 ## Application
 
