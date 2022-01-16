@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_app/HospitalAuthentication/Hospital_Methods.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ReportView extends StatelessWidget {
@@ -8,31 +9,35 @@ class ReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+        backgroundColor: Color.fromARGB(255, 248, 243, 247),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+            icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Padding(
-            padding: const EdgeInsets.fromLTRB(95, 0,15,0),
-            child: Text("Report",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: Color.fromRGBO(254, 23, 72, 1)),
-
+          automaticallyImplyLeading: false,
+          // elevation: 0,
+          title: Center(
+              child: Text(
+            "Hospital App",
+            style: TextStyle(color: Colors.white),
+          )),
+          backgroundColor: Color(0xff8f94fb),
+          actions: [
+            Container(
+              child: IconButton(
+                  onPressed: () {
+                    hospitalLogOut(context);
+                  },
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  )),
             ),
-          ),
-          elevation: 0,
-          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+          ],
         ),
-        body: SfPdfViewer.network(
-            reportUrl,
-            controller: _pdfViewerController
-        )
-    );
-
+        body: SfPdfViewer.network(reportUrl, controller: _pdfViewerController));
   }
 }

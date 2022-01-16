@@ -18,7 +18,7 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        backgroundColor:  Color.fromARGB(255, 248,243,247),
         body: StreamBuilder<QuerySnapshot>(
             stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientAcceptedList').snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -29,7 +29,7 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
                     Map<String, dynamic> _map = snapshot.data!.docs[index]
                         .data() as Map<String, dynamic>;
                     return SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                        padding: EdgeInsets.fromLTRB(6, 10, 6, 5),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
@@ -56,13 +56,13 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
                           child: Card(
                               elevation: 3,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
-                                    color: Color.fromRGBO(250, 228, 252, 1),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border:  Border.all(color: Colors.white,),
+                                    color: Colors.white,
                                   ),
                                   padding: EdgeInsets.all(10),
                                   height: size.height / 6.8,
@@ -74,21 +74,21 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
                                         Text(
                                             _map['patientName'],
                                             style: TextStyle(
-                                                color: Color.fromRGBO(09, 105, 105, 1),
+                                                color: Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold)
                                         ),
                                         Text(
                                             "Date: ${_map['date']}",
                                             style: TextStyle(
-                                                color: Color.fromRGBO(206, 123, 25, 1),
-                                                fontSize: 18,
+                                                color: Color.fromARGB(255,155,155,155),
+                                                fontSize: 16,
                                                 fontStyle: FontStyle.italic)
                                         ),Text(
                                             "Time: ${_map['fromTime']} - ${_map['toTime']}",
                                             style: TextStyle(
-                                                color: Color.fromRGBO(206, 123, 25, 1),
-                                                fontSize: 18,
+                                                color: Color.fromARGB(255,155,155,155),
+                                                fontSize: 16,
                                                 fontStyle: FontStyle.italic)
                                         )
                                       ]

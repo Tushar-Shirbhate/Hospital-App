@@ -17,144 +17,38 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
   final TextEditingController _doctorSpeciality = TextEditingController();
   final TextEditingController _doctorEducation = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final CollectionReference _firestoreDBDoctorList = FirebaseFirestore.instance.collection("users");
+  final CollectionReference _firestoreDBDoctorList =
+      FirebaseFirestore.instance.collection("users");
 
   @override
   Widget build(BuildContext context) {
     // final argsDL = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsDoctorList;
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      backgroundColor: Color.fromARGB(255, 248, 243, 247),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(110, 0,15,0),
-          child: Text("Doctors List",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromRGBO(254, 23, 72, 1)),
-
-          ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        automaticallyImplyLeading: false,
+        // elevation: 0,
+        title: Center(
+            child: Text(
+          "Hospital App",
+          style: TextStyle(color: Colors.white),
+        )),
+        backgroundColor: Color(0xff8f94fb),
         actions: [
           Container(
             child: IconButton(
-              color: Color.fromRGBO(254, 23, 72, 1),
-              icon: Icon(Icons.add, size: 25,),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: Text("Add Doctor Detail"),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 10),
-                          TextField(
-                              controller: _doctorName,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.person),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  hintText: "Enter Doctor Name",
-                                  labelText: "Doctor Name")),
-                          SizedBox(height: 20),
-                          TextField(
-                              controller: _doctorPost,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.watch_outlined),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  hintText: "Post",
-                                  labelText: "Enter Post")),
-                          SizedBox(height: 20),
-                          TextField(
-                              controller: _doctorSpeciality,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.all_inclusive_sharp),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  hintText: "Speciality",
-                                  labelText: "Enter Speciality")),
-                          SizedBox(height: 20),
-                          TextField(
-                              controller: _doctorEducation,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.school),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  hintText: "Education",
-                                  labelText: "Enter Education")),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      FlatButton(
-                        onPressed: () async {
-                          Map<String, dynamic> doctorList = {
-                            "doctorName": _doctorName.text,
-                            "doctorPost": _doctorPost.text,
-                            "doctorSpeciality": _doctorSpeciality.text,
-                            "doctorEducation": _doctorEducation.text,
-                          };
-                          _firestoreDBDoctorList.doc(_auth.currentUser!.uid).collection('doctorList').add(doctorList);
-
-                          _doctorName.clear();
-                          _doctorPost.clear();
-                          _doctorSpeciality.clear();
-                          _doctorEducation.clear();
-
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Done"),
-                      ),
-                      SizedBox(width: 90),
-                      FlatButton(
-                        onPressed: () {
-                          _doctorName.clear();
-                          _doctorPost.clear();
-                          _doctorSpeciality.clear();
-                          _doctorEducation.clear();
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Cancel"),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            child: IconButton(
-                onPressed: (){
+                onPressed: () {
                   hospitalLogOut(context);
                 },
-                icon: Icon(Icons.logout, color: Color.fromRGBO(254, 23, 72, 1),)
-            ),
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                )),
           )
         ],
       ),
@@ -173,21 +67,23 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                         .data() as Map<String, dynamic>;
                     return SingleChildScrollView(
                         child: Padding(
-                      padding:  EdgeInsets.fromLTRB(10, 10, 10, 5),
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                       child: Card(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border:  Border.all(color: Color.fromRGBO(254, 23, 72, 1),),
-                              color: Color.fromRGBO(250, 228, 252, 1),
-                            ),
-                            padding: EdgeInsets.all(12),
-                            height: size.height / 4.9,
-                            width: double.infinity,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.all(12),
+                              height: size.height / 4.9,
+                              width: double.infinity,
                               child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -198,9 +94,6 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          // Image.asset(
-                                          //   "assets/images/user.png",
-                                          // ),
                                           Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
@@ -210,24 +103,33 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                                                 Text(
                                                   map['doctorName'],
                                                   style: TextStyle(
-                                                      color: Color.fromRGBO(09, 105, 105, 1),
-                                                      fontSize: 24,
+                                                      color: Colors.black,
+                                                      fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
                                                 Text(map['doctorPost'],
                                                     style: TextStyle(
-                                                      color: Color.fromRGBO(206, 123, 25, 1),
+                                                      color: Color.fromARGB(
+                                                          255, 155, 155, 155),
+                                                      fontStyle:
+                                                          FontStyle.italic,
                                                       fontSize: 16,
                                                     )),
                                                 Text(map['doctorSpeciality'],
                                                     style: TextStyle(
-                                                      color: Color.fromRGBO(206, 123, 25, 1),
+                                                      color: Color.fromARGB(
+                                                          255, 155, 155, 155),
+                                                      fontStyle:
+                                                          FontStyle.italic,
                                                       fontSize: 16,
                                                     )),
                                                 Text(map['doctorEducation'],
                                                     style: TextStyle(
-                                                      color: Color.fromRGBO(206, 123, 25, 1),
+                                                      color: Color.fromARGB(
+                                                          255, 155, 155, 155),
+                                                      fontStyle:
+                                                          FontStyle.italic,
                                                       fontSize: 16,
                                                     )),
                                               ]),
@@ -241,7 +143,11 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                                                     .doc(id)
                                                     .delete();
                                               },
-                                              icon: Icon(Icons.delete, color: Color.fromRGBO(254, 23, 72, 1),))
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Color.fromARGB(
+                                                    255, 255, 158, 0),
+                                              ))
                                         ]),
                                   ]))),
                     ));
@@ -249,6 +155,123 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
             }
             return Center(child: CircularProgressIndicator());
           }),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+        child: FloatingActionButton(
+          backgroundColor: Color(0xff8f94fb),
+          child: Icon(Icons.add),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                backgroundColor: Color.fromARGB(255, 248, 243, 247),
+                title: Text("Add Doctor Detail"),
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      TextField(
+                          controller: _doctorName,
+                          autofocus: false,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Enter Doctor Name",
+                              labelText: "Doctor Name")),
+                      SizedBox(height: 20),
+                      TextField(
+                          controller: _doctorPost,
+                          autofocus: false,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.watch_outlined),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Post",
+                              labelText: "Enter Post")),
+                      SizedBox(height: 20),
+                      TextField(
+                          controller: _doctorSpeciality,
+                          autofocus: false,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.all_inclusive_sharp),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Speciality",
+                              labelText: "Enter Speciality")),
+                      SizedBox(height: 20),
+                      TextField(
+                          controller: _doctorEducation,
+                          autofocus: false,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.school),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              hintText: "Education",
+                              labelText: "Enter Education")),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () async {
+                      Map<String, dynamic> doctorList = {
+                        "doctorName": _doctorName.text,
+                        "doctorPost": _doctorPost.text,
+                        "doctorSpeciality": _doctorSpeciality.text,
+                        "doctorEducation": _doctorEducation.text,
+                      };
+                      _firestoreDBDoctorList
+                          .doc(_auth.currentUser!.uid)
+                          .collection('doctorList')
+                          .add(doctorList);
+
+                      _doctorName.clear();
+                      _doctorPost.clear();
+                      _doctorSpeciality.clear();
+                      _doctorEducation.clear();
+
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Text("Done"),
+                  ),
+                  SizedBox(width: size.width / 5),
+                  FlatButton(
+                    onPressed: () {
+                      _doctorName.clear();
+                      _doctorPost.clear();
+                      _doctorSpeciality.clear();
+                      _doctorEducation.clear();
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Text("Cancel"),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Color.fromRGBO(254, 23, 72, 1),
       //   child: Icon(Icons.add),

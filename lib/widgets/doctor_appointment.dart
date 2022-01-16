@@ -14,66 +14,50 @@ class DoctorAppointment extends StatefulWidget {
 class _DoctorAppointmentState extends State<DoctorAppointment> {
   @override
   Widget build(BuildContext context) {
-    return  DefaultTabController(
-        length: 2,
-        child:  Scaffold(
-            backgroundColor: Color.fromRGBO(206, 147, 216, 1),
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Center(
-                child: Container(
-                color: Color.fromRGBO(206, 147, 216, 1),
-                  width: double.infinity,
-                    padding: EdgeInsets.fromLTRB(85, 5, 5, 5),
-                    child: Image.asset("Assets/images/doctor.png", fit: BoxFit.fitHeight, height: 50,)
-                ),
-              ),
-              actions: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                  padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                  child: IconButton(
-                    onPressed: (){
-                     hospitalLogOut(context);
-                    },
-                      icon: Icon(Icons.logout, color: Color.fromRGBO(254, 23, 72, 1),)
-                  ),
-                )
-              ],
-              elevation: 0,
-              backgroundColor: Color.fromRGBO(206, 147, 216, 1),
-              bottom: TabBar(
-                labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  indicatorColor: Color.fromRGBO(254, 23, 72, 1),
-                    tabs: [
-                      Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromRGBO(254, 23, 72, 1),
-                          ),
-                          margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
-                          width: double.infinity,
-                          child: Tab(text: "Accepted")), Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color.fromRGBO(254, 23, 72, 1),
-                        ),
-                        margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 0.0),
-                          width: double.infinity,
-                          child: Tab(text: "Requested",)),
-
-
-                    ]
-                ),
-
+    final size = MediaQuery.of(context).size;
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(255, 248, 243, 247),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          body:  TabBarView(
-              children: <Widget>[
-                DoctorAppointmentAccepted(),
-                DoctorAppointmentRequested(),
-              ]
-          ),
-        ) ,
+          title: Center(
+              child: Text(
+            "Hospital App",
+            style: TextStyle(color: Colors.white),
+          )),
+          automaticallyImplyLeading: false,
+          actions: [
+            Container(
+              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              child: IconButton(
+                  onPressed: () {
+                    hospitalLogOut(context);
+                  },
+                  icon: Icon(Icons.logout, color: Colors.white)),
+            )
+          ],
+          // elevation: 0,
+          backgroundColor: Color(0xff8f94fb),
+          bottom: TabBar(
+              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              indicatorColor: Colors.white,
+              tabs: [
+                Tab(text: "Accepted"),
+                Tab(
+                  text: "Requested",
+                ),
+              ]),
+        ),
+        body: TabBarView(children: <Widget>[
+          DoctorAppointmentAccepted(),
+          DoctorAppointmentRequested(),
+        ]),
+      ),
     );
   }
 }

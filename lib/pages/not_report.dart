@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_app/HospitalAuthentication/Hospital_Methods.dart';
 
 class NotReport extends StatefulWidget {
   const NotReport({Key? key}) : super(key: key);
@@ -12,42 +13,53 @@ class _NotReportState extends State<NotReport> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      backgroundColor: Color.fromARGB(255, 248, 243, 247),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_outlined, color:  Color.fromRGBO(254, 23, 72, 1)),
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(95, 0,15,0),
-          child: Text("Report",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromRGBO(254, 23, 72, 1)),
-
-          ),
-        ),
-        elevation: 0,
-        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        title: Center(
+            child: Text(
+          "Hospital App",
+          style: TextStyle(color: Colors.white),
+        )),
+        backgroundColor: Color(0xff8f94fb),
+        actions: [
+          Container(
+            child: IconButton(
+                onPressed: () {
+                  //HospitalogOut(context);
+                },
+                icon: Icon(
+                  Icons.logout,
+                  color: Color(0xff8f94fb),
+                )),
+          )
+        ],
       ),
       body: Center(
         child: Container(
-          height: size.height/2,
+          height: size.height / 2,
           child: Column(
             children: [
-              Image.asset("Assets/images/report.png",
-              fit: BoxFit.fitHeight, height: size.height/4,),
-              SizedBox(height: size.height/25,),
+              Image.asset(
+                "Assets/images/report.png",
+                fit: BoxFit.fitHeight,
+                height: size.height / 6,
+              ),
+              SizedBox(
+                height: size.height / 25,
+              ),
               Text(
-                  "No report uploaded yet",
-                  style: TextStyle(
-                   fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 24,
-                    color:  Color.fromRGBO(254, 23, 72, 1),
-                  ),
+                "No report uploaded yet",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 24,
+                  color: Color(0xff8f94fb),
+                ),
               ),
             ],
           ),

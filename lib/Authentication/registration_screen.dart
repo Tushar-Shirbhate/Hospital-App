@@ -361,449 +361,322 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.white,
         //backgroundColor: Color.fromRGBO(206, 147, 216, 1),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios_outlined,
-              color: Colors.white,
-              //color: Color.fromRGBO(254, 23, 72, 1)
-            ),
+            icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Padding(
-            padding: const EdgeInsets.fromLTRB(45, 0, 15, 0),
-            child: Text(
-              "Register Yourself!",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.white,
-                //color: Color.fromRGBO(254, 23, 72, 1)
-              ),
-            ),
-          ),
-          elevation: 0,
-          backgroundColor: Colors.greenAccent,
-          //backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+          title: Center(
+              child: Text(
+            "Hospital App",
+            style: TextStyle(color: Colors.white),
+          )),
+          actions: [
+            Container(
+              child: IconButton(
+                  onPressed: () {
+                    //hospitalLogOut(context);
+                  },
+                  icon: Icon(
+                    Icons.logout,
+                    color: Color(0xff8f94fb),
+                  )),
+            )
+          ],
+          backgroundColor: Color(0xff8f94fb),
         ),
         body: isLoading
             ? Center(child: Container(child: CircularProgressIndicator()))
             : Center(
                 child: SingleChildScrollView(
                     padding: EdgeInsets.all(15),
-                    child: Card(
-                      // margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.indigo,
-                            //color: Color.fromRGBO(254, 23, 72, 1),
-                          ),
-                          color: Colors.white,
-                          //color: Color.fromRGBO(250, 228, 252, 1),
-                        ),
-                        height: size.height / 1.0,
-                        width: double.infinity,
-                        child: Container(
-                          padding: EdgeInsets.only(left: 8, right: 8),
-                          child: Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      "Assets/images/patientTwo.png",
-                                      fit: BoxFit.fitHeight,
-                                      height: 146,
+                    child: Padding(
+                      padding: const EdgeInsets.all(38.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                "Assets/images/password.png",
+                                fit: BoxFit.fitHeight,
+                                height: 146,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: size.height / 14,
+                              width: size.width / 1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                //color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              child: TextField(
+                                  controller: _name,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    height: size.height / 14,
-                                    width: size.width / 1,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      //color: Color.fromRGBO(250, 228, 252, 1),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
                                     ),
-                                    child: TextField(
-                                        controller: _name,
-                                        autofocus: false,
-                                        textInputAction: TextInputAction.next,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.person_rounded,
-                                              color: Colors.blue,
-                                              // color: Color.fromRGBO(
-                                              //     254, 23, 72, 1),
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                20, 15, 20, 15),
-                                            hintText: "Name",
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                                width: 2.0,
-                                              ),
-                                            )
-                                            // labelText: "Name"
-                                            )),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    height: size.height / 14,
-                                    width: size.width / 1,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      //color: Color.fromRGBO(250, 228, 252, 1),
+                                    prefixIcon: Icon(
+                                      Icons.person_rounded,
+                                      color: Color(0xff8f94fb),
+                                      // color: Color.fromRGBO(
+                                      //     254, 23, 72, 1),
                                     ),
-                                    child: TextField(
-                                        controller: _phoneNo,
-                                        autofocus: false,
-                                        keyboardType: TextInputType.number,
-                                        textInputAction: TextInputAction.next,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.phone,
-                                              color: Colors.blue,
-                                              // color: Color.fromRGBO(
-                                              //     254, 23, 72, 1),
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                20, 15, 20, 15),
-                                            hintText: "Mobile Number",
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                                width: 2.0,
-                                              ),
-                                            )
-                                            // labelText: "Name"
-                                            )),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Container(
-                                    height: size.height / 14,
-                                    width: size.width / 1,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      //color: Color.fromRGBO(250, 228, 252, 1),
-                                    ),
-                                    child: TextField(
-                                        autofocus: false,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        controller: _email,
-                                        textInputAction: TextInputAction.next,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.email,
-                                              color: Colors.blue,
-                                              // color: Color.fromRGBO(
-                                              //     254, 23, 72, 1),
-                                            ),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                20, 15, 20, 15),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            hintText: "E-mail",
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                                width: 2.0,
-                                              ),
-                                            )
-                                            //  labelText: "Email"
-                                            )),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Container(
-                                    height: size.height / 14,
-                                    width: size.width / 1,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      //color: Color.fromRGBO(250, 228, 252, 1),
-                                    ),
-                                    child: TextField(
-                                        obscureText: obs_text ? true : false,
-                                        autofocus: false,
-                                        controller: _password,
-                                        textInputAction: TextInputAction.next,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.vpn_key,
-                                              color: Colors.blue,
-                                              // color: Color.fromRGBO(
-                                              //     254, 23, 72, 1),
-                                            ),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            suffixIcon: IconButton(
-                                              icon: Icon(
-                                                Icons.remove_red_eye,
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                              ),
-                                              onPressed: () {
-                                                obs_text = false;
-                                                // setState(() {
-                                                //
-                                                // });
-                                              },
-                                            ),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                20, 15, 20, 15),
-                                            hintText: "Password",
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                // color: Color.fromRGBO(
-                                                //     254, 23, 72, 1),
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                //color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                color: Color.fromRGBO(
-                                                    254, 23, 72, 1),
-                                                width: 2.0,
-                                              ),
-                                            )
-                                            // labelText: "Password"
-                                            )),
-                                  ),
-                                  // SizedBox(
-                                  //     height: 30
-                                  // ),TextField(
-                                  //     autofocus: false,
-                                  //     controller: _profession,
-                                  //     textInputAction: TextInputAction.next,
-                                  //     decoration: InputDecoration(
-                                  //       prefixIcon: Icon(Icons.school),
-                                  //       border: OutlineInputBorder(
-                                  //           borderRadius: BorderRadius.circular(10)
-                                  //       ),
-                                  //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  //       hintText: "Hospital/User",
-                                  //     )
-                                  // ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    height: size.height / 14,
-                                    width: size.width / 1,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      //color: Colors.white,
-                                      color: Color.fromRGBO(250, 228, 252, 1),
-                                    ),
-                                    child: TextField(
-                                        controller: _address,
-                                        autofocus: false,
-                                        keyboardType: TextInputType.text,
-                                        textInputAction: TextInputAction.done,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.home,
-                                              //color: Colors.blue,
-                                              color: Color.fromRGBO(
-                                                  254, 23, 72, 1),
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                20, 15, 20, 15),
-                                            hintText: "Address",
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                //color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                color: Color.fromRGBO(
-                                                    254, 23, 72, 1),
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                //color: Colors.blue,
-                                                // color: Color.fromRGBO(250, 228, 252, 1),
-                                                color: Color.fromRGBO(
-                                                    254, 23, 72, 1),
-                                                width: 2.0,
-                                              ),
-                                            )
-                                            // labelText: "Name"
-                                            )),
-                                  ),
-                                  SizedBox(height: 20),
-                                  GestureDetector(
-                                      onTap: () {
-                                        if (_name.text.isNotEmpty &&
-                                            _phoneNo.text.isNotEmpty &&
-                                            _email.text.isNotEmpty &&
-                                            _password.text.isNotEmpty &&
-                                            _address.text.isNotEmpty) {
-                                          setState(() {
-                                            isLoading = true;
-                                          });
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    hintText: "Name",
 
-                                          signUp(
-                                                  _name.text,
-                                                  _phoneNo.text,
-                                                  _email.text,
-                                                  _password.text,
-                                                  _address.text)
-                                              .then((user) {
-                                            if (user != null) {
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (_) =>
-                                                          HomePage()));
-                                            } else {
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                            }
-                                          });
-                                        } else {
-                                          print(
-                                              "please fill the form correctly");
-                                        }
-                                      },
-                                      child: Container(
-                                          height: size.height / 14,
-                                          width: size.width / 3.2,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                            //color: Colors.indigo,
-                                            color:
-                                                Color.fromRGBO(254, 23, 72, 1),
-                                            // color: Colors.blue
-                                          ),
-                                          alignment: Alignment.center,
-                                          child: Text("Sign Up",
-                                              style: TextStyle(
-                                                  fontSize: 15.6,
-                                                  color: Colors.white,
-                                                  fontWeight:
-                                                      FontWeight.bold)))),
-                                  // SizedBox(height: 15,),
-                                  // GestureDetector(
-                                  //     onTap: (){
-                                  //       Navigator.push(
-                                  //           context,
-                                  //           MaterialPageRoute(builder: (_)=> LoginScreen())
-                                  //       );
-                                  //     },
-                                  //     child: Container(
-                                  //         alignment: Alignment.center,
-                                  //         child: Text(
-                                  //             "Log In",
-                                  //             style: TextStyle(
-                                  //                 fontSize: 15,
-                                  //                 color: Colors.blue,
-                                  //                 fontWeight: FontWeight.bold
-                                  //             )
-                                  //         )
-                                  //     )
-                                  // ),
-                                ]),
-                          ),
-                        ),
-                      ),
+                                    // labelText: "Name"
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: size.height / 14,
+                              width: size.width / 1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                //color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              child: TextField(
+                                  controller: _phoneNo,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.call,
+                                      color: Color(0xff8f94fb),
+                                      // color: Color.fromRGBO(
+                                      //     254, 23, 72, 1),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    hintText: "Phone",
+
+                                    // labelText: "Name"
+                                  )),
+                            ),
+                            SizedBox(height: 20),
+                            Container(
+                              height: size.height / 14,
+                              width: size.width / 1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                //color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              child: TextField(
+                                  controller: _email,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.email,
+                                      color: Color(0xff8f94fb),
+                                      // color: Color.fromRGBO(
+                                      //     254, 23, 72, 1),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    hintText: "Email",
+
+                                    // labelText: "Name"
+                                  )),
+                            ),
+                            SizedBox(height: 20),
+                            Container(
+                              height: size.height / 14,
+                              width: size.width / 1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                //color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              child: TextField(
+                                  controller: _password,
+                                  obscureText: true,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.vpn_key,
+                                      color: Color(0xff8f94fb),
+                                      // color: Color.fromRGBO(
+                                      //     254, 23, 72, 1),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    hintText: "Password",
+
+                                    // labelText: "Name"
+                                  )),
+                            ),
+                            // SizedBox(
+                            //     height: 30
+                            // ),TextField(
+                            //     autofocus: false,
+                            //     controller: _profession,
+                            //     textInputAction: TextInputAction.next,
+                            //     decoration: InputDecoration(
+                            //       prefixIcon: Icon(Icons.school),
+                            //       border: OutlineInputBorder(
+                            //           borderRadius: BorderRadius.circular(10)
+                            //       ),
+                            //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            //       hintText: "Hospital/User",
+                            //     )
+                            // ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              height: size.height / 14,
+                              width: size.width / 1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                //color: Colors.white,
+                                // color: Color.fromRGBO(250, 228, 252, 1),
+                              ),
+                              child: TextField(
+                                  controller: _address,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Color(0xff8f94fb)),
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.home,
+                                      color: Color(0xff8f94fb),
+                                      // color: Color.fromRGBO(
+                                      //     254, 23, 72, 1),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    hintText: "Address",
+
+                                    // labelText: "Name"
+                                  )),
+                            ),
+                            SizedBox(height: 20),
+                            GestureDetector(
+                                onTap: () {
+                                  if (_name.text.isNotEmpty &&
+                                      _phoneNo.text.isNotEmpty &&
+                                      _email.text.isNotEmpty &&
+                                      _password.text.isNotEmpty &&
+                                      _address.text.isNotEmpty) {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    signUp(
+                                            _name.text,
+                                            _phoneNo.text,
+                                            _email.text,
+                                            _password.text,
+                                            _address.text)
+                                        .then((user) {
+                                      if (user != null) {
+                                        setState(() {
+                                          isLoading = false;
+                                        });
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => HomePage()));
+                                      } else {
+                                        setState(() {
+                                          isLoading = false;
+                                        });
+                                      }
+                                    });
+                                  } else {
+                                    print("please fill the form correctly");
+                                  }
+                                },
+                                child: Container(
+                                    height: size.height / 16,
+                                    width: size.width / 3.2,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                      //color: Colors.indigo,
+                                      color: Color(0xff8f94fb),
+                                      // color: Colors.blue
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text("Sign Up",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold)))),
+                            // SizedBox(height: 15,),
+                            // GestureDetector(
+                            //     onTap: (){
+                            //       Navigator.push(
+                            //           context,
+                            //           MaterialPageRoute(builder: (_)=> LoginScreen())
+                            //       );
+                            //     },
+                            //     child: Container(
+                            //         alignment: Alignment.center,
+                            //         child: Text(
+                            //             "Log In",
+                            //             style: TextStyle(
+                            //                 fontSize: 15,
+                            //                 color: Colors.blue,
+                            //                 fontWeight: FontWeight.bold
+                            //             )
+                            //         )
+                            //     )
+                            // ),
+                          ]),
                     )),
               ));
   }

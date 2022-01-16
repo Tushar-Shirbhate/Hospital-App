@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_arguments_doctor_list.dart';
@@ -29,22 +30,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      backgroundColor: Color.fromARGB(255, 248, 243, 247),
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.fromLTRB(70, 0, 15, 0),
           child: Text(
             "Hospital App",
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromRGBO(254, 23, 72, 1)),
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.white,
+            ),
           ),
         ),
         //backgroundColor: Colors.blue, //Color.fromRGBO(206, 147, 216, 1),
-        backgroundColor: Color.fromRGBO(254, 23, 72, 1),
-        iconTheme: IconThemeData(color: Color.fromRGBO(254, 23, 72, 1)),
-        elevation: 0,
+        actions: [
+          Container(
+            child: IconButton(
+                onPressed: () {
+                  logOut(context);
+                },
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                )),
+          )
+        ],
+        backgroundColor: Color(0xff8f94fb),
+        iconTheme: IconThemeData(color: Colors.white),
+        //elevation: 0,
       ),
       body: StreamBuilder(
           stream: firestoreDB,
@@ -74,35 +88,36 @@ class _HomePageState extends State<HomePage> {
                         child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
-                                  color: Color.fromRGBO(254, 23, 72, 1),
+                                  color: Colors.white,
                                 ),
-                                color: Color.fromRGBO(250, 228, 252, 1),
+                                color: Colors.white,
                               ),
                               padding: EdgeInsets.all(10),
                               height: size.height / 6.8,
                               width: double.infinity,
                               child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                         "${(snapshot.data! as QuerySnapshot).docs[index]['name']}",
                                         style: TextStyle(
                                             //color: Colors.deepOrange,
-                                            color:
-                                                Color.fromRGBO(09, 105, 105, 1),
+                                            color: Colors.black,
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold)),
                                     Text(
                                         "${(snapshot.data! as QuerySnapshot).docs[index]['address']}",
                                         style: TextStyle(
-                                            color: Colors.blueGrey,
-                                            fontSize: 18,
+                                            color: Color.fromARGB(
+                                                255, 155, 155, 155),
+                                            fontSize: 16,
                                             fontStyle: FontStyle.italic)),
                                   ]),
                               //   Icon(CupertinoIcons.heart),

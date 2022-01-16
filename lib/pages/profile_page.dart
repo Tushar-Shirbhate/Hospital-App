@@ -2,7 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hospital_app/pages/edit_profilePage.dart';
+import 'package:hospital_app/Authentication/Methods.dart';
+//import 'package:hospital_app/pages/edit_profilePage.dart';
 import 'package:hospital_app/utils/storage_service.dart';
 import 'package:hospital_app/utils/user.dart';
 import 'package:hospital_app/widgets/profile_widget.dart';
@@ -31,204 +32,181 @@ class _ProfilePageState extends State<ProfilePage> {
     final size = MediaQuery.of(context).size;
 // final user = UserPreferences.myUser;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+      backgroundColor: Color.fromARGB(255, 248, 243, 247),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_outlined,
-              color: Color.fromRGBO(254, 23, 72, 1)),
+          icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Padding(
-          padding: const EdgeInsets.fromLTRB(95, 0, 15, 0),
+        title: Center(
           child: Text(
-            "Profile",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromRGBO(254, 23, 72, 1)),
+            "Hospital App",
+            style: TextStyle(color: Colors.white),
           ),
         ),
-        elevation: 0,
-        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        backgroundColor: Color(0xff8f94fb),
+        actions: [
+          Container(
+            child: IconButton(
+                onPressed: () {
+                  logOut(context);
+                },
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                )),
+          ),
+        ],
       ),
-      body: Builder(builder: (context) {
-        return StreamBuilder<DocumentSnapshot>(
-            stream: _firestoreDBUserProf
-                .collection("users")
-                .doc(_auth.currentUser!.uid)
-                .snapshots(),
-            builder: (BuildContext context, snapshot) {
-              if (!snapshot.hasData) return CircularProgressIndicator();
-              return SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: Stack(
+      body: StreamBuilder<DocumentSnapshot>(
+          stream: _firestoreDBUserProf
+              .collection("users")
+              .doc(_auth.currentUser!.uid)
+              .snapshots(),
+          builder: (BuildContext context, snapshot) {
+            if (!snapshot.hasData) return CircularProgressIndicator();
+            return ListView(physics: BouncingScrollPhysics(), children: [
+              Container(
+                color: Colors.white,
+                child: buildName(snapshot),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                color: Colors.white,
+                child: Column(
                   children: [
-                    SingleChildScrollView(
-                      padding: EdgeInsets.all(15),
-                      child: Card(
-                          margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                          elevation: 3,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: Container(
-                              padding: EdgeInsets.fromLTRB(12, 70, 12, 12),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  //color: Colors.blue,
-                                  color: Color.fromRGBO(254, 23, 72, 1),
-                                ),
-                                color: Colors.greenAccent,
-                                //color: Color.fromRGBO(250, 228, 252, 1),
-                              ),
-                              height: size.height / 1.8,
-                              width: double.infinity,
-                              child: ListView(
-                                physics: BouncingScrollPhysics(),
-                                children: [
-                                  const SizedBox(height: 24),
-                                  buildName(snapshot),
-                                  const SizedBox(height: 48),
-                                  bulidPhoneNo(snapshot),
-                                  const SizedBox(height: 48),
-                                  buildAddress(snapshot),
-                                ],
-                              ))),
-                    ),
-                    FutureBuilder(
-                        future: storage.downloadURL('Profile_pic.jpg'),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<String> snapshot) {
-                          if (snapshot.connectionState ==
-                                  ConnectionState.done &&
-                              snapshot.hasData) {
-                            return ProfileWidget(
-                              imagepath: Image.network(
-                                snapshot.data!,
-                              ),
-                              onClicked: () async {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => EditProfilePage()),
-                                );
-                              },
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                                  ConnectionState.waiting ||
-                              !snapshot.hasData) {
-                            return Container(
-                                alignment: Alignment.topCenter,
-                                height: 10,
-                                width: 10,
-                                child: CircularProgressIndicator());
-                          }
-                          return Container(
-                            alignment: Alignment.topCenter,
-                            height: 10,
-                            width: 10,
-                            child: CircularProgressIndicator(),
-                          );
-                        }),
+                    bulidPhoneNo(snapshot),
+                    Divider(),
+                    buildAddress(snapshot),
                   ],
                 ),
-              );
-            });
-      }),
+              ),
+            ]);
+          }),
     );
   }
 
-  buildName(snapshot) => Column(
-        children: [
-          Text(
-            snapshot.data!['name'],
-            style: TextStyle(
-              color: Color.fromRGBO(09, 105, 105, 1),
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            snapshot.data!['email'],
-            style: TextStyle(
-              color: Color.fromRGBO(206, 123, 25, 1),
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              //color: Colors.deepOrange
-            ),
-          )
-        ],
-      );
-
-  buildAddress(snapshot) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+  buildName(snapshot) => Padding(
+        padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Icon(
-                  CupertinoIcons.building_2_fill,
-                  color: Color.fromRGBO(09, 105, 105, 1),
-                ),
-                Text(
-                  ' Address',
-                  style: TextStyle(
-                      color: Color.fromRGBO(09, 105, 105, 1),
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+            const SizedBox(height: 24),
+            CircleAvatar(
+                backgroundColor: Color(0xff8f94fb),
+                backgroundImage: AssetImage("Assets/images/patient_2.png"),
+                radius: 50),
+            const SizedBox(height: 10),
             Text(
-              snapshot.data!['address'],
+              snapshot.data!['name'],
               style: TextStyle(
-                  //color: Colors.deepOrange,
-                  color: Color.fromRGBO(206, 123, 25, 1),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  height: 1.4),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              snapshot.data!['email'],
+              style: TextStyle(
+                color: Color.fromARGB(255, 155, 155, 155),
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                // color: Colors.blue
+              ),
             )
           ],
         ),
       );
-}
 
-bulidPhoneNo(snapshot) => Container(
-      padding: EdgeInsets.symmetric(horizontal: 48),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+  buildAddress(snapshot) => Padding(
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.call,
-                color: Color.fromRGBO(09, 105, 105, 1),
+              Row(
+                children: [
+                  Icon(
+                    CupertinoIcons.building_2_fill,
+                    color: Colors.black,
+                  ),
+                  Text(
+                    ' Address',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               Text(
-                ' Phone number',
+                snapshot.data!['address'],
                 style: TextStyle(
-                    color: Color.fromRGBO(09, 105, 105, 1),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
+                    color: Color.fromARGB(255, 155, 155, 155),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    height: 1.4),
+              )
             ],
           ),
-          Text(
-            snapshot.data!['phoneNo'],
-            style: TextStyle(
-                //color: Colors.deepOrange,
-                color: Color.fromRGBO(206, 123, 25, 1),
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                height: 1.4),
-          )
-        ],
-      ),
-    );
+        ),
+      );
+
+  bulidPhoneNo(snapshot) => Padding(
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+        child: Container(
+          color: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.call,
+                    color: Colors.black,
+                  ),
+                  Text(
+                    ' Phone number',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Text(
+                snapshot.data!['phoneNo'],
+                style: TextStyle(
+                    color: Color.fromARGB(255, 155, 155, 155),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    height: 1.4),
+              )
+            ],
+          ),
+        ),
+      );
+
+  // buildEducation(User doctor) => Container(
+  //       padding: EdgeInsets.symmetric(horizontal: 48),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           Text(
+  //             'Education',
+  //             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  //           ),
+  //           Text(
+  //             doctor.education,
+  //             style: TextStyle(fontSize: 16, height: 1.4),
+  //           )
+  //         ],
+  //       ),
+  //     );
+}
   // buildName(snapshot) => Column(
   //       children: [
   //         Text(

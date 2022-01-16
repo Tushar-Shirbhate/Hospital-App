@@ -5,17 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:hospital_app/Authentication/Authenticate.dart';
 import 'package:hospital_app/HospitalAuthentication/hospital_login_screen.dart';
 import 'package:hospital_app/pages/DoctorHomePage.dart';
-import 'package:hospital_app/pages/Setting_page.dart';
+// import 'package:hospital_app/pages/DoctorHomePage.dart';
+//import 'package:hospital_app/pages/Setting_page.dart';
+// import 'package:hospital_app/pages/doctor_home_page.dart';
 import 'package:hospital_app/widgets/add_doctor_list_page.dart';
 import 'package:hospital_app/pages/app_home_page.dart';
 import 'package:hospital_app/pages/appointment_list.dart';
 import 'package:hospital_app/pages/doctor_appointment_detail_page.dart';
-import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
+//import 'package:hospital_app/pages/doctor_edit_profile_page.dart';
 import 'package:hospital_app/pages/doctor_history_page.dart';
 import 'package:hospital_app/pages/doctor_login_page.dart';
 import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/pages/doctor_request_detail_page.dart';
-import 'package:hospital_app/pages/edit_profilePage.dart';
+//import 'package:hospital_app/pages/edit_profilePage.dart';
 import 'package:hospital_app/pages/home_page.dart';
 import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/Authentication/login_screen.dart';
@@ -26,6 +28,8 @@ import 'package:hospital_app/pages/starred_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/themes.dart';
 import 'package:hospital_app/widgets/appointment_requested.dart';
+import 'package:hospital_app/widgets/doctor_appointment.dart';
+import 'package:hospital_app/widgets/doctor_me.dart';
 import 'package:hospital_app/widgets/user_preferences.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
@@ -71,23 +75,25 @@ class _MyAppState extends State<MyApp> {
                             MyRoute.hospitalLoginRoute: (context) =>
                                 HospitalLoginScreen(),
                             MyRoute.homeRoute: (context) => HomePage(),
-                            MyRoute.settingRoute: (context) => SettingPage(),
+                            // MyRoute.settingRoute: (context) => SettingPage(),
                             //  MyRoute.starredRoute: (context) => StarredPage(),
                             MyRoute.detailRoute: (context) =>
                                 HospitalDetailPage(),
                             MyRoute.profileRoute: (context) => ProfilePage(),
-                            MyRoute.editprofileRoute: (context) =>
-                                EditProfilePage(),
+                            //    EditProfilePage(),
                             MyRoute.doctorLoginRoute: (context) =>
                                 DoctorLoginPage(),
                             MyRoute.doctorHomeRoute: (context) =>
                                 DoctorHomePage(),
+                            MyRoute.doctorMeRoute: (context) => DoctorMe(),
+                            MyRoute.doctorAppointmentRoute: (context) =>
+                                DoctorAppointment(),
                             MyRoute.doctorAppointmentDetailRoute: (context) =>
                                 DoctorAppointmentDetailPage(),
                             MyRoute.doctorRequestDetailRoute: (context) =>
                                 DoctorRequestDetailPage(),
-                            MyRoute.doctorEditProfileRoute: (context) =>
-                                DoctorEditProfilePage(),
+                            //MyRoute.doctorEditProfileRoute: (context) =>
+                            //  DoctorEditProfilePage(),
                             MyRoute.doctorProfileRoute: (context) =>
                                 DoctorProfilePage(),
                             MyRoute.appointmentListRoute: (context) =>

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital_app/Authentication/Methods.dart';
 import 'package:hospital_app/pages/report_view.dart';
 import 'package:hospital_app/utils/routes.dart';
 
@@ -22,26 +23,31 @@ class _ReportPageState extends State<ReportPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         //backgroundColor: Colors.greenAccent,
-        backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+        backgroundColor: Color.fromARGB(255, 248, 243, 247),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_outlined,
-                color: Color.fromRGBO(254, 23, 72, 1)),
+            icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Padding(
-            padding: const EdgeInsets.fromLTRB(95, 0, 15, 0),
-            child: Text(
-              "Report",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: Color.fromRGBO(254, 23, 72, 1)),
-            ),
-          ),
-          elevation: 0,
-          backgroundColor: Color.fromRGBO(206, 147, 216, 1),
+          title: Center(
+              child: Text(
+            "Hospital App",
+            style: TextStyle(color: Colors.white),
+          )),
+          backgroundColor: Color(0xff8f94fb),
+          actions: [
+            Container(
+              child: IconButton(
+                  onPressed: () {
+                    //logOut(context);
+                  },
+                  icon: Icon(
+                    Icons.logout,
+                    color: Color(0xff8f94fb),
+                  )),
+            )
+          ],
         ),
         body: StreamBuilder<QuerySnapshot>(
             stream: _firestoreDBPatientAppointment
@@ -62,18 +68,18 @@ class _ReportPageState extends State<ReportPage> {
                         child: Card(
                             elevation: 3,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Color.fromRGBO(254, 23, 72, 1),
+                                    color: Colors.white,
                                   ),
-                                  color: Color.fromRGBO(250, 228, 252, 1),
+                                  color: Colors.white,
                                 ),
                                 padding: EdgeInsets.all(12),
-                                height: size.height / 2.8,
+                                height: size.height / 3.4,
                                 width: double.infinity,
                                 child: Column(
                                     mainAxisAlignment:
@@ -92,9 +98,8 @@ class _ReportPageState extends State<ReportPage> {
                                               Text(
                                                 "Name:  ${_map['hospitalName']}",
                                                 style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        09, 105, 105, 1),
-                                                    fontSize: 24,
+                                                    color: Colors.black,
+                                                    fontSize: 20,
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FontStyle.italic),
@@ -103,9 +108,8 @@ class _ReportPageState extends State<ReportPage> {
                                               Text(
                                                 "Email:  ${_map['email']}",
                                                 style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        09, 105, 105, 1),
-                                                    fontSize: 24,
+                                                    color: Colors.black,
+                                                    fontSize: 20,
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FontStyle.italic),
@@ -114,9 +118,8 @@ class _ReportPageState extends State<ReportPage> {
                                               Text(
                                                 "Doctor:  ${_map['doctorName']}",
                                                 style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        09, 105, 105, 1),
-                                                    fontSize: 24,
+                                                    color: Colors.black,
+                                                    fontSize: 20,
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FontStyle.italic),
@@ -124,9 +127,9 @@ class _ReportPageState extends State<ReportPage> {
                                               SizedBox(height: 5),
                                               Text("Date: ${_map['date']}",
                                                   style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          206, 123, 25, 1),
-                                                      fontSize: 18,
+                                                      color: Color.fromARGB(
+                                                          255, 155, 155, 155),
+                                                      fontSize: 16,
                                                       fontStyle:
                                                           FontStyle.italic)),
                                               SizedBox(height: 5),
@@ -134,8 +137,8 @@ class _ReportPageState extends State<ReportPage> {
                                                   "Time: ${_map['fromTime']} - ${_map['toTime']}",
                                                   style: TextStyle(
                                                       fontSize: 18,
-                                                      color: Color.fromRGBO(
-                                                          206, 123, 25, 1),
+                                                      color: Color.fromARGB(
+                                                          255, 155, 155, 155),
                                                       fontStyle:
                                                           FontStyle.italic)),
                                             ]),
@@ -187,23 +190,42 @@ class _ReportPageState extends State<ReportPage> {
                                                         }
                                                       },
                                                       child: Container(
-                                                          width: 150,
+                                                          width: 120,
                                                           height: 37,
                                                           decoration: BoxDecoration(
-                                                              color: Colors
-                                                                  .blueAccent,
+                                                              color: Color(
+                                                                  0xff8f94fb),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          20.0)),
+                                                                          8.0)),
                                                           child: Center(
-                                                              child: Text(
-                                                                  "Report",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          20,
-                                                                      color: CupertinoColors
-                                                                          .white)))));
+                                                              child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .remove_red_eye,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            9),
+                                                                child: Text(
+                                                                    "Report",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            20,
+                                                                        color: CupertinoColors
+                                                                            .white)),
+                                                              ),
+                                                            ],
+                                                          ))));
                                                 }
                                                 //  }
                                                 return Center(
@@ -211,39 +233,53 @@ class _ReportPageState extends State<ReportPage> {
                                                         SizedBox(height: 40));
                                               }),
                                           InkWell(
-                                            onTap: () {
-                                              String id =
-                                                  snapshot.data!.docs[index].id;
-                                              _firestoreDBPatientAppointment
-                                                  .doc(_auth.currentUser!.uid)
-                                                  .collection(
-                                                      'appointmentHistoryDoctorList')
-                                                  .doc(id)
-                                                  .delete();
-                                              _firestoreDBPatientAppointment
-                                                  .doc(_auth.currentUser!.uid)
-                                                  .collection("reportFileList")
-                                                  .doc(
-                                                      "${_map['date']}${_auth.currentUser!.displayName}${_map['doctorName']}")
-                                                  .delete();
-                                            },
-                                            child: Container(
-                                                width: 150,
-                                                height: 37,
-                                                decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        254, 23, 72, 1),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0)),
-                                                child: Center(
-                                                    child: Text("Delete",
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color:
-                                                                CupertinoColors
-                                                                    .white)))),
-                                          )
+                                              onTap: () {
+                                                String id = snapshot
+                                                    .data!.docs[index].id;
+                                                _firestoreDBPatientAppointment
+                                                    .doc(_auth.currentUser!.uid)
+                                                    .collection(
+                                                        'appointmentHistoryDoctorList')
+                                                    .doc(id)
+                                                    .delete();
+                                                _firestoreDBPatientAppointment
+                                                    .doc(_auth.currentUser!.uid)
+                                                    .collection(
+                                                        "reportFileList")
+                                                    .doc(
+                                                        "${_map['date']}${_auth.currentUser!.displayName}${_map['doctorName']}")
+                                                    .delete();
+                                              },
+                                              child: Container(
+                                                  width: 120,
+                                                  height: 37,
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0xff8f94fb),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0)),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.delete,
+                                                        color: Colors.white,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 9.0),
+                                                        child: Text("Delete",
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                color:
+                                                                    CupertinoColors
+                                                                        .white)),
+                                                      ),
+                                                    ],
+                                                  ))),
                                         ],
                                       ),
                                     ]))));
