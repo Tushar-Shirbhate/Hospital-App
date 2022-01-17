@@ -109,7 +109,7 @@ quality medication to patients.
 
 ## Authentication Screens
 
-<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233757.png"  width="250" height="540"/>  <img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233761.png"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot2.jpg"  width="250" height="540"/>  <img src= "https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot3.jpg"  width="250" height="540"/>
 
 
 
