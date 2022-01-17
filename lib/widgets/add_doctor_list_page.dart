@@ -24,6 +24,7 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
   Widget build(BuildContext context) {
     // final argsDL = ModalRoute.of(context)!.settings.arguments as ScreenArgumentsDoctorList;
     final size = MediaQuery.of(context).size;
+    FocusNode myFocusNode = new FocusNode();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 248, 243, 247),
       appBar: AppBar(
@@ -172,63 +173,110 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                       SizedBox(height: 10),
                       TextField(
                           controller: _doctorName,
+                          cursorColor: const Color(0xff8f94fb),
+                          // focusNode: myFocusNode,
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                              prefixIcon: Icon(Icons.person, color: Color(0xff8f94fb),),
+                              // border: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.circular(10),
+                              // ),
+                              // focusedBorder:
+                              // OutlineInputBorder(
+                              //   borderSide: const BorderSide(color: Color(0xff8f94fb), width: 2.0),
+                              //   borderRadius: BorderRadius. circular(25.0),
+                              // ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
+                                    borderRadius: BorderRadius. circular(7.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
                               ),
                               contentPadding:
                                   EdgeInsets.fromLTRB(20, 15, 20, 15),
                               hintText: "Enter Doctor Name",
-                              labelText: "Doctor Name")),
+                              // labelText: "Doctor Name",
+                              // labelStyle: TextStyle(
+                              //     color:  Color(0xff8f94fb)
+                              // )
+                          )),
                       SizedBox(height: 20),
                       TextField(
                           controller: _doctorPost,
+                          cursorColor: Color(0xff8f94fb),
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.watch_outlined),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                              prefixIcon: Icon(Icons.watch_outlined,color: Color(0xff8f94fb)),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
+                                borderRadius: BorderRadius. circular(7.0),
                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
+                              ),
+                              // border: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.circular(10),
+                              // ),
                               contentPadding:
                                   EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Post",
-                              labelText: "Enter Post")),
+                              hintText: "Enter Post",
+                              // labelText: "Enter Post"
+                          )),
                       SizedBox(height: 20),
                       TextField(
                           controller: _doctorSpeciality,
+                          cursorColor: Color(0xff8f94fb),
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.all_inclusive_sharp),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                              prefixIcon: Icon(Icons.all_inclusive_sharp,color: Color(0xff8f94fb)),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
+                                borderRadius: BorderRadius. circular(7.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
                               ),
                               contentPadding:
                                   EdgeInsets.fromLTRB(20, 15, 20, 15),
                               hintText: "Speciality",
-                              labelText: "Enter Speciality")),
+                              // labelText: "Enter Speciality"
+                          )),
                       SizedBox(height: 20),
                       TextField(
                           controller: _doctorEducation,
+                          cursorColor: Color(0xff8f94fb),
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.school),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                              prefixIcon: Icon(Icons.school,color: Color(0xff8f94fb)),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb),),
+                                borderRadius: BorderRadius. circular(7.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Color(0xff8f94fb)),
                               ),
                               contentPadding:
                                   EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Education",
-                              labelText: "Enter Education")),
+                              hintText: "Enter Education",
+                              // labelText: "Enter Education"
+                          )),
                     ],
                   ),
                 ),

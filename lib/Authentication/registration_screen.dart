@@ -420,6 +420,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: TextField(
                                   controller: _name,
+                                  cursorColor: const Color(0xff8f94fb),
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
@@ -457,6 +458,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: TextField(
                                   controller: _phoneNo,
+                                  cursorColor: const Color(0xff8f94fb),
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
@@ -492,6 +494,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: TextField(
                                   controller: _email,
+                                  cursorColor: const Color(0xff8f94fb),
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
@@ -527,6 +530,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: TextField(
                                   controller: _password,
+                                  cursorColor: const Color(0xff8f94fb),
                                   obscureText: true,
                                   autofocus: false,
                                   textInputAction: TextInputAction.next,
@@ -580,6 +584,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: TextField(
                                   controller: _address,
+                                  cursorColor: const Color(0xff8f94fb),
                                   autofocus: false,
                                   textInputAction: TextInputAction.done,
                                   decoration: InputDecoration(

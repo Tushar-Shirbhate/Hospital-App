@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_arguments_appointment.dart';
 //DoctorAppointmentAccepted
 class DoctorAppointmentAccepted extends StatefulWidget{
+  const DoctorAppointmentAccepted({Key? key}) : super(key: key);
+
   @override
   State<DoctorAppointmentAccepted> createState() => _DoctorAppointmentAcceptedState();
 }
@@ -18,18 +20,18 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor:  Color.fromARGB(255, 248,243,247),
+        backgroundColor:  const Color.fromARGB(255, 248,243,247),
         body: StreamBuilder<QuerySnapshot>(
             stream: _firestoreDBPatientAppointment.doc(_auth.currentUser!.uid).collection('patientAcceptedList').snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-              if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
+              if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (BuildContext context, int index) {
                     Map<String, dynamic> _map = snapshot.data!.docs[index]
                         .data() as Map<String, dynamic>;
                     return SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(6, 10, 6, 5),
+                        padding: const EdgeInsets.fromLTRB(6, 10, 6, 5),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
@@ -64,7 +66,7 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
                                     border:  Border.all(color: Colors.white,),
                                     color: Colors.white,
                                   ),
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   height: size.height / 6.8,
                                   width: double.infinity,
                                   child: Column(
@@ -73,20 +75,20 @@ class _DoctorAppointmentAcceptedState extends State<DoctorAppointmentAccepted> {
                                       children: [
                                         Text(
                                             _map['patientName'],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold)
                                         ),
                                         Text(
                                             "Date: ${_map['date']}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(255,155,155,155),
                                                 fontSize: 16,
                                                 fontStyle: FontStyle.italic)
                                         ),Text(
                                             "Time: ${_map['fromTime']} - ${_map['toTime']}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Color.fromARGB(255,155,155,155),
                                                 fontSize: 16,
                                                 fontStyle: FontStyle.italic)

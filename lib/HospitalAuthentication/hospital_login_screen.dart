@@ -311,6 +311,7 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
                           ),
                           child: TextField(
                               controller: _email,
+                              cursorColor: const Color(0xff8f94fb),
                               autofocus: false,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -346,6 +347,7 @@ class _HospitalLoginScreenState extends State<HospitalLoginScreen> {
                           ),
                           child: TextField(
                               controller: _password,
+                              cursorColor: const Color(0xff8f94fb),
                               obscureText: true,
                               autofocus: false,
                               textInputAction: TextInputAction.next,

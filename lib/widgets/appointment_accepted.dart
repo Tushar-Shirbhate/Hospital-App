@@ -180,7 +180,7 @@ class _AppointmentAcceptedState extends State<AppointmentAccepted> {
                                                 },
                                                 child: Text("Yes"),
                                               ),
-                                              SizedBox(width: 120),
+                                              SizedBox(width: size.width / 5),
                                               FlatButton(
                                                 onPressed: () {
                                                   Navigator.of(ctx).pop();

@@ -134,7 +134,31 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                             fontSize: 30),
                       ),
                       IconButton(
-                          onPressed: _pickDate,
+                          onPressed: ()async {
+                            DateTime? date = await showDatePicker(
+                              context: context,
+                              firstDate: DateTime(DateTime.now().year - 5),
+                              lastDate: DateTime(DateTime.now().year + 5),
+                              initialDate: pickedDate,
+                                builder: (context, child) => Theme(
+                                  data: ThemeData.light().copyWith(
+                                    primaryColor: const Color(0xff8f94fb),
+                                    accentColor: const Color(0xff8f94fb),
+                                    colorScheme: ColorScheme.light(primary: const Color(0xff8f94fb),),
+                                    buttonTheme: ButtonThemeData(
+                                        textTheme: ButtonTextTheme.primary
+                                    ),
+                                  ),
+                                  child: child!,
+                                )
+                            );
+
+                            if (date != null) {
+                              setState(() {
+                                pickedDate = date;
+                              });
+                            }
+                          },
                           icon: Icon(
                             Icons.date_range,
                             color: Color.fromARGB(255, 255, 158, 0),
@@ -170,7 +194,29 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                             // color: Colors.black,
                             fontSize: 30)),
                     IconButton(
-                        onPressed: _pickTime1,
+                        onPressed:()async {
+                          TimeOfDay? t1 = await showTimePicker(
+                            context: context,
+                            initialTime: time1,
+                            builder: (context, child) => Theme(
+                              data: ThemeData.light().copyWith(
+                                primaryColor: const Color(0xff8f94fb),
+                                accentColor: const Color(0xff8f94fb),
+                                colorScheme: ColorScheme.light(primary: const Color(0xff8f94fb)),
+                                buttonTheme: ButtonThemeData(
+                                    textTheme: ButtonTextTheme.primary
+                                ),
+                              ),
+                              child: child!,
+                            )
+                          );
+
+                          if (t1 != null) {
+                            setState(() {
+                              time1 = t1;
+                            });
+                          }
+                        },
                         icon: Icon(
                           Icons.lock_clock,
                           color: Color.fromARGB(255, 255, 158, 0),
@@ -207,7 +253,29 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
                             // color: Colors.black,
                             fontSize: 30)),
                     IconButton(
-                        onPressed: _pickTime2,
+                        onPressed: () async {
+                              TimeOfDay? t2 = await showTimePicker(
+                                context: context,
+                                initialTime: time2,
+                                  builder: (context, child) => Theme(
+                                    data: ThemeData.light().copyWith(
+                                      primaryColor: const Color(0xff8f94fb),
+                                      accentColor: const Color(0xff8f94fb),
+                                      colorScheme: ColorScheme.light(primary: const Color(0xff8f94fb)),
+                                      buttonTheme: ButtonThemeData(
+                                          textTheme: ButtonTextTheme.primary
+                                      ),
+                                    ),
+                                    child: child!,
+                                  )
+                              );
+
+                                if (t2 != null) {
+                                  setState(() {
+                                  time2 = t2;
+                                 });
+                                 }
+                              },
                         icon: Icon(
                           Icons.lock_clock,
                           color: Color.fromARGB(255, 255, 158, 0),
@@ -395,44 +463,45 @@ class _DoctorRequestDetailPageState extends State<DoctorRequestDetailPage> {
     );
   }
 
-  _pickDate() async {
-    DateTime? date = await showDatePicker(
-      context: context,
-      firstDate: DateTime(DateTime.now().year - 5),
-      lastDate: DateTime(DateTime.now().year + 5),
-      initialDate: pickedDate,
-    );
+  // _pickDate() async {
+  //   DateTime? date = await showDatePicker(
+  //     context: context,
+  //     firstDate: DateTime(DateTime.now().year - 5),
+  //     lastDate: DateTime(DateTime.now().year + 5),
+  //     initialDate: pickedDate,
+  //   );
+  //
+  //   if (date != null) {
+  //     setState(() {
+  //       pickedDate = date;
+  //     });
+  //   }
+  // }
 
-    if (date != null) {
-      setState(() {
-        pickedDate = date;
-      });
-    }
-  }
-
-  _pickTime1() async {
-    TimeOfDay? t1 = await showTimePicker(
-      context: context,
-      initialTime: time1,
-    );
-
-    if (t1 != null) {
-      setState(() {
-        time1 = t1;
-      });
-    }
-  }
-
-  _pickTime2() async {
-    TimeOfDay? t2 = await showTimePicker(
-      context: context,
-      initialTime: time2,
-    );
-
-    if (t2 != null) {
-      setState(() {
-        time2 = t2;
-      });
-    }
-  }
+  // _pickTime1() async {
+  //   TimeOfDay? t1 = await showTimePicker(
+  //     context: context,
+  //     initialTime: time1,
+  //     builder: (context)
+  //   );
+  //
+  //   if (t1 != null) {
+  //     setState(() {
+  //       time1 = t1;
+  //     });
+  //   }
+  // }
+  //
+  // _pickTime2() async {
+  //   TimeOfDay? t2 = await showTimePicker(
+  //     context: context,
+  //     initialTime: time2,
+  //   );
+  //
+  //   if (t2 != null) {
+  //     setState(() {
+  //       time2 = t2;
+  //     });
+  //   }
+  // }
 }

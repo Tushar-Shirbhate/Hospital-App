@@ -258,7 +258,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                                                 },
                                                 child: Text("Done"),
                                               ),
-                                              SizedBox(width: 120),
+                                             SizedBox(width: size.width / 5),
                                               FlatButton(
                                                 onPressed: () {
                                                   Navigator.of(ctx).pop();
