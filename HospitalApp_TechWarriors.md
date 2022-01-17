@@ -103,7 +103,7 @@ quality medication to patients.
 
 ## Onboarding Screens
 
-<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot_1639233750.png"  width="250" height="540"/>  
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/tushar/Assets/screenshots/Screenshot1"  width="250" height="540"/>  
 
 
 
