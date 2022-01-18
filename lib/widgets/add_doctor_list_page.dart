@@ -179,31 +179,19 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person, color: Color(0xff8f94fb),),
-                              // border: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(10),
-                              // ),
-                              // focusedBorder:
-                              // OutlineInputBorder(
-                              //   borderSide: const BorderSide(color: Color(0xff8f94fb), width: 2.0),
-                              //   borderRadius: BorderRadius. circular(25.0),
-                              // ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                                    borderRadius: BorderRadius. circular(7.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                              ),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Enter Doctor Name",
-                              // labelText: "Doctor Name",
-                              // labelStyle: TextStyle(
-                              //     color:  Color(0xff8f94fb)
-                              // )
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Color(0xff8f94fb),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderRadius: BorderRadius.circular(7.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: "Enter Doctor Name",
                           )),
                       SizedBox(height: 20),
                       TextField(
@@ -213,23 +201,17 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.watch_outlined,color: Color(0xff8f94fb)),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                                borderRadius: BorderRadius. circular(7.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                              ),
-                              // border: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(10),
-                              // ),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Enter Post",
-                              // labelText: "Enter Post"
+                            prefixIcon: Icon(Icons.watch_outlined,
+                                color: Color(0xff8f94fb)),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderRadius: BorderRadius.circular(7.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: "Enter Post",
                           )),
                       SizedBox(height: 20),
                       TextField(
@@ -239,20 +221,17 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.all_inclusive_sharp,color: Color(0xff8f94fb)),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                                borderRadius: BorderRadius. circular(7.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                              ),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Speciality",
-                              // labelText: "Enter Speciality"
+                            prefixIcon: Icon(Icons.all_inclusive_sharp,
+                                color: Color(0xff8f94fb)),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderRadius: BorderRadius.circular(7.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: "Speciality",
                           )),
                       SizedBox(height: 20),
                       TextField(
@@ -262,20 +241,19 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.school,color: Color(0xff8f94fb)),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb),),
-                                borderRadius: BorderRadius. circular(7.0),
+                            prefixIcon:
+                                Icon(Icons.school, color: Color(0xff8f94fb)),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff8f94fb),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xff8f94fb)),
-                              ),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                              hintText: "Enter Education",
-                              // labelText: "Enter Education"
+                              borderRadius: BorderRadius.circular(7.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: "Enter Education",
                           )),
                     ],
                   ),
@@ -320,117 +298,6 @@ class _AddDoctorListPageState extends State<AddDoctorListPage> {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Color.fromRGBO(254, 23, 72, 1),
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     showDialog(
-      //       context: context,
-      //       builder: (ctx) => AlertDialog(
-      //         title: Text("Add Doctor Detail"),
-      //         content: SingleChildScrollView(
-      //           child: Column(
-      //             children: [
-      //               SizedBox(height: 10),
-      //               TextField(
-      //                   controller: _doctorName,
-      //                   autofocus: false,
-      //                   keyboardType: TextInputType.text,
-      //                   textInputAction: TextInputAction.next,
-      //                   decoration: InputDecoration(
-      //                       prefixIcon: Icon(Icons.person),
-      //                       border: OutlineInputBorder(
-      //                         borderRadius: BorderRadius.circular(10),
-      //                       ),
-      //                       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      //                       hintText: "Enter Doctor Name",
-      //                       labelText: "Doctor Name")),
-      //               SizedBox(height: 20),
-      //               TextField(
-      //                   controller: _doctorPost,
-      //                   autofocus: false,
-      //                   keyboardType: TextInputType.text,
-      //                   textInputAction: TextInputAction.next,
-      //                   decoration: InputDecoration(
-      //                       prefixIcon: Icon(Icons.watch_outlined),
-      //                       border: OutlineInputBorder(
-      //                         borderRadius: BorderRadius.circular(10),
-      //                       ),
-      //                       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      //                       hintText: "Post",
-      //                       labelText: "Enter Post")),
-      //               SizedBox(height: 20),
-      //               TextField(
-      //                   controller: _doctorSpeciality,
-      //                   autofocus: false,
-      //                   keyboardType: TextInputType.text,
-      //                   textInputAction: TextInputAction.next,
-      //                   decoration: InputDecoration(
-      //                       prefixIcon: Icon(Icons.all_inclusive_sharp),
-      //                       border: OutlineInputBorder(
-      //                         borderRadius: BorderRadius.circular(10),
-      //                       ),
-      //                       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      //                       hintText: "Speciality",
-      //                       labelText: "Enter Speciality")),
-      //               SizedBox(height: 20),
-      //               TextField(
-      //                   controller: _doctorEducation,
-      //                   autofocus: false,
-      //                   keyboardType: TextInputType.text,
-      //                   textInputAction: TextInputAction.done,
-      //                   decoration: InputDecoration(
-      //                       prefixIcon: Icon(Icons.school),
-      //                       border: OutlineInputBorder(
-      //                         borderRadius: BorderRadius.circular(10),
-      //                       ),
-      //                       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      //                       hintText: "Education",
-      //                       labelText: "Enter Education")),
-      //             ],
-      //           ),
-      //         ),
-      //         actions: <Widget>[
-      //           FlatButton(
-      //             onPressed: () async {
-      //               Map<String, dynamic> doctorList = {
-      //                 "doctorName": _doctorName.text,
-      //                 "doctorPost": _doctorPost.text,
-      //                 "doctorSpeciality": _doctorSpeciality.text,
-      //                 "doctorEducation": _doctorEducation.text,
-      //               };
-      //               _firestoreDBDoctorList
-      //                   .doc(_auth.currentUser!.uid)
-      //                   .collection('doctorList')
-      //                   .add(doctorList);
-      //
-      //               _doctorName.clear();
-      //               _doctorPost.clear();
-      //               _doctorSpeciality.clear();
-      //               _doctorEducation.clear();
-      //
-      //               Navigator.of(ctx).pop();
-      //             },
-      //             child: Text("Done"),
-      //           ),
-      //           SizedBox(width: 90),
-      //           FlatButton(
-      //             onPressed: () {
-      //               _doctorName.clear();
-      //               _doctorPost.clear();
-      //               _doctorSpeciality.clear();
-      //               _doctorEducation.clear();
-      //               Navigator.of(ctx).pop();
-      //             },
-      //             child: Text("Cancel"),
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //   },
-      // ),
-      //]
-      //   ),
     );
   }
 }

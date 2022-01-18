@@ -12,11 +12,7 @@ import 'package:hospital_app/pages/hospital_detail_page.dart';
 import 'package:hospital_app/utils/routes.dart';
 import 'package:hospital_app/utils/screen_arguments_doctor_list.dart';
 import 'package:hospital_app/widgets/drawer.dart';
-//import 'package:tushar_h/pages/hospital_detail_page.dart';
-//import 'package:tushar_h/utils/routes.dart';
-//import 'package:flutter_search_bar/flutter_search_bar.dart';
 import 'package:hospital_app/widgets/drawer.dart';
-//import 'package:tushar_h/widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,7 +39,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        //backgroundColor: Colors.blue, //Color.fromRGBO(206, 147, 216, 1),
         actions: [
           Container(
             child: IconButton(

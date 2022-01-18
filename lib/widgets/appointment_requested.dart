@@ -57,9 +57,6 @@ class _AppointmentRequestedState extends State<AppointmentRequested> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(children: [
-                                      // Image.asset(
-                                      //   "assets/images/user.png",
-                                      // ),
                                       Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,

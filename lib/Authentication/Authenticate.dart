@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:hospital_app/pages/DoctorHomePage.dart';
 import 'package:hospital_app/pages/app_home_page.dart';
 import 'package:hospital_app/pages/home_page.dart';
 
@@ -15,15 +14,9 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (_auth.currentUser != null) {
-      //profession == Hospital or user
-      // if(){
-
       return AppHomePage();
 
-      // }
-      // if(){
       return HomePage();
-      // }
     } else {
       return AppHomePage();
     }

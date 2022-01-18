@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hospital_app/HospitalAuthentication/Hospital_Methods.dart';
 import 'package:hospital_app/pages/doctor_profile_page.dart';
 import 'package:hospital_app/utils/routes.dart';
-//import 'package:tushar_h/utils/routes.dart';
 
 class DoctorMe extends StatefulWidget {
   @override

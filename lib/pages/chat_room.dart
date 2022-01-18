@@ -65,7 +65,6 @@ class ChatRoom extends StatelessWidget {
           },
         ),
         backgroundColor: Color.fromARGB(255, 143, 148, 250),
-        // elevation: 1.5,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -155,67 +154,56 @@ class ChatRoom extends StatelessWidget {
   }
 
   Widget messages(Size size, Map<String, dynamic> map, BuildContext context) {
-    return
-        // map['type'] == "text"
-        //   ?
-        Container(
-            width: size.width,
-            alignment: map['sendby'] == _auth.currentUser!.displayName
-                ? Alignment.centerRight
-                : Alignment.centerLeft,
-            child: map['sendby'] == _auth.currentUser!.displayName
-                ? Padding(
-                    padding: const EdgeInsets.fromLTRB(70, 0, 3, 0),
-                    child: Card(
-                      elevation: 1.5,
+    return Container(
+        width: size.width,
+        alignment: map['sendby'] == _auth.currentUser!.displayName
+            ? Alignment.centerRight
+            : Alignment.centerLeft,
+        child: map['sendby'] == _auth.currentUser!.displayName
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(70, 0, 3, 0),
+                child: Card(
+                  elevation: 1.5,
+                  color: Color.fromARGB(255, 255, 158, 0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
                       color: Color.fromARGB(255, 255, 158, 0),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-                        margin:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Color.fromARGB(255, 255, 158, 0),
-                        ),
-                        child: Text(
-                          map['message'],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 255, 235, 161),
-                          ),
-                        ),
+                    ),
+                    child: Text(
+                      map['message'],
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(255, 255, 235, 161),
                       ),
                     ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(3, 0, 70, 0),
-                    child: Card(
-                      elevation: 1.5,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-                        margin:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          // border:  Border.all(
-                          //   color: Color.fromRGBO(254, 23, 72, 1),),
-                          color: Colors.white,
-                          // color: Colors.blue,
-                          // color: Color.fromRGBO(250, 228, 252, 1),
-                        ),
-                        child: Text(
-                          map['message'],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 142, 142, 144),
-                          ),
-                        ),
+                  ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.fromLTRB(3, 0, 70, 0),
+                child: Card(
+                  elevation: 1.5,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      map['message'],
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(255, 142, 142, 144),
                       ),
                     ),
-                  ));
+                  ),
+                ),
+              ));
   }
 }

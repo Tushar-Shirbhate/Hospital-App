@@ -2,52 +2,44 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_app/HospitalAuthentication/hospital_login_screen.dart';
-// import 'package:untitled/Authentication/LoginScreen.dart';
 
-Future<User?> hospitalSignUp(
-    String name,
-    String phoneNo,
-    String email,
-    String password,
-    String address
-    ) async{
+Future<User?> hospitalSignUp(String name, String phoneNo, String email,
+    String password, String address) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  try{
+  try {
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
     print("Account Created Successfully");
 
     userCredential.user!.updateDisplayName(name);
-    // userCredential.user!.updatePhoneNumber(int.parse(phoneNo));
 
     await _firestore.collection('users').doc(_auth.currentUser!.uid).set({
       "name": name,
       "phoneNo": phoneNo,
-      "email":email,
+      "email": email,
       "profession": "Hospital",
       "address": address,
-      "status":"unavailable",
+      "status": "unavailable",
       "uid": _auth.currentUser!.uid
     });
     return userCredential.user;
-  }
-  catch(e){
+  } catch (e) {
     print(e);
     return null;
   }
 }
 
-Future<User?> hospitalLogIn(String email, String password)async{
+Future<User?> hospitalLogIn(String email, String password) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  try{
+  try {
     UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email:email, password: password);
+        email: email, password: password);
 
     print("Login Successfully");
 
@@ -57,31 +49,24 @@ Future<User?> hospitalLogIn(String email, String password)async{
         .get()
         .then((value) {
       userCredential.user!.updateDisplayName(value['name']);
-      //  userCredential.user!.updatePhoneNumber(value['phoneNo']);
     });
 
     return userCredential.user;
-  }
-
-  catch(e){
+  } catch (e) {
     print(e);
     return null;
   }
 }
 
-Future hospitalLogOut(BuildContext context) async{
+Future hospitalLogOut(BuildContext context) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  try{
+  try {
     await _auth.signOut().then((value) {
       Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => HospitalLoginScreen())
-      );
+          context, MaterialPageRoute(builder: (_) => HospitalLoginScreen()));
     });
-  }
-  catch(e){
+  } catch (e) {
     print(e);
   }
-
 }

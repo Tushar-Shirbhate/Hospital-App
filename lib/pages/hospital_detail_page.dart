@@ -258,7 +258,7 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                                                 },
                                                 child: Text("Done"),
                                               ),
-                                             SizedBox(width: size.width / 5),
+                                              SizedBox(width: size.width / 5),
                                               FlatButton(
                                                 onPressed: () {
                                                   Navigator.of(ctx).pop();
@@ -301,9 +301,6 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
                 color: Colors.white,
               ),
               onPressed: () async {
-                //Indirect Phone call
-                //  launch('tel://$number');
-                //Indirect Phone call
                 await FlutterPhoneDirectCaller.callNumber(hospitalPhoneNo);
               },
             ),
@@ -332,8 +329,6 @@ class _HospitalDetailPageState extends State<HospitalDetailPage> {
           ),
         ),
       ]),
-      //]
-      //   ),
     );
   }
 }

@@ -93,7 +93,6 @@ class _DoctorAppointmentDetailPageState
           icon: Icon(Icons.arrow_back_ios_outlined, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        // elevation: 0,
         title: Center(
             child: Text(
           "Hospital App",
@@ -125,7 +124,6 @@ class _DoctorAppointmentDetailPageState
                 alignment: Alignment.centerLeft,
                 child: Text("Name: ${argsAp.patientName}",
                     style: TextStyle(
-                        // color: Color.fromRGBO(254, 23, 72, 1),
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -137,7 +135,6 @@ class _DoctorAppointmentDetailPageState
                 alignment: Alignment.centerLeft,
                 child: Text("Email: ${argsAp.email}",
                     style: TextStyle(
-                        // color: Color.fromRGBO(254, 23, 72, 1),
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -149,7 +146,6 @@ class _DoctorAppointmentDetailPageState
                 alignment: Alignment.centerLeft,
                 child: Text("Doctor: ${argsAp.doctorName}",
                     style: TextStyle(
-                        // color: Color.fromRGBO(254, 23, 72, 1),
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -220,7 +216,6 @@ class _DoctorAppointmentDetailPageState
                                   color: Color.fromARGB(255, 255, 158, 0),
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.italic,
-                                  // color: Color.fromRGBO(206, 123, 25, 1),
                                 ))
                           ]))),
               SizedBox(
@@ -289,7 +284,6 @@ class _DoctorAppointmentDetailPageState
               ),
               InkWell(
                   onTap: () async {
-                    // await _firestoreDBPatientRequestList.doc(patientApListId).delete().then((value) => print('deleted'));
                     _firestoreDBPatientRequestList
                         .doc(_auth.currentUser!.uid)
                         .collection('patientHistoryList')

@@ -22,7 +22,6 @@ class _ReportPageState extends State<ReportPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        //backgroundColor: Colors.greenAccent,
         backgroundColor: Color.fromARGB(255, 248, 243, 247),
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -39,9 +38,7 @@ class _ReportPageState extends State<ReportPage> {
           actions: [
             Container(
               child: IconButton(
-                  onPressed: () {
-                    //logOut(context);
-                  },
+                  onPressed: () {},
                   icon: Icon(
                     Icons.logout,
                     color: Color(0xff8f94fb),
@@ -86,9 +83,6 @@ class _ReportPageState extends State<ReportPage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(children: [
-                                        // Image.asset(
-                                        //   "assets/images/user.png",
-                                        // ),
                                         Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
