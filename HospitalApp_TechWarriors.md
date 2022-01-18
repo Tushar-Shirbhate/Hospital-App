@@ -122,11 +122,11 @@ quality medication to patients.
 ## Patient workflow
 
 
-<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot16.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot17.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot20.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot21.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot22.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot23.jpg"  width="250" height="540"/> 
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot16.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot17.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot19.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot21.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot22.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot23.jpg"  width="250" height="540"/> 
 
 
 
 ## Report-Chat-Call
 
 
-<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot9.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot10.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot11.jpg"  width="250" height="540"/>
+<img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot9.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot20.jpg"  width="250" height="540"/> <img src="https://github.com/Tushar-Shirbhate/Hospital-App/blob/main/Assets/screenshots/Screenshot11.jpg"  width="250" height="540"/>
