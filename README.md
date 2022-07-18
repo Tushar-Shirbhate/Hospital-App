@@ -12,6 +12,12 @@ rikchat15@gmail.com
 [Tushar Shirbhate](https://github.com/Tushar-Shirbhate) - 
 tgshirbhate04@gmail.com
 
+[Gaurav Tejwani](https://github.com/GauravMaheshTejwani) - 
+gauravtejwani7559@gmail.com
+
+[Piyush Motwani](https://github.com/Piyushmotwani) - 
+piyushmotwani211@gmail.com
+
 
 ## Mentors
 
